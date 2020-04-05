@@ -27,28 +27,32 @@
     ./ 01_init.sh
 ```
 
->Note: `tmux` stands for terminal multiplexer and has many useful features such as `split-panes`,  `sessions`, `synchronized typing`,  etc. To use it just type `tmux` and then `ctrl + b` followed by `"` or `%` to split the panes as needed. To exit tmux, just type `exit`. See [docs](https://tmuxcheatsheet.com/) for more options such as sessions. 
-
-
 ```bash 
-# Install kubectl. You will also need to install kubernetes extension for vs code alongside when prompted.
+# Install kubectl. You will also need to install kubernetes extension for vs code alongside when prompted. (or install later)
     chmod +x 02_kubectl.sh
     ./02_kubectl.sh
 ```
 
-### 03 Install any dev tools and extensions you need on vs online
+```bash
+# Install helm
+    chmod +x 03_helm.sh
+    ./03_helm.sh
+```
+
+#### Install any dev tools and extensions you need on vs online
 
 > Feel free to configure your vs online environment as you prefer. It already comes with dotnet and nodejs installed. 
 
-### 04 Some command line tips
+#### Some command line tips
 
 * Ctrl + C - exit (sometimes ctrl + d if you are in a python interpreter for example)
 * Ctrl + L - clear screen
 * Ctrl + A - go to begining of the line
 * Ctrl + E - go to end of the line (may be overrided with vs shortcuts)
 
+>Note: `tmux` stands for terminal multiplexer and has many useful features such as `split-panes`,  `sessions`, `synchronized typing`,  etc. To use it just type `tmux` and then `ctrl + b` followed by `"` or `%` to split the panes as needed. To exit tmux, just type `exit`. See [docs](https://tmuxcheatsheet.com/) for more options such as sessions. 
 
-### 05 VS Code tips
+#### VS Code tips
 
 * Ctrl + shift + p - Command palette. From there,
     * To toggle / maximize vs terminal, type `Maximized Panel` 
