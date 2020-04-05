@@ -145,6 +145,7 @@ docker system prune
 
 ```bash 
 docker system prune --all
+# type `y` when prompted
 ```
 >Note: You can also prune by `images` `containers` as opposed to whole system. Or if you want to remove images individually, you can use `docker rmi image <image_id_1> <image_id_2>`
 

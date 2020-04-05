@@ -117,14 +117,7 @@
 
 6. Ensure the container is running as expected with `docker ps`. Observe all the columns of your `my-first-website` container.
 
-### Clean up the resources as done before and ensure your environment is correctly tidied up.   
-
-    ```bash
-        sudo docker system prune -a
-        sudo docker ps -a
-        sudo docker images
-    ```
-> Bonus: Try other approaches to clean up your environment too. `rmi`, `prune container`, etc.
+7. Stop the container using `docker stop <container-name>`
 
 
 
