@@ -75,6 +75,8 @@
 
 2. Create a folder called `website` and create a file inside called `index.html`. Type some simple markup such as below.
 
+    Note that filenames in linux are case sensitive. 
+
     ```html
         <h1>Hello World</h1>
     ```

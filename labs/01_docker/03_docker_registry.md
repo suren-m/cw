@@ -18,7 +18,7 @@ Go to https://hub.docker.com/ and signup using your temporary outlook / hotmail 
     Tag your `hello-web` image as below. Replace the <image-id> and <dockerhub-username> as needed.
 
     ```bash
-        sudo docker images hello-world 
+        sudo docker images hello-web 
         
         # Copy the image-id
         sudo docker tag <image-id> <dockerhub-username>/hello-web:1.0
@@ -33,6 +33,7 @@ Go to https://hub.docker.com/ and signup using your temporary outlook / hotmail 
 ```bash
     docker run -d -p 9010:80 <dockerhub-username>/hello-web:1.0
     docker ps
+    docker stop <hello-web_container_id>
 ```
 
 5. Logout of docker hub from terminal
