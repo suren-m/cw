@@ -23,8 +23,8 @@
 
 ```bash
 # Install command line tools such httpie, jq, tmux. We will cover them later during demos.
-    chmod +x 01_init.sh
-    ./ 01_init.sh
+    chmod +x 01_lab_tools.sh
+    ./ 01_lab_tools.sh
 ```
 
 ```bash 
@@ -62,6 +62,16 @@ Copy the provided config data.
 ```bash
     kubectl get nodes
     # Above should return all the nodes in the cluster
+```
+
+#### Setup your default namespace. (as we're sharing a cluster)
+
+```bash
+    kubectl create namespace <your-firstname>
+    # If there are multiple participants with same first name, please suffix with a number or the first letter of your surname.
+
+    # use your own namespace as a default 
+    kubectl config set-context --current --namespace=suren
 ```
 
 #### Install any dev tools and extensions you need on vs online
