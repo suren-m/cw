@@ -44,6 +44,26 @@
     rm get_helm.sh
 ```
 
+#### Configure kubectl to access the kubernetes cluster
+
+Copy the provided config data.
+
+```bash
+    mkdir ~/.kube && nano ~/.kube/config
+    # Now paste the contents of config provided into the editor. (ctrl + shift + v)     
+    
+    # Save and exit (ctrl + x) - press y and then enter when prompted.
+
+    # Reach out to instructor if you run into any issues.    
+```
+
+#### Test connection to kubernetes cluster
+
+```bash
+    kubectl get nodes
+    # Above should return all the nodes in the cluster
+```
+
 #### Install any dev tools and extensions you need on vs online
 
 > Feel free to configure your vs online environment as you prefer. It already comes with dotnet and nodejs installed. 
