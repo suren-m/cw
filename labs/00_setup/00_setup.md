@@ -5,7 +5,7 @@
 * Goto https://aka.ms/remote-containers-workshop and clone the repo using `https`
 
 ```bash
-    git clone https://github.com/surenmcode/containers-workshop.git
+    git clone https://github.com/surenmcode/cw.git
 ```
 
 > You are free to set up and organizse your lab workspace as you prefer. You can also just use the folders in this git repo for lab work if that suits you. For e.g: store your lab files inside `01_docker` folder when you are doing docker labs. 
@@ -37,6 +37,11 @@
 # Install helm
     chmod +x 03_helm.sh
     ./03_helm.sh
+```
+
+```bash
+# Remove get-helm.sh (tidy up)
+    rm get_helm.sh
 ```
 
 #### Install any dev tools and extensions you need on vs online

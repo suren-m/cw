@@ -22,7 +22,7 @@ From terminal, run
 
 * Understand the architecture. (We'll look at build shortly)
 
-![Docker Architecture](../assets/docker_architecture.svg)
+![Docker Architecture](../../assets/docker_architecture.svg)
 
 ### Run Ubuntu and interact with its shell environment!
 
@@ -44,11 +44,12 @@ Execute some commands inside that docker container
 
 Take your time to understand what `-it` flag does when used with `docker run`
 
->`i` - keep STDIN open even if not attached
+``` 
+`i` - keep STDIN open even if not attached
+`t` - Allocate a pseudo-tty
+```
 
->`t` - Allocate a pseudo-tty
-
-One easy way to remember: `-it` -> interactive terminal
+One easy mnemonic to remember: `-it` -> interactive terminal
 
 ### See locally cached images
 
@@ -59,15 +60,18 @@ One easy way to remember: `-it` -> interactive terminal
 
 The result shows images that are locally cached in your environment. So, the next time you `run` that exact image, it won't be pulled from registry.
 
-### Experimenting with the same ubuntu image
+### Exploring docker run
 
 * Run the same ubuntu image again but with a little twist
 
-1. Run it without `bash` in the end.
+1. Run it without `bash` in the end. Notice how it still works the same way as before? This is because the ubuntu image's `cmd` is set to run `bash` by default. `exit` the container shell.
     ```bash
         docker run -it ubuntu
     ```
-2
+
+> Note: If we just run `docker run ubuntu`, bash will exit automatically as it does not have an stdin to listen to. We'll see later about executing a `process` using `EntryPoint` in docker and how web apps make use of it.
+
+2. Now override the default `cmd` with some other command such as `ls`. Run the below and notice the difference in result.
 
 ```bash
     docker run -it ubuntu ls    
@@ -77,8 +81,48 @@ The result shows images that are locally cached in your environment. So, the nex
 
 > See https://docs.docker.com/engine/reference/run/#cmd-default-command-or-options
 
-### Create a simple Dockerfile to host a we
+### Run a Webserver
+
+Run an nginx webserver as below.
+
+>Note: If you're on `vs online`, you will not be able to view the web page using `port-forwarding`. This is because there isn't a loopback route to forward to within the vsonine environment which itself is already running inside a container. We will be able to work with web apps once we start deploying to kubernetes.
+
+
 
 ```bash
-#1. Create a Docker File w
+    docker run -d -p 9000:80 nginx 
+
+# You will be able to see the webpage on localhost:9000 if you are running docker locally or in a linux vm.
+
 ```
+
+> `-d` flag indicates that the container will run in detatched mode, so it's not waiting for input via `stdin`
+
+```bash
+# See running containers
+    docker ps
+
+    # Observe the columns in result.
+    # If you are on vs online, you will notice vs-online backend itself is a container too!
+```
+
+Now, run another instance of nginx container. Just use a different port.
+
+```bash
+    docker run -d -p 9001:80 nginx
+    docker ps # notice the new container from same image. Much like new objects from a class.
+```
+
+#### Stop the nginx containers.
+
+> Important: **Do not** stop the vs online container. Then you may lose your new envrionment.
+
+```bash           
+    # run `docker ps` to list the running containers. 
+
+    docker stop <container-id> 
+            or
+    docker stop <container_name_1> <container_name_2> # Note: it's container name not image name.
+```
+
+> Bonus: Look up for the difference between `stop`, `kill` and `rm` commands
