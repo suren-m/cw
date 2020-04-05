@@ -126,3 +126,40 @@ Now, run another instance of nginx container. Just use a different port.
 ```
 
 > Bonus: Look up for the difference between `stop`, `kill` and `rm` commands
+
+#### See all containers including the `created` and `exited` ones
+
+```bash
+# `docker ps` only shows containers that are of status `Running`. To see all containers, use `-a` flag
+
+    docker ps -a
+```
+
+#### Clean up Dangling resources with `docker system prune`
+
+```bash
+docker system prune
+```
+
+#### If you also want to clean up all unused `images`
+
+```bash 
+docker system prune --all
+```
+>Note: You can also prune by `images` `containers` as opposed to whole system. Or if you want to remove images individually, you can use `docker rmi image <image_id_1> <image_id_2>`
+
+>Important: As with any other system, use clean up commands with caution. Do not force delete images that are still referenced by containers. 
+
+Give these links a quick read:
+* https://docs.docker.com/engine/reference/commandline/system_prune/
+* https://docs.docker.com/config/pruning/
+* https://docs.docker.com/engine/reference/commandline/rmi/
+
+#### Check if everything is cleaned up
+
+You should only see `vsonline` image and `vsonline container`
+
+```bash
+sudo docker ps -a
+sudo docker images -a
+```
