@@ -2,9 +2,9 @@
 
 Claim your azure subscription and create your azure account using the temporary hotmail / outlook account
 
-> Note: Open below link in incognito/private mode if you are laptop is configured to automatically login to azure portal via AD integration
+> Note: Open below link in incognito/private mode if your laptop is configured to automatically login to azure portal via AD integration
 
-Goto https://www.microsoftazurepass.com/ and click `start`
+Goto https://www.microsoftazurepass.com/ and click `start` and follow the instructions to create your azure account. This will take 5 to 10 minutes.
 
 Once your Azure Account is ready, go to https://online.visualstudio.com/login and click `sign in`
 
@@ -20,7 +20,7 @@ Select your subscription, Set location to `west europe` and hit `create`
 
 ### Create environment
 
-Give your environment a name and set it to auto suspend after `2 hours` of inactivity
+Give your environment a name and set it to auto suspend after `2 hours` of inactivity. Standard plan should be sufficient.
 
 ![Docker Architecture](../../assets/vs_online_create_env.png)
 
