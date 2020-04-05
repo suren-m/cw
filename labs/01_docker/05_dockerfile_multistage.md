@@ -86,3 +86,19 @@
         sudo docker images
     ```
 > Bonus: Try other approaches to clean up your environment too. `rmi`, `prune container`, etc.
+
+#### Advanced / Bonus Challenge
+
+ Take a look at Docker networking and options such as  `user-defined bridge` networks. 
+ 
+ For example, Imagine a scenario where the above `strings-app` container needs to cache recently typed input to a redis cache. 
+ 
+ In order for `strings-app` to connect to the redis container by its `name`, both containers should be on a user-defined bridge network.
+ 
+ See:
+ * https://docs.docker.com/network/bridge/
+ * https://docs.docker.com/network/
+
+ Feel free to implement this if you have enough time.
+
+#### Know the advantages and limitations of docker-compose

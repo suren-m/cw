@@ -88,9 +88,9 @@ Run an nginx webserver as below.
 >Note: If you're on `vs online`, you will not be able to view the web page using `port-forwarding`. This is because there isn't a loopback route to forward to within the vsonine environment which itself is already running inside a container. We will be able to work with web apps once we start deploying to kubernetes.
 
 
-
 ```bash
     docker run -d -p 9000:80 nginx 
+    # -p stands for publish (publish a container's port to the host)
 
 # You will be able to see the webpage on localhost:9000 if you are running docker locally or in a linux vm.
 
@@ -135,6 +135,14 @@ Now, run another instance of nginx container. Just use a different port.
     docker ps -a
 ```
 
+#### You can always start a stopped container by issuing `start` command
+
+Find the container, you want to start by looking up on `docker ps -a`. Just because the container has stopped or exited, it doesn't mean it's dead.
+
+```bash
+    docker start <container_id or name>
+```
+
 #### Clean up Dangling resources with `docker system prune`
 
 ```bash
@@ -161,6 +169,6 @@ Give these links a quick read:
 You should only see `vsonline` image and `vsonline container`
 
 ```bash
-sudo docker ps -a
-sudo docker images -a
+docker ps -a
+docker images -a
 ```
