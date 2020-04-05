@@ -74,7 +74,8 @@
 5. Now run your app and interact with it.
 
 ```bash
-    docker run -it strings-app:1.0
+    docker run -it --rm strings-app:1.0
+    # --rm will automatically remove the container when it exits
 ```
 
 #### Clean up the environment as done in previous sections
