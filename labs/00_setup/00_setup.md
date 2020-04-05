@@ -1,0 +1,33 @@
+# Setting up your lab environment
+
+### 01 Clone the repo into your vsonline workspace (or your environment of choice)
+
+* Goto https://aka.ms/remote-containers-workshop and clone the repo using `https`
+
+```bash
+    git clone https://github.com/surenmcode/containers-workshop.git
+```
+
+> You are free to set up and organizse your lab workspace as you prefer. You can also just use the folders in this git repo for lab work if that suits you. For e.g: store your lab files inside `01_docker` folder when you are doing docker labs. 
+
+> **Important** If you are on vs online, it is highly recommended to keep your lab work backed up in a version control hub such as github. Vs online is still in public preview and if your environment gets accidentally corrupted, you will lose your lab files. As always, please **do not** check-in any sensitive information into version control.
+
+### 02 Install linux command line tools. 
+
+> If you are new to linux command line, just install the below ones that would be helpful later during the labs.
+
+```bash
+# Install command line tools such httpie, jq, tmux. We will cover them later during demos.
+    chmod +x 01_init.sh
+    ./ 01_init.sh
+```
+
+>Note: `tmux` stands for terminal multiplexer and has many useful features such as `split-panes`,  `sessions`, `synchronized typing`,  etc. To use it just type `tmux` and then `ctrl + b` followed by `"` or `%` to split the panes as needed. To exit tmux, just type `exit`. See [docs](https://tmuxcheatsheet.com/) for more options such as sessions.
+
+
+```bash 
+# Install kubectl. You will also need to install kubernetes extension for vs code alongside when prompted.
+    chmod +x 02_kubectl.sh
+    ./02_kubectl.sh
+```
+
