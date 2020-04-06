@@ -1,17 +1,37 @@
 # Lab 1 - Getting Started with Kubernetes
 
-## Exercise 1 - Deploy AKS
-In this exercise, you will use the Azure CLI to deploy a Kubernetes cluster with Azure Kubernetes Service.
+## Exercise 1 - Create a namespace for yourself as we are sharing a cluster.
 
-### Steps
+* Namespaces are also called `virtual clusters` in k8s and help to isolate resources.
 
-Verify access by running below command against your Kubernetes cluster.
+## Namespaces 
 
-    ```bash
-    kubectl get all
+**Skip to `Exercise 2` if you have already configured your namespace**
+
+Replace `<your-namespace>` with your `first-name`. 
+
+1. Create new Namespace called `<your-namespace>`.
+    
+    ```
+    kubectl create namespace <your-namespace>
     ```
 
-## Exercise 2 - Interfacing with Kubernetes
+2. Set your context so your new namespace is used as default. This will ensure you don't accidentally deploy to any other namespaces when you forget to specify `-n` or `--namespace` flag
+
+    ```
+    kubectl config set-context --current --namespace=<your-namespace>
+    ```
+
+3. Below should return `No resources found in <your-namespace>`. If you see anything else, get in touch with instructor as you may be pointing to another namespace.
+
+    ```
+    kubectl get pods
+
+    Note: when you don't specify a `-n ` flag, kubectl uses default namespace that you have configured in your context.
+    ```
+
+## Exercise 2 - Interacting with Kubernetes
+
 ```kubectl```, said *Kube-Control*, is the  command line interface for running commands against a Kubernetes clusters. In this execise, you will explore some useful features of ```kubectl``` that you may find useful.
 
 ### Explore ```kubectl```
@@ -22,32 +42,35 @@ Verify access by running below command against your Kubernetes cluster.
     kubectl cluster-info
     ```
 
-1. Write Cluster information to a file name 'cluster.txt'.
+2. Write Cluster information to a file name 'cluster.txt'.
 
     ```bash
     kubectl cluster-info > cluster.txt
+
+    # view it using cat if you like
+    cat cluster.txt
     ```
 
-1. Get a list of nodes in the cluster.
+3. Get a list of nodes in the cluster.
 
     ```bash
-    kubectl get nodes
+    kubectl get nodes 
     ```
  
-1. Get a list of all namespaces in the cluster.
+4. Get a list of all namespaces in the cluster. Here you will see other participants namespaces too. In real world, you may not have access to view other namespaces.
 
     ```bash
     kubectl get namespaces
     ```
 
-1. Find out CPU and memory limits for the first node in the cluster
+5. Find out CPU and memory limits for the first node in the cluster
 
     ```bash
     # get list of nodes
-    kubectl get nodes
+    kubectl get nodes 
 
-    # using the first one, describe the node
-    kubectl describe node <node-name>
+    # using the first one, describe the node. `-o` is output and `wide` will show additional columns
+    kubectl describe node <node-name> -o wide
     ```
 
     **or**
@@ -56,6 +79,8 @@ Verify access by running below command against your Kubernetes cluster.
     # once you become more familar with jsonpath, you could do the same like this
     kubectl get nodes -o jsonpath='{.items[0].metadata.name}' | kubectl describe node
     ```
+
+> See here if you would like to know of how you are authenticated to use the cluster. https://kubernetes.io/docs/reference/access-authn-authz/authentication/#authentication-strategies
 
 ### Generate YAML
 
@@ -69,6 +94,7 @@ Verify access by running below command against your Kubernetes cluster.
     >
     > * ```--dry-run``` - prints the object that would be sent, without sending it. 
     > * ```-o yaml``` - changes the output format to yaml
+    
 
 2. Use ```kubectl``` to apply the configuration:
 
@@ -86,7 +112,7 @@ Verify access by running below command against your Kubernetes cluster.
     kubectl explain pods
     ```
 
-1. Get the documentation for a Pod's container specification.
+2. Get the documentation for a Pod's container specification.
 
     ```bash
     kubectl explain pods.spec.containers
@@ -109,12 +135,9 @@ Verify access by running below command against your Kubernetes cluster.
     >   restartPolicy: Never
     > ```
 
-## Exercise 3 - Explore pods running in your namespace
+## Advanced / Bonus: (Skip for now if you are on vs online)
 
-```bash
-    kubectl get pods 
-```
+Enable auto completion for your kubectl to improve the CLI experience. If you are not used to bash / shell environments, leave out for now.
 
-> Note: if you don't pass in -n <namespace>, it will retrieve data from the default namespace you've configured.
-    
-> To see all namespaces, you can use `kubectl get pods --all-namespaces` but you may not be able to do this if your RBAC role doesn't have access.
+https://kubernetes.io/docs/tasks/tools/install-kubectl/#optional-kubectl-configurations
+
