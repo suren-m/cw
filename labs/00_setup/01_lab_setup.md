@@ -26,7 +26,7 @@
 ```bash
 # Install command line tools such httpie, jq, tmux. We will cover them later during demos.
     chmod +x 01_lab_tools.sh
-    ./ 01_lab_tools.sh
+    ./01_lab_tools.sh
 ```
 
 ```bash 
