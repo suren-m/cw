@@ -4,7 +4,7 @@ Claim your azure subscription and create your azure account using the temporary 
 
 > Note: Open below link in incognito/private mode if your laptop is configured to automatically login to azure portal via AD integration
 
-Goto https://www.microsoftazurepass.com/ and click `start` and follow the instructions to create your azure account. This will take 5 to 10 minutes.
+### Goto https://www.microsoftazurepass.com/ and click `start` and follow the instructions to create your azure account. This will take 5 to 10 minutes.
 
 **Once your Azure Account is ready, go to https://online.visualstudio.com/login and click `sign in`**
 
