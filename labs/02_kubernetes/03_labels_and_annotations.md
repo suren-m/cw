@@ -1,11 +1,13 @@
-## Labels and Annotations
+# Labels and Annotations
 
 ## Labels - can be used for selection
 
-### Create a couple of pods called `web1` and `web2`
+> **Bonus**: Try doing this lab using a declarative approach. Create or `output` a `yaml` file and make changes to it. And then `apply` those changes as your progress through this section. 
+
+### Create a couple of pods called `web1` and `web2` with labels `app=v1`
 ```
-   kubectl run web1 --image=nginx --restart=Never   
-   kubectl run web2 --image=nginx --restart=Never   
+   kubectl run web1 --image=nginx --restart=Never --labels=app=v1   
+   kubectl run web2 --image=nginx --restart=Never --labels=app=v1  
 ```
 
 ### Show all labels of the pods (note: `po` is just short for `pod`. Use `pod` if you prefer that)
@@ -13,13 +15,7 @@
    kubectl get po --show-labels
 ```
 
-### Add another label to the webserver pod
-```bash
-    kubectl label po web1 app=v1 --overwrite
-    kubectl get po --show-labels
-```
-
-### Change the app label of pod 'webserver' from `v1` to `v2`
+### Change the app label of pod 'web1' from `v1` to `v2`
 ```bash
     kubectl label po web1 app=v2 --overwrite
     kubectl get po --show-labels
@@ -80,4 +76,3 @@
     kubectl delete po web{1..3}
 ```
 
-> **Bonus**: Try doing some of the operations using a declarative approach. Create a `yaml` file and make changes to it. And then `apply` those changes.
