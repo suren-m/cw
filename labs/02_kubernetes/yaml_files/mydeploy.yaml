@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mydeploy
+  name: mydeploy
+spec:
+  replicas: 2 # Edit this as needed. Don't go over 5 as we are sharing the cluster.
+  selector:
+    matchLabels:
+      app: mydeploy
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mydeploy
+    spec:
+      containers:
+      - image: nginx # Feel free to use a different image if needed. Make sure to change the name below accordingly as well.
+        name: nginx
+        resources: {}
+status: {}
+
+# asp.net core webapp image - mcr.microsoft.com/dotnet/core/samples:aspnetapp
