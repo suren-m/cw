@@ -89,9 +89,9 @@ A Pod represents a set of running containers on your cluster - it's the smallest
 
     ```
         kubectl run webserver --image=nginx --restart=Never --dry-run -o yaml > nginx-pod.yaml
-     ```
+    ```
 
-    * View the file using VS Code (or any editor of choice) 
+    * View the file using VS Code (or any editor of choice) or just type `cat nginx-pod.yaml`
 
     * Explore the contents of `nginx-pod.yaml`. Have a look at properties such as:
         * api-version
