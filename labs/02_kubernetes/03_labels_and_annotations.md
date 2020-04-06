@@ -55,7 +55,7 @@
     kubectl annotate po web1 web2 description="my description"
 ```
 
-### Check the annotations for pod nginx1
+### Check the annotations for pod web1
 
 ```bash
     kubectl describe po web1 
@@ -78,3 +78,5 @@
     # or if on linux
     kubectl delete po web{1..3}
 ```
+
+> **Bonus**: Try doing some of the operations using a declarative approach. Create a `yaml` file and make changes to it. And then `apply` those changes.
