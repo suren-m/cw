@@ -8,7 +8,7 @@
    kubectl run web2 --image=nginx --restart=Never   
 ```
 
-### Show all labels of the pods (note: `po` is just short for `pod`. Use `pod` if you prefer)
+### Show all labels of the pods (note: `po` is just short for `pod`. Use `pod` if you prefer that)
 ```bash
    kubectl get po --show-labels
 ```
@@ -22,6 +22,7 @@
 ### Change the app label of pod 'webserver' from `v1` to `v2`
 ```bash
     kubectl label po web1 app=v2 --overwrite
+    kubectl get po --show-labels
 ```
 
 ### Get the label 'app' for the pods. Note the uppercase `L`
