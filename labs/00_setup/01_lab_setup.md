@@ -73,7 +73,7 @@ Copy the provided config data.
     # If there are multiple participants with same first name, please suffix with a number or the first letter of your surname.
 
     # use your own namespace as a default 
-    kubectl config set-context --current --namespace=suren
+    kubectl config set-context --current --namespace=<your-firstname>
 ```
 
 #### Install any dev tools and extensions you need on vs online
