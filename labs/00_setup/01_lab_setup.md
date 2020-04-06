@@ -8,6 +8,8 @@
     git clone https://github.com/surenmcode/cw.git
 ```
 
+** cd cw **
+
 > You are free to set up and organizse your lab workspace as you prefer. You can also just use the folders in this git repo for lab work if that suits you. For e.g: store your lab files inside `01_docker` folder when you are doing docker labs. 
 
 > **Important** If you are on vs online, it is highly recommended to keep your lab work backed up in a version control hub such as github. Vs online is still in public preview and if your environment gets accidentally corrupted, you will lose your lab files. As always, please **do not** check-in any sensitive information into version control.
