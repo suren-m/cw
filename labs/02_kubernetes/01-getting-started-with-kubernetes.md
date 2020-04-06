@@ -59,39 +59,23 @@ Verify access by running below command against your Kubernetes cluster.
 
 ### Generate YAML
 
-1. Generate the yaml to create a namespace with your name prefixed.
-
-    ```bash
-    kubectl create namespace yourname-namespace --dry-run -o yaml
-    ```
-
-    > **Note:** the use of ```--dry-run -o yaml``` to generate the yaml. 
-    >
-    > * ```--dry-run``` - prints the object that would be sent, without sending it. 
-    > * ```-o yaml``` - changes the output format to yaml
-
-1. Write the yaml to create a namespace called 'yourname-namespace' to a file named 'namespace.yaml'.
-
-    ```bash
-    # write the generate yaml to disk
-    kubectl create namespace yourname-namespace --dry-run -o yaml > namespace.yaml
-
-    # check the contents of the file
-    cat namespace.yaml
-    ```
-
 1. We can do the same for to define a pod:
 
     ```bash
     kubectl run nginx --image nginx --restart=Never --dry-run -o yaml > pod.yaml
     ```
+    
+    > **Note:** the use of ```--dry-run -o yaml``` to generate the yaml. 
+    >
+    > * ```--dry-run``` - prints the object that would be sent, without sending it. 
+    > * ```-o yaml``` - changes the output format to yaml
 
-1. Use ```kubectl``` to apply the configuration:
+2. Use ```kubectl``` to apply the configuration:
 
-    ```bash
-    kubectl apply -f namespace.yaml
-    kubectl apply -f pod.yaml -n yourname-namespace
+    ```bash 
+    kubectl apply -f pod.yaml -n <your-namespace>
     ```
+    Note: <your-namespace> is the namespace you created when configuring kubectl. It should be set to <your-namespace> by default when we did `kubectl set-context` but it's a good practice to pass namespace name when deploying workloads so we know exactly where it's going to.
 
 ### Explain
 ```kubectl explain``` will explain the given resource. For example, a top level API-object like Pod or a specific field like a Pod's container. 
@@ -125,18 +109,12 @@ Verify access by running below command against your Kubernetes cluster.
     >   restartPolicy: Never
     > ```
 
-## Exercise 3 - Explore the Kubernetes Dashboard
+## Exercise 3 - Explore pods running in your namespace
 
-### Steps
+```bash
+    kubectl get pods 
+```
 
-1. By default, the AKS cluster we created was deployed with Role Based Access Control (RBAC) enabled. This will cause errors when you first browse the dashboard, which is deployed with minimal read permissions. To get access to the dashboard, run the following command to create a `ClusterRoleBinding`:
-
-    ```bash
-    kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
-    ```
-
-1. Run the following command to access the dashboard:
-
-    ```bash
-    az aks browse --resource-group <aks-resource-group> --name <aks-cluster-name>
-    ``` 
+> Note: if you don't pass in -n <namespace>, it will retrieve data from the default namespace you've configured.
+    
+> To see all namespaces, you can use `kubectl get pods --all-namespaces` but you may not be able to do this if your RBAC role doesn't have access.
