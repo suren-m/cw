@@ -9,7 +9,8 @@
 3. Type the below inside the `Dockerfile`. (Avoid copy pasting unless specified)
 
     ```bash
-    FROM ubuntu # Base Layer
+    FROM ubuntu 
+    # Base Layer
 
     CMD ["echo", "Hello everyone"]
 
