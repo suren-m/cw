@@ -60,7 +60,7 @@
     kubectl describe po web1 | grep -i "annotations"
 ```
 
-### Remove the annotations for these three pods. (notice the `-` operation in the end)
+### Remove the annotations for these two pods. (notice the `-` operation in the end)
 
 ```bash
     kubectl annotate po web1 web2 description-
@@ -73,6 +73,6 @@
 ```bash
     kubectl delete po web1 web2 
     # or if on linux
-    kubectl delete po web{1..3}
+    kubectl delete po web{1..2}
 ```
 
