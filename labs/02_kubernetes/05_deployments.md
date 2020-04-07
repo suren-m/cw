@@ -9,14 +9,7 @@
     # Tip use command to generate yaml and then update replica counts in the yaml
     kubectl create deploy mydeploy --image=nginx -o yaml --dry-run > mydeploy.yaml
 
-    # The above is another great example where you can use --dry-run -o yaml to generate the required yaml.
-
-    or
-
-    # You can also run `apply` on yaml files via https. Just make sure it's always from a reliable source and check the file first.
-    # Also beware of caching issues when applying later again!
-    kubectl apply -f https://raw.githubusercontent.com/surenmcode/cw/master/labs/02_kubernetes/yaml_files/mydeploy.yaml
-    
+    # The above is another great example where you can use --dry-run -o yaml to generate the required yaml.     
 ```
 
 If you need more assistance or having any issues, take a look at `yaml_files` folder. There is a `webappdemo.yaml` for reference as well as a `mydeploy.yaml` file.
@@ -27,6 +20,13 @@ If you need more assistance or having any issues, take a look at `yaml_files` fo
 
 ```bash
     kubectl apply -f mydeploy.yaml
+```
+
+> Note:You can also run `apply` on yaml files via https. Just make sure it's always from a reliable source and check the file first. Also beware of caching issues when applying later again! raw.github can produce stale data.    
+    
+```bash
+# This patttern will work too but make sure the source doesn't cache the data when you make changes.
+kubectl apply -f https://raw.githubusercontent.com/surenmcode/cw/master/labs/02_kubernetes/yaml_files/mydeploy.yaml
 ```
 
 ## View the Deployment and Replica Sets. Notice the use of commas to query more objects
