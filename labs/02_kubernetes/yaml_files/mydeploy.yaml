@@ -18,7 +18,7 @@ spec:
         app: mydeploy
     spec:
       containers:
-      - image: nginx # Feel free to use a different image if needed. Make sure to change the name below accordingly as well.
+      - image: nginx:1.16 # Feel free to use a different image if needed. Make sure to change the name below accordingly as well.
         name: nginx:1.16
         resources: {}
 status: {}
