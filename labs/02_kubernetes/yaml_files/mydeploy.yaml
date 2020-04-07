@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - image: nginx # Feel free to use a different image if needed. Make sure to change the name below accordingly as well.
-        name: nginx
+        name: nginx:1.16
         resources: {}
 status: {}
 
