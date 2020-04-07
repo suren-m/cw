@@ -109,6 +109,13 @@ kubectl get svc -w
 ```
 > Note: This may take a few minutes to complete.
 
+## Bonus Challenge:
+
+Why not pull the `hello-web` image that you pushed to your docker registry during the Docker lab (04_docker_registry) and deploy it to kubernetes as a deployment? You can also make a small change to your html file and see the changes in action when you deploy v 2.0 of your `hello-web` image.
+
+> Hint: You would need to use `<dockerusername>/<ImageName>:<tag>` format for the `image` field.
+
+
 ## Delete all resources in the current namespace 
 
 ```bash
