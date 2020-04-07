@@ -11,7 +11,7 @@
 ```
 > The above is another great example where you can use --dry-run -o yaml to generate the required yaml.
 
-If you need more assistance, take a look at `yaml_files` folder. There is a `mydeploy.yaml` file there.
+If you need more assistance or having any issues, take a look at `yaml_files` folder. There is a `webappdemo.yaml` for reference as well as a `mydeploy.yaml` file.
 
 ## Create Deployment using mydeploy.yaml
 
