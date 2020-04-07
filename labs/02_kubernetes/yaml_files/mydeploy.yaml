@@ -18,8 +18,8 @@ spec:
         app: mydeploy
     spec:
       containers:
-      - image: mcr.microsoft.com/dotnet/core/samples:aspnetapp # Feel free to use a different image if needed. Make sure to change the name below accordingly as well.
-        name: nginx:1.16
+      - image: nginx # Feel free to use a different image if needed. Make sure to change the name below accordingly as well.
+        name: nginx
         resources: {}
 status: {}
 
