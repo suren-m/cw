@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1 
+kind: Deployment 
+metadata:
+  name: <your-deployment-name>
+spec:
+  selector:
+    matchLabels:
+      app: demoapp
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: demoapp
+        component: demoapp
+    spec:
+      containers:
+      - name: demoapp
+        image: <your-username>/<your-imagename>:<tag>
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: demoapp
+  name: demoapp
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: demoapp
+    component: demoapp
+  type: ClusterIP
