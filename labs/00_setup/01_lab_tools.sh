@@ -1,4 +1,4 @@
-sudo apt udpate -y
+sudo apt update -y
 
 sudo apt install -y tmux httpie curl wget nano jq htop tree
 
