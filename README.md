@@ -1,4 +1,4 @@
-# Containers Workshop
+# Containerization with Docker and Kubernetes Workshop
 
 ## Setup Tasks
 
