@@ -8,7 +8,10 @@
     git clone https://github.com/surenmcode/cw.git
 ```
 
-** cd cw **
+**Navigate into the directory as below**
+```bash
+cd cw
+```
 
 > You are free to set up and organizse your lab workspace as you prefer. You can also just use the folders in this git repo for lab work if that suits you. For e.g: store your lab files inside `01_docker` folder when you are doing docker labs. 
 
