@@ -1,10 +1,12 @@
 # Getting Started with Docker
 
->**Important:** You would want to prefix docker commands with `sudo` if you are on linux environments such as `vs online`. Or else, you will get `permission denied` exceptions. There are a few ways to work around this, but that's out of scope for now.
+>**Important:** If you get `permission denied` exceptions when running docker cli, you have to prefix your command with `sudo`. 
+
+**You don't need to use `sudo` if docker is working fine out of the box**
 
 > if you forget to type `sudo`, just type `sudo !!` the second time. In bash, `!!` means to simply repeat the previous command and is quite invaluable when working with linux environments. 
 
-> Alternatively, you can do `sudo -` which will elevate your privileges and then type `exit` to go back to `vsonline` user mode. Now you should be able to run docker without sudo. If you continue to run as `su`, make sure to exit and use `vsonline` user before Kubernetes lab
+> Alternatively, you can do `sudo -` which will elevate your privileges to `su`. You can then type `exit` and go back to `vsonline` user mode if you prefer. If you continue to run as `su`, make sure to exit and use `vsonline` user before Kubernetes lab
 
 ## Hello World Container
 
