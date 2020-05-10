@@ -72,7 +72,7 @@ Copy the provided config data.
 #### Setup your default namespace. (as we're sharing a cluster)
 
 ```bash
-    kubectl create namespace <your-firstname>
+    kubectl create namespace <your-firstname> (or firstname with firstletter of your surname)
     # If there are multiple participants with same first name, please suffix with a number or the first letter of your surname.
 
     # use your own namespace as a default 
