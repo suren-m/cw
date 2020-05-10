@@ -4,6 +4,8 @@
 
 > if you forget to type `sudo`, just type `sudo !!` the second time. In bash, `!!` means to simply repeat the previous command and is quite invaluable when working with linux environments. 
 
+> Alternatively, you can do `sudo -` which will elevate your privileges and then type `exit` to go back to `vsonline` user mode. Now you should be able to run docker without sudo. If you continue to run as `su`, make sure to exit and use `vsonline` user before Kubernetes lab
+
 ## Hello World Container
 
 From terminal, run
