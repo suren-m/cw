@@ -79,6 +79,11 @@ Copy the provided config data.
     kubectl config set-context --current --namespace=<your-firstname>
 ```
 
+#### Install Kubernetes extension for VS Code
+
+* Goto Extensions (ctrl + shift + x) and search for Kubernetes (extension by Microsoft)
+* Click Install and Reload when asked
+
 #### Install any dev tools and extensions you need on vs online
 
 > Feel free to configure your vs online environment as you prefer. It already comes with dotnet and nodejs installed. 
