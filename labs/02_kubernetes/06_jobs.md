@@ -30,8 +30,6 @@ spec:
 
 3. Now change the name of the job to `sleepyjob2` as well as change the numbers for `completion` and `parallelism`. See below
 
-After applying, observe the `watcher` pane and see how the pods come up and run to completion. (Time column will give you an idea as well)
-
 ```yaml
 apiVersion: batch/v1
 kind: Job
@@ -49,6 +47,9 @@ spec:
      args: ["10"]
    restartPolicy: OnFailure
 ```
+
+After applying (kubectl apply -f job-filename.yaml), observe the `watcher` pane and see how the pods come up and run to completion. (Time column will give you an idea as well)
+
 
 ## CronJob
 ### Steps
