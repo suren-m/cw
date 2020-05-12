@@ -148,6 +148,25 @@ A Pod represents a set of running containers on your cluster - it's the smallest
 
 > Note: Remember logs and Exec in docker labs?
 
+    Generate some logs by pinging the pod as before.
+    
+    Do a `Port-forward` to localhost to see the webpage. (handy feature to test out simple web apps / apis on k8s)
+    ```bash
+        # make sure you use a port number that is not in use. (e.g: 9000)
+        kubectl port-forward webserver 9000:80         
+    ```
+
+    ** If you are on `vs-online`, open another terminal or pane, and type the following
+    ```bash
+       http http://localhost:9000
+       # or use curl if you don't have httpie installed.
+       curl http://localhost:9000
+       
+       # observe the html output. If this was local machine, you'd be able to run it on browser.
+    ```
+
+    Use `ctrl + c` to exit from port-forwarding.    
+
 1. Get 'webserver' pod logs
 
     ```
@@ -175,4 +194,4 @@ kubectl delete all --all
     or
 kubectl delete all --all -n <your_namespace> 
 ```
-> **Warning:** There is an `--all-namespaces` flag that will run a comamnd against all namespaces! **Please Don't** use this flag for anything apart from simple `get` operations.
+> **Warning:** There is an `--all-namespaces` flag that will run a command against all namespaces! **Please Don't** use this flag for anything apart from simple `get` operations.
