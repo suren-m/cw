@@ -69,8 +69,7 @@ Replace `<your-namespace>` with your `first-name`.
     # get list of nodes
     kubectl get nodes 
 
-    # using the first one, describe the node. `-o` is output and `wide` will show additional columns
-    kubectl describe node <node-name> -o wide
+    kubectl describe node <node-name> 
     ```
 
     **or**
