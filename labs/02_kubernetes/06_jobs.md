@@ -80,6 +80,7 @@ spec:
        args: ["5"]
      restartPolicy: OnFailure
 ```
+ Do an apply using `kubectl apply -f manifest-filename.yaml`
  
 2. List all the CronJob, Jobs and Pods
 
