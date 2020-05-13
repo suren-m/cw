@@ -1,6 +1,6 @@
-### Note: For this section, you have to be somewhat familiar with previous labs and have some familiarity with Azure
+### Note: For this section, you have to know some k8s basics and also be somewhat familiar with Azure (beginner level would be fine)
 
-## Exercise 1 - Deploy ACRCreate your AKS Cluster
+## Exercise 1 - Create your AKS Cluster and connect to it
 
 1. Log into your azure account and make sure to set your correct subscription (if not done already)
 
