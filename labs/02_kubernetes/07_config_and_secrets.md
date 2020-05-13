@@ -2,7 +2,7 @@
 
 ### Steps
 
-1. Create a configmap named myconfig with values <your-firstname>-1=lala,<your-firstname>-2=lolo
+1. Create a configmap named myconfig with values `<your-firstname>-1=lala,<your-firstname>-2=lolo`
 
     ```bash
         kubectl create configmap <your-firstname>-myconfig --from-literal=<your-firstname>-1=lala --from-literal=<your-firstname>-2=lolo
