@@ -19,14 +19,17 @@
         kubectl create secret generic <your-firstname>-mysecret --from-literal=<your-firstname>-password=mypass
     ```
 
-3. Create a new nginx pod that loads the value from configmap ```<your-firstname>-myconfig``` ->  ```<your-firstname>-1``` in an env variable called 'option'. Also load secret '<your-firstname>-mysecret' as a volume inside an nginx pod on path ```/etc/secrets```.
+3. Follow below steps to create a new nginx pod that loads the value from configmap ```<your-firstname>-myconfig``` ->  ```<your-firstname>-1``` in an env variable called 'option'. Also load secret '<your-firstname>-mysecret' as a volume inside an nginx pod on path ```/etc/secrets```.
 
     ```bash
     # review the manifest and look how the configMap and secret is referenced    
-    # make sure your terminal's directory is set to yaml_files folder. `cd` into  or `cd ..` as needed.
+    # make sure your terminal's directory is set to yaml_files folder located in 02_kubernetes folder of the repo. 
+    # `cd` into  or `cd ..` as needed. 
 
-    # open `config-and-secrets.yaml` in `yaml_files` folder with vs-code or just cat.    
-    cat config-and-secrets.yaml
+    # open `config-and-secrets.yaml` in `yaml_files` folder with vs-code or with nano   
+    nano config-and-secrets.yaml
+    
+    # Update the <your-firstname> part with your name and save the file
 
     # Create Pod from the script file
     # If you get file not found, make sure your terminal is set to right directory.    
