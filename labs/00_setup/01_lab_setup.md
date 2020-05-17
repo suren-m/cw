@@ -55,6 +55,7 @@ Copy the provided config data.
 
 ```bash
     mkdir ~/.kube && nano ~/.kube/config
+    # To retrieve config details, go to the link provided (see chat)
     # Now paste the contents of config provided into the editor. (ctrl + shift + v)     
     
     # Save and exit (ctrl + x) - press y and then enter when prompted.
