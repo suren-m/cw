@@ -90,7 +90,7 @@
 #### Advanced / Bonus Challenge
 
  Take a look at Docker networking and options such as  `user-defined bridge` networks. 
- 
+  
  For example, Imagine a scenario where the above `strings-app` container needs to cache recently typed input to a redis cache. 
  
  In order for `strings-app` to connect to the redis container by its `name`, both containers should be on a user-defined bridge network.
@@ -99,6 +99,49 @@
  * https://docs.docker.com/network/bridge/
  * https://docs.docker.com/network/
 
- Feel free to implement this if you have enough time.
+ Feel free to implement this if you have enough time. 
+ 
+ #### Know the advantages and limitations of docker-compose
+ 
+ #### Hint for strings_app that uses Redis
+ 
+ ```csharp
+ using System;
+using ServiceStack.Redis;
 
-#### Know the advantages and limitations of docker-compose
+namespace strings_app
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // https://docs.servicestack.net/netcore-redis#basic-example
+            var manager = new RedisManagerPool("my-cache:6379");
+            using (var client = manager.GetClient())
+            {
+                while(true) {            
+                    Console.WriteLine("Enter a string to check it's length or type quit to exit the app:");
+
+                    var input = Console.ReadLine();
+                    if (input.ToLower() == "quit") { break; }
+
+                    var cache = client.Get<string>(input);
+                    if(cache !=null) {
+                        Console.WriteLine($"Cache Hit for {input}");
+                        Console.WriteLine(cache);
+                    } else {
+                        var length = input.Length;
+                        Console.WriteLine(length);
+                        Console.WriteLine($"Setting Cache for {input}");    
+                        client.Set(input, length);                    
+                    }
+
+                    Console.WriteLine("...........\n");                                      
+                }                
+            }
+
+           
+        }
+    }
+}
+```
