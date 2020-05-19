@@ -51,7 +51,7 @@
 ```
 ### Access the Service from your browser!
 
-* Goto Browser -> http://<external-ip-of-webapp>
+* Goto Browser -> `http://<external-ip-of-webapp>`
 
 Notice the `Nginx` default webpage on your browser.
 
