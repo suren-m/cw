@@ -231,7 +231,8 @@ In this exercise, you will explore the ```helm create``` command to create your 
 7. Clean-up your resources.
 
     ```bash
-    kubectl delete all --all
+    helm uninstall my-release -n yournamespace
+    kubectl delete all --all    
     ```
 
     If you have created additional namespaces, do the same on those namespaces too by passing in the correct `-n <your-namespace>` flag
