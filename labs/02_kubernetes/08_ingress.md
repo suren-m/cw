@@ -52,7 +52,7 @@ spec:
 #### Ensure your resources are appearing correctly in the `ingress-demo` namespace. Take advantage of labels to filter your resources
 
 ```bash
-kubectl get all --selector owner=<yourfirstname+initial> -n ingress-basic 
+kubectl get all --selector owner=<yourfirstname+initial> -n ingress-demo
 # make sure that the firstname+initial is the same as the one in owner label on above manifest 
 ```
 
