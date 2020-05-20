@@ -1,6 +1,6 @@
 ## Ingress Lab - Create an Ingress resource and Attach your backend service to existing ingress controller
 
-### 1. First, create a deployment and a service from below manifest. Save the file in your dev environment with a name of your choice.
+### 1. First, create a deployment and a service from below manifest. Save the file in your dev environment as `my-app.yaml`
 
 **Note: Do not copy/paste the below file.** Take your time to read through the below yaml and make sure to replace the values accordingly. Replace `image name`, `app name`, `deployment name` and `service name` with respective values.
 
@@ -47,7 +47,7 @@ spec:
 
 ```
 
-#### Do a `kubectl apply -f <your-filename>.yaml`
+#### Do a `kubectl apply -f my-app.yaml`
 
 #### Ensure your resources are appearing correctly in the `ingress-demo` namespace. Take advantage of labels to filter your resources
 
@@ -58,7 +58,7 @@ kubectl get all --selector owner=<yourfirstname+initial> -n ingress-basic
 
 ### Create an ingress resource and attach your service as a backend to it. 
 
-### Replace the value for your ingress-name
+### Replace the value for your ingress-name and backend service and owner fields. Save the file as `my-ingress.yaml` and do a `kubectl apply -f my-ingress.yaml`
 
 ```yaml
 apiVersion: extensions/v1beta1
