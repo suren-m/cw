@@ -87,6 +87,9 @@
     ```
 > Bonus: Try other approaches to clean up your environment too. `rmi`, `prune container`, etc.
 
+#### Dockerfile Authoring Best Practices
+ * https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+
 #### Advanced / Bonus Challenge
 
  Take a look at Docker networking and options such as  `user-defined bridge` networks. 
@@ -101,7 +104,7 @@
 
  Feel free to implement this if you have enough time. 
  
- #### Know the advantages and limitations of docker-compose
+  #### Know the advantages and limitations of docker-compose 
  
  #### Hint for strings_app that uses Redis 
  
