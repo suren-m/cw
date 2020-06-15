@@ -103,7 +103,9 @@
  
  #### Know the advantages and limitations of docker-compose
  
- #### Hint for strings_app that uses Redis
+ #### Hint for strings_app that uses Redis 
+ 
+ #### Note: This may not work in Codespaces / vs online
  
  ```csharp
  using System;
