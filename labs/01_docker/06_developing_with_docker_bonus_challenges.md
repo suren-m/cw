@@ -1,4 +1,4 @@
-#### Developing with Docker - Bonus / Additional challenges
+#### Developing with Docker - Bonus / Advanced challenges
 
 > The following are fairly advanced scenarios meant for users that are already familiar with Docker. 
 
