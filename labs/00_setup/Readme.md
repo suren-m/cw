@@ -2,7 +2,7 @@
 
 ### 01 Clone the repo into your vsonline workspace (or your environment of choice)
 
-* Goto https://aka.ms/remote-containers-workshop and clone the repo using `https`
+* Clone the repo using `https` as below
 
 ```bash
     git clone https://github.com/surenmcode/cw.git
