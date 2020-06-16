@@ -89,10 +89,15 @@ cd cw
 
 #### Install Kubernetes extension for VS Code
 
-* Goto Extensions (ctrl + shift + x) and search for Kubernetes (extension by Microsoft)
+> Note: If you're new to vs code, please reach out for a quick primer.
+
+* Goto Extensions (ctrl + shift + x)
+* Search for below extensions and install them
+    * Docker (extension by Microsoft)
+    * Kubernetes (extension by Microsoft)       
 * Click Install and Reload when asked
 
-#### Install any dev tools and extensions you need on vs online
+#### Install any dev tools and extensions you need on vs code online
 
 > Feel free to configure your vs online environment as you prefer. It already comes with dotnet and nodejs installed. 
 
