@@ -1,12 +1,8 @@
 # Getting Started with Docker
 
->**Important:** If you get `permission denied` exceptions when running docker cli, you have to prefix your command with `sudo`. 
+**When accessing `docker cli`, there is no need to use `sudo` on codespaces / vs online anymore.**
 
-**You don't need to use `sudo` if docker is working fine out of the box**
-
-> if you forget to type `sudo`, just type `sudo !!` the second time. In bash, `!!` means to simply repeat the previous command and is quite invaluable when working with linux environments. 
-
-> Alternatively, you can do `sudo -` which will elevate your privileges to `su`. You can then type `exit` and go back to `vsonline` user mode if you prefer. If you continue to run as `su`, make sure to exit and use `vsonline` user before Kubernetes lab
+> This is because the `vsonline` user is already added to `Docker` group.
 
 ## Hello World Container
 
@@ -60,8 +56,6 @@ One easy mnemonic to remember: `-it` -> interactive terminal
 ```bash
     docker images 
 ```
-*   prefix with `sudo` as needed
-
 The result shows images that are locally cached in your environment. So, the next time you `run` that exact image, it won't be pulled from registry.
 
 ### Exploring docker run

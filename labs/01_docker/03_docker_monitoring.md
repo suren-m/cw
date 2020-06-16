@@ -4,8 +4,6 @@
 
 First start a container in detatched mode that prints date every second. We are using `busybox` image here and calling the container `date-printer`
 
-> prefix with `sudo` as required
-
 ```bash
 
 docker run --name date-printer -d busybox sh -c "while true; do $(echo date); sleep 1; done"
@@ -81,7 +79,7 @@ With linux command line tools such as `jq`, you can manipulate the json output a
 Below will print the containers attached to bridge network.
 
 ```bash
-    sudo docker inspect bridge | jq '[.[].Containers]'
+    docker inspect bridge | jq '[.[].Containers]'
 ```
 
 For more on jq, see: https://stedolan.github.io/jq/tutorial/

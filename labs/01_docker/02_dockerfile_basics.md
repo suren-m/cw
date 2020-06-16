@@ -16,9 +16,7 @@
 
     ```
 
-4. Build your Docker Image. Make sure the terminal is pointing to the directory where `Dockerfile` is located.
-
-    > Don't forget to prefix with `sudo` if you are on vs online.
+4. Build your Docker Image. Make sure the terminal is pointing to the directory where `Dockerfile` is located.    
 
     ```bash
         # Build an image called `greeter` and tag it as version `1.0`
@@ -27,7 +25,7 @@
 
     > Important: Take your time to understand what `-t` does. And also note the `.` after docker build. 
 
-5. See your new docker image by `sudo docker images`
+5. See your new docker image by `docker images`
 
 6. Launch a container from the new docker image.
 
