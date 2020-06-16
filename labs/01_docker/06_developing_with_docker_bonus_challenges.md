@@ -40,5 +40,7 @@ volumes:
  - ".:/app"
 ```
 
-**** Important Note: This approach must only be used on local environment to faciliate inner loop. Setting watchers on anything outside local environment is both a security risk and performance drain.
+> #### Important Note: This approach must only be used on local environment to faciliate inner loop. Setting watchers on anything outside local environment is both a security risk and performance drain.
 ---
+
+#### We will later see how AKS can facilitate both scenarios in a much better way.
