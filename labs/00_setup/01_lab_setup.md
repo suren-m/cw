@@ -49,9 +49,16 @@ cd cw
     rm get_helm.sh
 ```
 
+```bash
+# Install k9s
+    chmod +x 04_k9s.sh
+    ./04_k9s.sh
+```
+
+
 #### Configure kubectl to access the kubernetes cluster
 
-Copy the provided config data.
+> Copy the provided config data. (See Chat for the link)
 
 ```bash
     mkdir ~/.kube && nano ~/.kube/config
