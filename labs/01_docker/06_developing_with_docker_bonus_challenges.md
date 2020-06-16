@@ -30,13 +30,15 @@ If using webpack, make sure hot module reloading is enabled on webpack.
 
 Dockerize the app and create a separate `dockerfile.local` or/and `dockercompose.local.yaml`
 
-Add a volume mount such as below to your `dockercompose.local.yaml`:  
-
-``` volumes:
-      - "/app/node_modules"
-      - ".:/app"
-```
+Add a volume mount such as below to your `dockercompose.local.yaml`, so that your container is aware of changes in your source files.
 
 > see: https://stackoverflow.com/questions/48685664/dockerized-angular-cli-application-hot-reload-fails
 
+```yaml 
+volumes:
+ - "/app/node_modules"
+ - ".:/app"
+```
+
+**** Important Note: This approach must only be used on local environment to faciliate inner loop. Setting watchers on anything outside local environment is both a security risk and performance drain.
 ---
