@@ -32,23 +32,6 @@ cd cw
     ./01_lab_tools.sh
 ```
 
-```bash 
-# Install kubectl. You will also need to install kubernetes extension for vs code alongside when prompted. (or install later)
-    chmod +x 02_kubectl.sh
-    ./02_kubectl.sh
-```
-
-```bash
-# Install helm
-    chmod +x 03_helm.sh
-    ./03_helm.sh
-```
-
-```bash
-# Remove get-helm.sh (tidy up)
-    rm get_helm.sh
-```
-
 ```bash
 # Install k9s
     chmod +x 04_k9s.sh
