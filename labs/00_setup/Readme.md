@@ -33,7 +33,7 @@ cd cw
 ```
 
 ```bash
-# Install k9s
+# Install k9s (opensource cli tool for managing kubernetes. (alternative to web dashboard))
     chmod +x 04_k9s.sh
     ./04_k9s.sh
 ```
