@@ -34,11 +34,12 @@ CMD ["id"]
 
 ```
 docker build . -t lpu-id-printer:1.0
-docker run lpu-id-printer
+docker run lpu-id-printer:1.0
 ```
 
-> Above should print details about `devuser`. 
-> Feel free to do a `run -it` and try deleting any programs in `/bin` folder. You should see a permission denied message.
+> Above will launch the cmd as `devuser` (non-root) and should print details about that user.
+
+> Feel free to do a `run -it` into a container of `lpu-id-printer:1.0` and try deleting any programs in `/bin` folder. You should see a permission denied message.
 
 ---
 
