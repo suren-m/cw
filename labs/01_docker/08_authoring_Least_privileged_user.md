@@ -43,3 +43,6 @@ docker run lpu-id-printer
 ---
 
 Note: In real world scenarios, make sure to provide sufficient execution rights to the group or the user to run the programs they are supposed to run. The user should have just enough permissions to do what they are supposed to do. Nothing more.
+
+> See more about best practices here: https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+> https://www.docker.com/blog/intro-guide-to-dockerfile-best-practices/
