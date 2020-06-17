@@ -1,0 +1,45 @@
+## Running Docker Container as a Least Privileged User
+
+#### 1. Create a folder such as `lpu-base-image` and create a `Dockerfile` within it.
+
+#### 2. Build a custom base image with least privileged user.
+
+> Type in the following in `Dockerfile`. 
+> Here we create a user called `devuser` and add them to `devgroup`
+
+```bash
+FROM ubuntu:20.04
+RUN groupadd -r devgroup && useradd -r -g devgroup devuser
+USER devuser
+```
+> Build the image
+```bash
+docker build . -t custom-ubuntu-lpu:20.04
+```
+
+> Cd out of that directory
+```bash
+cd ..
+```
+
+#### 3. Create an image that uses our new custom-ubuntu image with least privileged user.
+
+> Create a new folder called `lpu-id-printer` and a `Dockerfile` within it.
+```bash
+FROM custom-ubuntu-lpu:20.04
+CMD ["id"]
+```
+
+> Build and Run that container
+
+```
+docker build . -t lpu-id-printer:1.0
+docker run lpu-id-printer
+```
+
+> Above should print details about `devuser`. 
+> Feel free to do a `run -it` and try deleting any programs in `/bin` folder. You should see a permission denied message.
+
+---
+
+Note: In real world scenarios, make sure to provide sufficient execution rights to the group or the user to run the programs they are supposed to run. The user should have just enough permissions to do what they are supposed to do. Nothing more.
