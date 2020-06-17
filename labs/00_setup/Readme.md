@@ -17,7 +17,7 @@ cd cw
 
 > **Important** If you are on vs online, it is highly recommended to keep your lab work backed up in a version control hub such as github. Vs online is still in public preview and if your environment gets accidentally corrupted, you will lose your lab files. As always, please **do not** check-in any sensitive information into version control.
 
-### 02 Install linux command line tools. 
+### 02 Install essential linux command line tools. 
 
 > If you are new to linux command line, just install the below ones that would be helpful later during the labs.
 
