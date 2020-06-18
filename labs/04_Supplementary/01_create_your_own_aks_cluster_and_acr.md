@@ -1,5 +1,10 @@
 ### Note: For this section, you have to know some k8s basics and also be somewhat familiar with Azure (beginner level would be fine)
 
+#### For best experience (such as accessing dashboard), try doing this from your cloud-shell.
+
+> see [cloud-shell-setup](https://github.com/suren-m/remote-workshop-env/blob/master/cloud_shell/cloud_shell_setup.md)
+
+
 ## Exercise 1 - Create your AKS Cluster and connect to it
 
 1. Log into your azure account and make sure to set your correct subscription (if not done already)
