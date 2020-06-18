@@ -81,4 +81,22 @@ In this exercise, you will create an Azure Container Registry instance using the
     az aks browse --resource-group <aks-resource-group> --name <aks-cluster-name>
     ``` 
     
- #### Now you can do your labs or practice k8s on your own cluster
+#### Now you can do your labs or practice k8s on your own cluster
+
+##### Switching between clusters / context
+
+Get Context
+
+```
+kubectl config get-contexts
+```
+
+Use Context
+
+```
+kubectl config use-context <name-of-the-context-to-use>
+```
+
+For more info, see: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+----
