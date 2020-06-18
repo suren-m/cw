@@ -23,8 +23,9 @@
 
 3. Run the following command to deploy Kubernetes cluster with AKS. Replace "\<aks-resource-group>" and "\<aks-name>" with the name of the Resource Group you created and the AKS cluster name you want to create:
 
+> Note: we are keeping the node count to 1 for now
   ```bash
-  az aks create --resource-group <aks-resource-group> --name <aks-name> --node-count 2 --node-vm-size "Standard_DS2_v2" --generate-ssh-keys
+  az aks create --resource-group <aks-resource-group> --name <aks-name> --node-count 1 --node-vm-size "Standard_DS2_v2" --generate-ssh-keys
   ```
   
   > This may take a short while to complete.
