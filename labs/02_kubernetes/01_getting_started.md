@@ -2,9 +2,9 @@
 
 ## Exercise 1 - Create a namespace for yourself as we are sharing a cluster.
 
-**Skip to `Exercise 2` if you have already configured your namespace**
+Namespaces are also called `virtual clusters` in k8s and they are helpful to isolate workloads and environments. 
 
-* Namespaces are also called `virtual clusters` in k8s and they are helpful to isolate workloads and environments.
+**Skip this exercise and go to `exercise 2` if you have already configured your namespace during lab setup**
 
 Replace `<your-namespace>` with your `first-name` or `first-name with initial of surname`
 
