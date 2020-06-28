@@ -58,6 +58,26 @@ There are a few ways to create manifest files.
 
     * View the file using VS Code (or any editor of choice) or just type `cat web2-pod.yaml` from terminal
 
+    * `web2-pod.yaml` should look like below
+
+        ```yaml
+        apiVersion: v1
+        kind: Pod
+        metadata:
+        creationTimestamp: null
+        labels:
+            run: web2
+        name: web2
+        spec:
+        containers:
+        - image: nginx
+            name: web2
+            resources: {}
+        dnsPolicy: ClusterFirst
+        restartPolicy: Never
+        status: {}
+        ```
+
     * Explore the contents of `web2-pod.yaml`. Have a look at properties such as:
         * api-version
         * kind
@@ -102,7 +122,7 @@ There are a few ways to create manifest files.
     code web2-pod.yaml
     ```
 
-2. Introduce a fault by changing the value of `image` field to `ngiinx:1.19.0` 
+2. Introduce a fault by changing the value of `image` field from `nginx` to `ngiinx:1.19.0` 
 
     > Notice the typo in image name
 

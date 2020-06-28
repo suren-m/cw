@@ -1,6 +1,5 @@
 # Lab 1 - Getting Started with Kubernetes
 
-
 ## Exercise 1 - Create a namespace for yourself as we are sharing a cluster.
 
 **Skip to `Exercise 2` if you have already configured your namespace**
@@ -11,17 +10,15 @@
 
 Replace `<your-namespace>` with your `first-name` or `first-name with initial of surname`
 
-
-
 1. Create new Namespace called `<your-namespace>`.
     
-    ```
+    ```bash
     kubectl create namespace <your-namespace>
     ```
 
 2. Set your context so your new namespace is used as default. This will ensure you don't accidentally deploy to any other namespaces when you forget to specify `-n` or `--namespace` flag
 
-    ```
+    ```bash
     kubectl config set-context --current --namespace=<your-namespace>
     ```
 
@@ -34,10 +31,10 @@ Replace `<your-namespace>` with your `first-name` or `first-name with initial of
 
 3. Below should return `No resources found in <your-namespace>`. If you see anything else, get in touch with instructor as you may be pointing to another namespace.
 
-    ```
+    ```bash
     kubectl get pods
 
-    Note: when you don't specify a `-n ` flag, kubectl uses default namespace that you have configured in your context.
+    # Note: when you don't specify a `-n ` flag, kubectl uses default namespace that you have configured in your context.
     ```
 
 ---
