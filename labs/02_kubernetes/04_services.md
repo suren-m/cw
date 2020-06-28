@@ -30,25 +30,25 @@
 
         > Pay extra attention to the `selector` field
 
-        ```bash
-        apiVersion: v1
-        kind: Service
-        metadata:
-        creationTimestamp: null
-        labels:
-            run: web2
-        name: web2-svc
-        spec:
-        ports:
-        - port: 80
-            protocol: TCP
-            targetPort: 80
-        selector: # target resource(s) label(s)
-            run: web2 
-        type: ClusterIP
-        status:
-        loadBalancer: {}
-        ```
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    run: web2
+  name: web2-svc
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector: # Labels of target resources    
+    run: web2
+  type: ClusterIP
+status:
+  loadBalancer: {}
+```
 
     * Do a `kubectl apply`
 

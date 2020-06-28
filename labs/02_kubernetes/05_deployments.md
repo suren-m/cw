@@ -1,123 +1,241 @@
 # Deployments
 
-## Create a yaml file for a Deployment running an nginx container with five replicas and save it as `mydeploy.yaml`
+In this lab, we will create deployments with replica sets and apply everything else we've learnt so far along with it.
 
-> Like to use something other than an nginx image? Try `mcr.microsoft.com/dotnet/core/samples:aspnetapp` for a simple aspnet core app
-> Make sure to name the image and container correctly too.
+## Exercise 1 - Setup (Docker images for deployment)
 
-```bash
-    # Tip use command to generate yaml and then update replica counts in the yaml
-    kubectl create deploy mydeploy --image=nginx -o yaml --dry-run > mydeploy.yaml
+For this lab, we need `three versions` of a docker image called `cw-app` that is already pushed to docker hub.
 
-    # The above is another great example where you can use --dry-run -o yaml to generate the required yaml.     
+The application itself could be something as simple as a web page that says `Hello World` followed by `version number`. Something like below,
+
+```
+    Docker Hub Image                   Web Page Output
+
+<your-username>:cw-app:1.0 ---> "Hello World - V1.0 (stable)"
+<your-username>:cw-app:2.0 ---> "Hello World - V2.0/ (unstable)"
+<your-username>:cw-app:2.1 ---> "Hello World - V2.1 (patched)"
 ```
 
-If you need more assistance or having any issues, take a look at `yaml_files` folder. There is a `webappdemo.yaml` for reference as well as a `mydeploy.yaml` file.
+To set this up, just clone the repo and run `setup.sh`. (it's a little hello-world python app)
 
-## Create Deployment using mydeploy.yaml
-
-**Make sure you have `cd` into the directory where you have `mydeploy.yaml`. Or else, you will get a file not found error.
+> Make sure you're already logged into DockerHub via `docker login`
 
 ```bash
-    kubectl apply -f mydeploy.yaml
+git clone https://github.com/suren-m/cw-app.git
+cd cw-app
+chmod +x setup.sh && ./setup.sh
+
+# Just enter your dockerhub username when prompted and hit Enter.
 ```
 
-> Note:You can also run `apply` on yaml files via https. Just make sure it's always from a reliable source and check the file first. Also beware of caching issues when applying later again! raw.github can produce stale data.    
-    
-```bash
-# This patttern will work too but make sure the source doesn't cache the data when you make changes.
-kubectl apply -f https://raw.githubusercontent.com/surenmcode/cw/master/labs/02_kubernetes/yaml_files/mydeploy.yaml
+Alternatively, if you wish to build and push your own version of `cw-app` (for e.g: in Go or dotnet), feel free to do so.
+
+---
+
+## Exercise 2 - Create a Deployment manifest file for `cw-app:1.0`
+
+1. Create a manifest file using `--dry-run` and `-o yaml`
+
+    ```bash
+    # Make sure to replace <your-username> with your docker hub username
+    kubectl create deploy cw-app --image=<your-username>/cw-app:1.0 -o yaml --dry-run > cw-app.yaml    
+    ```
+
+2. Open `cw-app.yaml` and change the number of replicas to `3`. Also, Make sure the value for image looks correct.
+
+    > Take a few minutes to understand the deployment manifest. Notice the creation of default label called `app`
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: cw-app
+  name: cw-app
+spec:
+  replicas: 3 # Number of pods for replica set
+  selector:
+    matchLabels:
+      app: cw-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: cw-app
+    spec:
+      containers:
+      - image: <your-username>/cw-app:1.0
+        name: cw-app
+        resources: {}
+status: {}
 ```
 
-## View the Deployment and Replica Sets. Notice the use of commas to query more objects
+3. Deploy your app.
+
+    ```bash
+    kubectl apply -f cw-app.yaml
+    ```
+
+    At this stage, if you're having issues with making your app image or manifest file, just deploy the one as below or reach out to the instructor.
+
+    ```
+    # Only if you can't get the above steps to work
+    kubectl apply -f https://raw.githubusercontent.com/suren-m/cw-app/master/cw-app.yaml
+    ```
+
+4. View the Deployment and Replica Sets of cw-app. Notice the use of commas to query more objects and usage of labels
+
+    ```bash
+    kubectl get deploy,rs,po -l app=cw-app
+    ```
+
+5. Access your app by `Port-Forwarding` to your deployment
 
 ```bash
-    kubectl get deploy,rs,po
+# Notice the backend port points to 8080 of the pod
+kubectl port-forward deployment.apps/cw-app 9003:8080
+
+http localhost:9003 # or the port that was used
+```
+---
+
+## Exercise 3 -Expose the `cw-app` deployment as a Service
+
+1. Generate a manifest for a `cluster-ip` service that exposes the `cw-app` deployment.
+
+```bash
+kubectl expose deploy cw-app --name cw-app-svc --port=80 --target-port=8080 --type=ClusterIP --dry-run -o yaml > cw-app-svc.yaml
 ```
 
-## Modify the image used by 'mydeploy' to use image ```nginx:1.16.0``` and observe the update as it's applied. 
+2. Take a look the `cw-app-svc.yaml` It should look like below:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: cw-app
+  name: cw-app-svc
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: cw-app
+  type: ClusterIP
+status:
+  loadBalancer: {}
+```
+
+3. Apply the Service
+
+    ```bash
+    kubectl apply -f cw-app-svc.yaml
+    ```
+
+4. Port-forward to the Service to make sure it's working as intended.
 
 ```bash
-    # set the deployment image
-    # Note: You can do this declaratively too by making changes to yaml file and doing an `apply`.
-    kubectl set image deployment mydeploy nginx=nginx:1.16.0
+kubectl port-forward service/cw-app-svc 9004:80
 
-    # observe how the update gets applied. Have this open in separate terminal / pane if you want. 
-    # Notice how the `desired, current, ready` state changes from previous `rs` to new `rs`
+http localhost:9004 # or the port that was used
+```
+
+5. Take a look at all the objects that are related to our `cw-app`.
+
+```bash
+k get all -o wide -l app=cw-app
+```
+---
+
+## Exercise - 4 Deploy a newer version of the app
+
+1. In order to observe how the update gets applied, open a second pane / terminal and set a watcher on replica sets. 
+
+    ```bash
     kubectl get rs -w
+    ```       
+
+2. Update the image used by 'cw-app' to use version `2.0`
+
+There are two ways to do this:
+
+* Command-line approach
+    ```bash
+    # set the deployment image    
+    kubectl set image deployment cw-app cw-app=<your-username>/cw-app:2.0    
+
+    # Notice how the desired, current and ready states change on replica set watcher.
+    ```
+* Or using the manifest file 
+
+    * Update the `image` field of `cw-app.yaml` to point to `2.0`
+    * `kubectl apply -f cw-app.yaml`
+
+3. Take a look at the replica sets. Notice the new one that's created and the number of pods in Ready state. Also notice `the images` column for version of image that was used.
+
+    ```bash
+    k get rs -o wide
+    ```
+
+4. Port-forward again to the `cw-app-svc`. This time, it will display `internal server error` or `hello world - version 2` of the app.
+
+```bash
+kubectl port-forward service/cw-app-svc 9005:80
+
+# Run a loop to hit it every second
+while (http localhost:9005) do { sleep 1; } done
 ```
 
-## View the rollout history for 'mydeploy' and roll back to the previous revision.
+> **Note: You will see `internal server error` often on `v2.0` of the app. It is deliberately to programmed to throw a `500` status 70% of the time. (unstable version example)**
+
+Exit the loop with `ctrl + c`
+
+---
+
+## Exercise - 5 Rollback to Previous Version
+
+1. View the rollout history for 'mydeploy' and roll back to the previous revision.
 
 ```bash
     # view previous rollout revisions and configurations.
-    kubectl rollout history deploy mydeploy
+    kubectl rollout history deploy cw-app
 
-    # rollback to the previous rollout.
-    kubectl rollout undo deploy mydeploy
-
-    # observe how rollowing update gets applied. Similar to previous section. 
+    # Make sure you've setup the watcher on second pane to observe how rollback happens
     kubectl get rs -w
+
+    # From main pane, rollback to the previous rollout.
+    kubectl rollout undo deploy cw-app    
 ```
 
-## Scale 'mydeploy' to 1 instance 
+## Exercise - 6 Access the service from within the cluster.
 
-```
-    kubectl scale deploy mydeploy --replicas=1
-```
-
-## Expose the deployment 'mydeploy' on port 80 (ClusterIP). Observe that a service is created.
+1. Much like in previous lab, run a busybox container and hit the `cw-app-svc` service by its name. 
 
 ```bash
-    # Tip try writing the yaml file instead of command below
-    kubectl expose deployment mydeploy --port 80
-    kubectl get svc mydeploy
-```
+# delete any busybox pods that already exists
+kubectl delete po busybox
 
-## Confirm that a Cluster IP has been created.
+# run a busybox and launch its shell 
+kubectl run busybox --rm --image=busybox -it --restart=Never -- sh    
 
-```bash
-    kubectl get svc mydeploy -o jsonpath='{.spec.clusterIP}'
-```
+# Call cw-app-svc. Below would print out the output `Hello from CW app - V1.0 (stable)`
 
-## Using the Pod's Cluster IP, create a new temporary Pod using busybox and 'hit' the IP with wget:
+wget -q -O - web1-svc
+#or 
+wget -q -O - web1-svc.<your-namespace>
 
-```bash
-# get the service's Cluster IP
-kubectl get svc mydeploy -o jsonpath='{.spec.clusterIP}'
-
-# run busybox
-kubectl run busybox --rm --image=busybox -it --restart=Never -- sh
-
-# from inside the container
-wget -O- <cluster-ip>:80
 exit
 ```
-
-## Change to service type of 'mydeploy' from the ClusterIP to LoadBalancer. Find the Public IP address and browse to the application.
-
-> Note: This will open in `vim` on `vs-online`
-
-```bash
-# edit the service
-kubectl edit svc mydeploy
-
-# change "type: ClusterIP" to "type: LoadBalancer"
-
-# get the assigned external IP
-kubectl get svc -w
-```
-> Note: This may take a few minutes to complete.
+---
 
 ## Bonus Challenge:
 
-Why not pull the `hello-web` image that you pushed to your docker registry during the Docker lab (04_docker_registry) and deploy it to kubernetes as a deployment? You can also make a small change to your html file and see the changes in action when you deploy v 2.0 of your `hello-web` image.
+* Try to do a simple `blue-green` or `canary` deployment by taking advantage of `labels` and `selectors` on the `service`
 
-> Hint: You would need to use `<dockerusername>/<ImageName>:<tag>` format for the `image` field.
+    * Remember that a `service` can point to two deployments as long as they have the same label.
 
-
-## Delete all resources in the current namespace 
-
-```bash
-kubectl delete all --all
-```

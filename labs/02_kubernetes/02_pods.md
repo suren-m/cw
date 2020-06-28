@@ -60,23 +60,22 @@ There are a few ways to create manifest files.
 
     * `web2-pod.yaml` should look like below
 
-        ```yaml
-        apiVersion: v1
-        kind: Pod
-        metadata:
-        creationTimestamp: null
-        labels:
-            run: web2
-        name: web2
-        spec:
-        containers:
-        - image: nginx
-            name: web2
-            resources: {}
-        dnsPolicy: ClusterFirst
-        restartPolicy: Never
-        status: {}
-        ```
+```yaml
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: web2
+  name: web2
+spec:
+  containers:
+  - image: nginx
+    name: web2
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
+```
 
     * Explore the contents of `web2-pod.yaml`. Have a look at properties such as:
         * api-version
