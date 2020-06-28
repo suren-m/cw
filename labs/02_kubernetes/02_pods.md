@@ -134,21 +134,27 @@ There are a few ways to create manifest files.
 
 4. Check the status of `web2` pod. 
 
-    ```bash
-    kubectl get pod -o wide
+    ```bash    
+    kubectl describe pod/web2     
     ```
 
-    * It should return something like `ImagePullBackOff` for `web2` pod.
+    * It should state something like `Failed to Pull Image` or `ImagePullBackOff`
     * This is because there is no such image. (due to our typo)
 
 5. Fix the `manifest` with correct value to image. 
 
     * Open `web2-pod.yaml` and change the image to correct value `nginx:1.19.0` (typo fix)
 
-6. Deploy the pod
+6. Delete the existing faulty pod and do an apply
 
     ```bash
-    kubectl apply -f web2-pod.yaml
+    # delete
+    kubectl delete pod web2
+
+    # apply
+    kubectl apply -f web2-pod.yaml    
+    # or (alternate approach using stdin)
+    cat web2-pod.yaml | kubectl apply -f -
     ```
 
 7. Do a status check and Make sure that the pods are `running` as expected.
@@ -185,7 +191,7 @@ There are a few ways to create manifest files.
 
 ---
 
-## Exercise - 5 Logs and Execs in Pods
+## Exercise 5 - Logs and Execs in Pods
 
 > Remember `logs` and `exec` commands from docker labs?
 
@@ -202,6 +208,18 @@ There are a few ways to create manifest files.
     ```
     kubectl exec web1 -n <your-namespace> -- ls
     ```
+---
+
+## Exercise 6 - Events
+
+You can see all events from your namespace using below command
+
+```bash
+kubectl get events -n <your-namespace>
+```
+
+Additionally, you can filter them to a specific object or have a watcher attached (`-w`) 
+
 ---
 
 ## Bonus
