@@ -119,7 +119,7 @@
 
 ---
 
-## Exercise 2 - Annotations - used for metadata. Not an object identifier / selector
+## Exercise 2 - Annotations - used for metadata. Clients such as tools and libraries can retrieve this metadata.
 
 1. Annotate pods web1, web2 with "description='my description'" value
 
@@ -165,6 +165,25 @@
     ```
 
 ---
+
+## Bonus
+
+Take a look at `Field Selectors` and how they can help you query resources based on value of one or more resource fields. 
+
+For example, to show all pods that are `running`, you can use the `status.phase` as field selector.
+
+```bash
+kubectl get pods --field-selector status.phase=Running
+```
+
+To show all pods whose names are not `web1` (note the usage of `!=`)
+
+```bash
+kubectl get pods --field-selector metadata.name!=web2
+```
+
+
+
 
 
 
