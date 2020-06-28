@@ -1,14 +1,17 @@
 # Lab 1 - Getting Started with Kubernetes
 
+
 ## Exercise 1 - Create a namespace for yourself as we are sharing a cluster.
-
-* Namespaces are also called `virtual clusters` in k8s and help to isolate resources.
-
-## Namespaces 
 
 **Skip to `Exercise 2` if you have already configured your namespace**
 
-Replace `<your-namespace>` with your `first-name`. 
+* Namespaces are also called `virtual clusters` in k8s and they are helpful to isolate workloads and environments.
+
+## Namespaces 
+
+Replace `<your-namespace>` with your `first-name` or `first-name with initial of surname`
+
+
 
 1. Create new Namespace called `<your-namespace>`.
     
@@ -22,6 +25,13 @@ Replace `<your-namespace>` with your `first-name`.
     kubectl config set-context --current --namespace=<your-namespace>
     ```
 
+    > Note: `kubectl config` points to the `config` file  in `~/.kube` directory
+
+    ```bash
+    # this will pretty much display the contents of your config file
+    kubectl config view
+    ```
+
 3. Below should return `No resources found in <your-namespace>`. If you see anything else, get in touch with instructor as you may be pointing to another namespace.
 
     ```
@@ -29,6 +39,8 @@ Replace `<your-namespace>` with your `first-name`.
 
     Note: when you don't specify a `-n ` flag, kubectl uses default namespace that you have configured in your context.
     ```
+
+---
 
 ## Exercise 2 - Interacting with Kubernetes
 
@@ -79,41 +91,27 @@ Replace `<your-namespace>` with your `first-name`.
     kubectl get nodes -o jsonpath='{.items[0].metadata.name}' | kubectl describe node
     ```
 
-> See here if you would like to know of how you are authenticated to use the cluster. https://kubernetes.io/docs/reference/access-authn-authz/authentication/#authentication-strategies
+> See [Authentication Strategies in K8s](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#authentication-strategies) if you would like to know of how you are authenticated to use the cluster. 
 
-### Generate YAML
+---
 
-1. We can do the same for to define a pod:
+## Exercise 3 - Use `Explain` for docs
 
-    ```bash
-    kubectl run nginx --image nginx --restart=Never --dry-run -o yaml > pod.yaml
-    ```
-    
-    > **Note:** the use of ```--dry-run -o yaml``` to generate the yaml. 
-    >
-    > * ```--dry-run``` - prints the object that would be sent, without sending it. 
-    > * ```-o yaml``` - changes the output format to yaml
-    
-
-2. Use ```kubectl``` to apply the configuration:
-
-    ```bash 
-    kubectl apply -f pod.yaml -n <your-namespace>
-    ```
-    Note: <your-namespace> is the namespace you created when configuring kubectl. It should be set to <your-namespace> by default when we did `kubectl set-context` but it's a good practice to pass namespace name when deploying workloads so we know exactly where it's going to.
-
-### Explain
 ```kubectl explain``` will explain the given resource. For example, a top level API-object like Pod or a specific field like a Pod's container. 
 
 1. Get the documentation of a Pod resource and its fields.
 
     ```bash
-    kubectl explain pods
+    kubectl explain node
     ```
 
 2. Get the documentation for a Pod's container specification.
 
     ```bash
+    # to just explain pod
+    kubectl explain pod  
+
+    # to further explain the properties and nested objects
     kubectl explain pods.spec.containers
     ```
 
@@ -134,9 +132,43 @@ Replace `<your-namespace>` with your `first-name`.
     >   restartPolicy: Never
     > ```
 
-## Advanced / Bonus: (Skip for now if you are on vs online)
+---
 
-Enable auto completion for your kubectl to improve the CLI experience. If you are not used to bash / shell environments, leave out for now.
+## Bonus
 
-https://kubernetes.io/docs/tasks/tools/install-kubectl/#optional-kubectl-configurations
+1. Take a quick look at `kuberenetes` cheatsheet. It's useful and will come in handy when diving deeper into `kubectl`.
+
+    * [Kubernetes Cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+
+ > **_Skip below two tasks for now if you are very new to bash / linux command line_**
+
+2. Setup an alias for `kubectl`
+
+    * In `bash`, you can setup aliases, so that you don't have to type `kubectl` everytime and just use the shorthand.
+
+        * For e.g. it's common to configure `k` for `kubectl`
+
+    * This can be done by adding `alias k=kubectl` to your `.bashrc` file.
+
+        ```bash    
+        # open .bashrc from your home directory using your editor of choice. 
+        code ~/.bashrc
+
+        # Go to end of the file and add the alias
+        alias k=kubectl
+
+        # Save and exit the editor
+        ```  
+
+    * Restart the shell or run a `source` from the terminal.
+
+        ```bash
+        source ~/.bashrc
+        ```
+
+2. Enable kubectl `autocompletion` for bash (or zsh)   
+
+    Enable auto completion for your kubectl to improve the CLI experience. 
+
+    https://kubernetes.io/docs/tasks/tools/install-kubectl/#optional-kubectl-configurations
 
