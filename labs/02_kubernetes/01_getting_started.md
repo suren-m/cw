@@ -1,5 +1,17 @@
 # Lab 1 - Getting Started with Kubernetes
 
+## Directory Setup
+
+1. Make sure that you are well aware of the directory you will be using for your labs.
+
+2. If you're on codespaces, note that `~/workspace` is the default directory that will open everytime you launch vs code.
+
+3. You can just use this `workspace` directory for doing `k8s` labs
+
+    * Or you can just cd into `cw\labs\` directory from the `cw` repo that you've already cloned earlier.
+
+4. Just make sure to use the `github` version when following lab instructions, so you always get the latest updates.
+
 ## Exercise 1 - Create a namespace for yourself as we are sharing a cluster.
 
 Namespaces are also called `virtual clusters` in k8s and they are helpful to isolate workloads and environments. 
