@@ -6,8 +6,6 @@
 
 * Namespaces are also called `virtual clusters` in k8s and they are helpful to isolate workloads and environments.
 
-## Namespaces 
-
 Replace `<your-namespace>` with your `first-name` or `first-name with initial of surname`
 
 1. Create new Namespace called `<your-namespace>`.
@@ -39,11 +37,9 @@ Replace `<your-namespace>` with your `first-name` or `first-name with initial of
 
 ---
 
-## Exercise 2 - Interacting with Kubernetes
+## Exercise 2 - Interacting with Kubernetes using `kubectl`
 
 ```kubectl```, said *Kube-Control*, is the  command line interface for running commands against a Kubernetes clusters. In this execise, you will explore some useful features of ```kubectl``` that you may find useful.
-
-### Explore ```kubectl```
 
 1. Get Cluster information.
 
