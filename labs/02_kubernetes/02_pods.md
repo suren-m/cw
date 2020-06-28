@@ -52,7 +52,7 @@ There are a few ways to create manifest files.
         # Take a minute to understand what we are doing here.
         kubectl run web2 --image=nginx --restart=Never --dry-run -o yaml > web2-pod.yaml
         
-        # Or use --dry-run=client (for newer version of kubectl)        
+        # Or use --dry-run=client (for newer version of kubectl >= 1.18)        
         kubectl run web2 --image=nginx --restart=Never --dry-run=client -o yaml > web2-pod.yaml
     ```
 

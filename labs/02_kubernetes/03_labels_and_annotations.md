@@ -1,78 +1,170 @@
 # Labels and Annotations
 
-## Labels - can be used for selection
+## Exercise 1 - Labels - can be used for selection and querying
 
-> **Bonus**: Try doing this lab using a declarative approach. Create or `output` a `yaml` file and make changes to it. And then `apply` those changes as your progress through this section. 
+1. Show all labels of the existing pods in your namespace 
 
-### Create a couple of pods called `web1` and `web2` with labels `app=v1`
-```
-   kubectl run web1 --image=nginx --restart=Never --labels=app=v1   
-   kubectl run web2 --image=nginx --restart=Never --labels=app=v1  
-```
+    > Note: `po` is just short for `pod` or `pods`
 
-### Show all labels of the pods (note: `po` is just short for `pod`. Use `pod` if you prefer that)
-```bash
-   kubectl get po --show-labels
-```
-
-### Change the app label of pod 'web1' from `v1` to `v2`
-```bash
-    kubectl label po web1 app=v2 --overwrite
+    ```bash
     kubectl get po --show-labels
-```
+    ```
 
-### Get the label 'app' for the pods. Note the uppercase `L`
-```bash
+    The result would look something like this with just the default `run` label
+    ```bash
+    NAME   READY   STATUS    RESTARTS   AGE   LABELS
+    web1   1/1     Running   0          38m   run=web1
+    web2   1/1     Running   1          17m   run=web2
+    ```
+
+2. Add a label called `app` and set it to `v1`
+
+    * For pod `web1` - using `command-line` approach 
+
+        ```bash
+        kubectl label po web1 app=v1
+
+        # The output should say "pod/web1 labeled"
+        ```
+
+    * For pod `web2` - using the `manifest file` 
+
+        * Open the manifest file `web2-pod.yaml`
+        * Add a new label to the pod `metadata`, so the `labels` field looks such as below. 
+        * Make sure it's indented correctly.
+            ```yaml
+            metadata:
+                ... # other fields
+                labels:
+                    run: web2  
+                    app: v1 # new label
+                ...
+            ```
+        * Do a `kubectl apply`
+            ```bash
+            kubectl apply -f web2-pod.yaml
+            ```
+
+3. Query the pods with app labels. It should look such as below
+
+    ```bash
+    kubectl get po --show-labels
+
+    # output
+
+    NAME   READY   STATUS    RESTARTS   AGE   LABELS
+    web1   1/1     Running   0          52m   app=v1,run=web1
+    web2   1/1     Running   1          31m   app=v1,run=web2
+    ```
+  
+4. Change the app label of pod 'web1' from `v1` to `v2`
+
+    ```bash
+    kubectl label po web1 app=v2 --overwrite
+
+    kubectl get po --show-labels
+
+    # output
+
+    NAME   READY   STATUS    RESTARTS   AGE   LABELS
+    web1   1/1     Running   0          55m   app=v2,run=web1
+    web2   1/1     Running   1          33m   app=v1,run=web2
+    ```
+
+5. Get the label 'app' for the pods. 
+
+    > Note the uppercase `-L` flag
+
+    ```bash
     kubectl get po -L app
-```
 
-### Get only the 'app=v2' pods
+    # output 
+    NAME   READY   STATUS    RESTARTS   AGE   APP
+    web1   1/1     Running   0          56m   v2
+    web2   1/1     Running   1          34m   v1
+    ```
 
-```bash
+6. Get only the 'app=v2' pods
+
+    > Note the lowercase `-l` flag
+
+    ```bash
     kubectl get po -l app=v2
     # or
     kubectl get po -l 'app in (v2)'
-```
 
-### Remove the 'app' label from the pods we created before
+    # output
 
-```bash
+    NAME   READY   STATUS    RESTARTS   AGE
+    web1   1/1     Running   0          59m
+    ```
+
+7. Remove the 'app' label from the pods we created before
+
+    ```bash
     kubectl label po web1 app-
-    # or
+
+    # Make sure only web1 pod is affected
+    kubectl get po --show-labels    
+    
+    # To remove `app` label from all pods
     kubectl label po -l app app-
-    # or if on linux 
-    kubectl label po web{1..2} app-
-```
+    # or if on linux
+    kubectl label po web{1..2} app-        
 
-## Annotations - used for metadata. Not an object identifier / selector
+    # Make sure now both web1 and web2 don't have `app` label
+    kubectl get po --show-labels    
+    ```
+> Note: For `web2`, ideally we should be treating the `manifest file` as single source of truth and version control it. But for lab purposes, command-line is quick and easier.
 
-### Annotate pods web1, web2 with "description='my description'" value
+---
 
-```bash
-    kubectl annotate po web1 web2 description="my description"
-```
+## Exercise 2 - Annotations - used for metadata. Not an object identifier / selector
 
-### Check the annotations for pod web1
+1. Annotate pods web1, web2 with "description='my description'" value
 
-```bash
+    * For web1, command-line approach
+
+        ```bash
+        kubectl annotate po web1 description="my description"
+
+        # output 
+        pod/web1 annotated
+        ```
+
+    * For web2, using the `manifest` file
+
+        * Open the manifest file `web2-pod.yaml`
+        * Add a new annotation to the pod `metadata`, so the `annotations` field looks such as below. 
+        * Make sure it's indented correctly.
+            ```yaml
+            metadata:
+                annotations:
+                    description: my description
+                ... # other fields
+            ```
+        * Do a `kubectl apply`
+            ```bash
+            kubectl apply -f web2-pod.yaml
+            ```
+
+2. Check the annotations for pods web1 and web2
+
+    ```bash
     kubectl describe po web1 
     # or if on linux, take advantage of grep
-    kubectl describe po web1 | grep -i "annotations"
-```
+    kubectl describe po web1 web2 | grep -i "annotations"
+    ```
 
-### Remove the annotations for these two pods. (notice the `-` operation in the end)
+3. Remove the annotations for these two pods. (notice the `-` operation in the end)
 
-```bash
+    ```bash
     kubectl annotate po web1 web2 description-
     # or if on linux
     kubectl annotate po web{1..2} description-
-```
+    ```
 
-### Remove these pods to have a clean state in your namespace / cluster
+---
 
-```bash
-    kubectl delete po web1 web2 
-    # or if on linux
-    kubectl delete po web{1..2}
-```
+
 
