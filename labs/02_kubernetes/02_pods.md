@@ -4,31 +4,12 @@ A Pod represents a set of running containers on your cluster - it's the smallest
 
 ## Exercise 1 - Create and manage Pods with cli commands (Imperative approach)
 
-1. Create new Pod called 'web1' running nginx image using command line 
-
-    > **Bonus**: Like to see the pod as it gets created? Run `kubectl get pods -w`. Now open a another pane / terminal and run the below command. Your new pod should appear in first pane / terminal and you can see the stages it goes through. `ctrl + c` to exit `watcher` (-w)
+1. Create new Pod called 'web1' running nginx image using command line        
 
     ```bash
-        kubectl run web1 --image=nginx --restart=Never 
-    ```
-    
-    Do a `Port-forward` to localhost to see the webpage. (handy feature to test out simple web apps / apis on k8s)
-    ```bash
-        # make sure you use a port number that is not in use. (e.g: 9000)
-        kubectl port-forward web1 9000:80         
-    ```
-
-    ** If you are on `vs-online`, open another terminal or pane, and type the following
-    ```bash
-       http http://localhost:9000
-       # or use curl if you don't have httpie installed.
-       curl http://localhost:9000
-       
-       # observe the html output. If this was local machine, you'd be able to run it on browser.
-    ```
-
-    Use `ctrl + c` to exit from port-forwarding.    
-
+    kubectl run web1 --image=nginx --restart=Never 
+    ```   
+   
 2. Get the status, IP of the pod 'web1' using `wide` output. 
 
     ```
@@ -40,13 +21,7 @@ A Pod represents a set of running containers on your cluster - it's the smallest
     kubectl describe pod web1  
     ```
 
-3. Delete pod 'web1' 
-    
-    ```
-    kubectl delete pod web1
-    ```
-
-4. List all the pods in current namespace 
+3. List all the pods in current namespace 
     
     ```
     kubectl get pod 
@@ -88,10 +63,17 @@ There are a few ways to create manifest files.
         * kind
         * labels
         * spec
-        * restart-policy
+        * restart-policy               
 
-2. Create a pod from the manifest file using `kubectl apply`.
+    * **Bonus**: Like to see the pod as it gets created / updated? Just setup a `watcher`
+        * Open a second terminal / pane and then run `kubectl get pods -w`. 
+        * You can now see the stages your new pod goes through in this pane / terminal. 
+        * You can always do a `ctrl + c` to exit the `watcher` 
+
+2. Create a pod from the manifest file using `kubectl apply`.    
     
+    * Create the pod from your main terminal / pane.
+
       ```bash
       kubectl apply -f web2-pod.yaml -n <your-namespace>
 
@@ -154,7 +136,6 @@ There are a few ways to create manifest files.
     ```bash
     kubectl get po -o wide
     ```
-
 ---
 
 ## Exercise - 4 Port-Forward
@@ -165,10 +146,10 @@ There are a few ways to create manifest files.
 
     ```bash
         # make sure you use a port number that is not in use. (e.g: 9000)
-        kubectl port-forward web2 9000:80         
+        kubectl port-forward web1 9000:80         
     ```
 
-2. Now, open a second `pane` or new terminal and type the following.
+2. Now, open your second `pane` or terminal and type the following. (do a `ctrl+c` if you have watcher running on it)
 
     ```bash
     http http://localhost:9000
@@ -188,18 +169,18 @@ There are a few ways to create manifest files.
 
 > Remember `logs` and `exec` commands from docker labs?
 
-1. Get 'web2' pod logs (just use the same pod that was pinged in previous exercise)
+1. Get logs of nginx container in 'web1' pod (just use the same pod that was pinged in previous exercise)
 
     ```bash
-    kubectl logs web2 -n <your-namespace> 
+    kubectl logs web1 -n <your-namespace> 
     ```
 
     > Bonus: See `kubectl logs -h` for more options such as `--follow`
 
-2. Run list all the files within container nginx running on 'web2' pod
+2. List the directories within of nginx container nginx in 'web1' pod
 
     ```
-    kubectl exec web2 -n <your-namespace> -- ls
+    kubectl exec web1 -n <your-namespace> -- ls
     ```
 ---
 
