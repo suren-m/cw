@@ -65,7 +65,30 @@ In this exercise, you will create an Azure Container Registry instance using the
     az aks update -n <aks-name> -g <aks-resource-group> --attach-acr <acr-name>
     ``` 
     
-# Exercise 3 - Explore the Kubernetes Dashboard
+# Exercise 3 - Switch between clusters / context
+
+#### Get Contexts
+
+```
+kubectl config get-contexts
+```
+
+#### Use Context (for your own cluster)
+
+```
+kubectl config use-context <name-of-the-context-to-use>
+```
+
+```
+# below just return info about your own cluster
+kubectl cluster-info
+```
+
+For more info, see: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+----
+
+# Exercise 4 - Explore the dashboard
 
 ### Steps
 
@@ -83,20 +106,4 @@ In this exercise, you will create an Azure Container Registry instance using the
     
 #### Now you can do your labs or practice k8s on your own cluster
 
-##### Switching between clusters / context
 
-Get Context
-
-```
-kubectl config get-contexts
-```
-
-Use Context
-
-```
-kubectl config use-context <name-of-the-context-to-use>
-```
-
-For more info, see: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
-
-----
