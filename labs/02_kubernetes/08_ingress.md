@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: yourfirstname+initial-app
-        image: your-username/your-imagename:tag # replace it with your image and correct tag version
+        image: <your-username>/cw-app:1.0
         ports:
         - containerPort: 80
 
