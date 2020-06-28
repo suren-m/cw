@@ -106,10 +106,9 @@ Here, We've ensured that we can hit our service from another pod inside the same
 
 ---
 
-> Note: Changing the service to type `LoadBalancer` will expose the service to the internet. (creates a public ip on the cloud) This is not `recommended` as it poses security risks. Just use `port-forwarding` to a `ClusterIP` instead whenever you need to access a service on the cluster from local machine.
+> Note: Changing the service(s) to type `LoadBalancer` will creates a public ip on the cloud and expose them to the internet. This is not `recommended` as it poses security risks. Just use `port-forwarding` to a `ClusterIP` instead whenever you need to access a service on the cluster from local machine.
 
 > We will take a look at `ingress-controller` later which will allow us to expose services to the internet in a controlled way.
-
 ---
 
 ## Bonus:
