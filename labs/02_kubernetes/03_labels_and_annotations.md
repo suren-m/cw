@@ -84,7 +84,7 @@
     web2   1/1     Running   1          34m   v1
     ```
 
-6. Get only the 'app=v2' pods
+6. Get pods that only have label `app=v2` (filter by version example)
 
     > Note the lowercase `-l` flag
 
