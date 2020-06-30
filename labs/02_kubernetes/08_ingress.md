@@ -23,9 +23,13 @@ spec:
           servicePort: 80
         path: /{your-firstname-cw-app}(/|$)(.*) # for example, path: /john-cw-app(/|$)(.*)        
 ```
-
 Take a moment to understand the usage of `annotations` here. It gets used by the client, in this case the `nginx` ingress controller.  
 
+#### Apply the ingress
+
+```bash
+kubectl apply -f cw-app-ingress.yaml -n <your-namespace>
+```
 #### Access your service via Ingress
 
 Take note of the public-ip from below query and then append your path from above ingress resource for e.g: `50.x.x.x/jane-cw-app` will redirect you to your `cw-app-svc` service
@@ -33,3 +37,13 @@ Take note of the public-ip from below query and then append your path from above
 ```bash
 kubectl get svc nginx-ingress-controller -n ingress-demo 
 ```
+
+## Bonus
+
+1. Take a look at how `nginx-ingress-controller` can be used for ssl termination.
+
+https://kubernetes.github.io/ingress-nginx/examples/tls-termination/
+
+2. Creating an Ingress Controller on AKS with static-ip
+
+https://docs.microsoft.com/en-us/azure/aks/ingress-static-ip
