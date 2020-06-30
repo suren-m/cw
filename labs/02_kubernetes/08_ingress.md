@@ -21,7 +21,7 @@ spec:
       - backend:
           serviceName: cw-app-svc # name of your cw-app service
           servicePort: 80
-        path: /{your-firstname-cw-app}(/|$)(.*) # replace your-firstname accordingly. for example, path: /{john-cw-app}(/|$)(.*)        
+        path: /{your-firstname-cw-app}(/|$)(.*) # replace your-firstname accordingly. for example, path: /john-cw-app(/|$)(.*)        
 ```
 
 #### Access your service via Ingress
