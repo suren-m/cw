@@ -24,6 +24,8 @@ spec:
         path: /{your-firstname-cw-app}(/|$)(.*) # for example, path: /john-cw-app(/|$)(.*)        
 ```
 
+Take a moment to understand the usage of `annotations` here. It gets used by the client, in this case the `nginx` ingress controller.  
+
 #### Access your service via Ingress
 
 Take note of the public-ip from below query and then append your path from above ingress resource for e.g: `50.x.x.x/jane-cw-app` will redirect you to your `cw-app-svc` service
