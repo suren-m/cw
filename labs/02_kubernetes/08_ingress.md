@@ -4,7 +4,7 @@
 
 Save the below manifest for ingress as `cw-app-ingress.yaml`
 
-> **Make sure to replace `{your-firstname-cw-app}` in the last line with your name. so, we can match path such as `/john-cw-app` **
+>**Make sure to replace `{your-firstname-cw-app}` in the last line with your name. so, we can match path such as `/john-cw-app`**
 ```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
