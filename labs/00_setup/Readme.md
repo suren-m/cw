@@ -45,6 +45,10 @@ cd cw
 
 ```bash
     mkdir ~/.kube && nano ~/.kube/config
+    
+    # Or if you're on vs code environment    
+    mkdir ~/.kube && code ~/.kube/config
+    
     # To retrieve config details, go to the link provided (see chat)
     # Now paste the contents of config provided into the editor. (ctrl + shift + v)     
     
