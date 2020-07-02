@@ -40,9 +40,70 @@
 
   ```bash
   kubectl get all
-  ```
+  ```  
 
-## Exercise 2 - Deploy ACR
+# Exercise 2 - Explore the dashboard (either from cloud shell or from your local machine)
+
+### Steps
+
+1. By default, the AKS cluster we created was deployed with Role Based Access Control (RBAC) enabled. This will cause errors when you first browse the dashboard, which is deployed with minimal read permissions. To get access to the dashboard, run the following command to create a `ClusterRoleBinding`:
+
+    ```bash
+    kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
+    ```
+
+2. Run the following command to access the dashboard:
+
+    ```bash
+    az aks browse --resource-group <aks-resource-group> --name <aks-cluster-name>
+    ``` 
+    
+# Exercise 3 - Switch between clusters / context (from codespaces environment
+
+Now, you can actually switch between the shared cluster and your own cluster from your codespaces environment as well
+
+#### Make sure you've logged into Azure in your codespaces environment 
+
+```
+  az login
+  az account list
+  az account set --subscription 'my-subscription-name'
+```
+
+#### Retrieve credentials for your own cluster. This will merge its config to the `~/.kube/config` file
+
+```
+ az aks get-credentials --resource-group <aks-resource-group> --name <aks-name>
+```
+
+
+#### Get Contexts
+
+```
+kubectl config get-contexts
+```
+
+#### Use Context (for your own cluster)
+
+```
+kubectl config use-context <name-of-the-context-to-use>
+```
+
+```
+# below just return info about your own cluster
+kubectl cluster-info
+```
+
+Now you can use your own cluster for rest of the labs if you prefer and switch between shared and your own cluster seamlessly. 
+
+Just note that, for accesssing your own cluster's dashboard you'd have to be in `cloud shell` or in local environment with `azure cli` and `kubectl` installed
+
+For more info, see: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+----   
+    
+# Bonus - Deploy ACR
+
 In this exercise, you will create an Azure Container Registry instance using the Azure CLI and setup integration between ACR and AKS. 
 
 ### Steps
@@ -64,46 +125,11 @@ In this exercise, you will create an Azure Container Registry instance using the
     ```bash
     az aks update -n <aks-name> -g <aks-resource-group> --attach-acr <acr-name>
     ``` 
-    
-# Exercise 3 - Switch between clusters / context
 
-#### Get Contexts
+> Now you can do your labs or practice k8s on your own cluster with your own private registry. 
 
-```
-kubectl config get-contexts
-```
+For instructions on connecting to ACR (instead of docker hub), see below
 
-#### Use Context (for your own cluster)
-
-```
-kubectl config use-context <name-of-the-context-to-use>
-```
-
-```
-# below just return info about your own cluster
-kubectl cluster-info
-```
-
-For more info, see: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
-
-----
-
-# Exercise 4 - Explore the dashboard
-
-### Steps
-
-1. By default, the AKS cluster we created was deployed with Role Based Access Control (RBAC) enabled. This will cause errors when you first browse the dashboard, which is deployed with minimal read permissions. To get access to the dashboard, run the following command to create a `ClusterRoleBinding`:
-
-    ```bash
-    kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
-    ```
-
-1. Run the following command to access the dashboard:
-
-    ```bash
-    az aks browse --resource-group <aks-resource-group> --name <aks-cluster-name>
-    ``` 
-    
-#### Now you can do your labs or practice k8s on your own cluster
+https://docs.microsoft.com/en-us/cli/azure/acr?view=azure-cli-latest#az-acr-login
 
 
