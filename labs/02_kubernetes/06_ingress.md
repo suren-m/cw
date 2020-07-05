@@ -1,6 +1,6 @@
 ## Ingress Lab - Create an Ingress resource and Attach your backend service to existing ingress controller
 
-> **Note: An ingress controller has already been setup for you on the shared cluster in `ingress-demo` namespace. However, if you're doing this lab in your own cluster, make sure to setup an ingress controller by following [this link] (https://docs.microsoft.com/en-us/azure/aks/ingress-basic#create-an-ingress-controller)**
+> **Note: An ingress controller has already been setup for you on the shared cluster in `ingress-demo` namespace. However, if you're doing this lab in your own cluster, make sure to setup an ingress controller by following [this link](https://docs.microsoft.com/en-us/azure/aks/ingress-basic#create-an-ingress-controller)**
 
 ## Exercise -1 Create an ingress resource and attach your `cw-app` service as a backend to it. 
 
