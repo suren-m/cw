@@ -43,11 +43,8 @@ cd cw
 
 > Copy and paste the provided config data into `~/.kube/config`. (See Chat for the link)
 
-    ```bash
-    # create .kube directory in home dir(~) if it doesn't exist
-    mkdir ~/.kube
-    
-    # open config file in vs code 
+    ```bash  
+    # open config file in vs code. vs code will also create the `.kube` directory upon save if it doesn't exist 
     code ~/.kube/config
     
     # Now paste the yaml config here and save the file using `ctrl + s` or save option from menu on top left.
@@ -58,6 +55,9 @@ cd cw
     ```
 > **Or** if you're on a terminal only environment
     ```bash
+        # create .kube directory in home dir(~) if it doesn't exist
+        mkdir ~/.kube
+        
         # use nano or vim if you are on terminal only environment 
         nano ~/.kube/config 
 
