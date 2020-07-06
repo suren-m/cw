@@ -171,7 +171,7 @@ Replace `<your-namespace>` with your `first-name` or `first-name with initial of
 
     * [Kubernetes Cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
- > **_Skip below two tasks for now if you are very new to bash / linux command line_**
+ > **_Skip below two tasks for now if you are new to bash / linux command line_**
 
 2. Setup an alias for `kubectl`
 
@@ -179,7 +179,7 @@ Replace `<your-namespace>` with your `first-name` or `first-name with initial of
 
         * For e.g. it's common to configure `k` for `kubectl`
 
-    * This can be done by adding `alias k=kubectl` to your `.bashrc` file.
+    * This can be done by adding `alias k=kubectl` to your `.bashrc` file in your home directory.
 
         ```bash    
         # open .bashrc from your home directory using your editor of choice. 
