@@ -28,9 +28,9 @@ Create an `angular` or a `react` or a `vuejs` app using cli. (or even just a htm
 
 If using webpack, make sure hot module reloading is enabled on webpack.
 
-Dockerize the app and create a separate `dockerfile.local` or/and `dockercompose.local.yaml`
+Dockerize the app and create a separate `dockerfile.local` or/and `docker-compose.local.yaml`
 
-Add a volume mount such as below to your `dockercompose.local.yaml`, so that your container is aware of changes in your source files.
+Add a volume mount such as below to your `docker-compose.local.yaml`, so that your container is aware of changes in your source files.
 
 > see: https://stackoverflow.com/questions/48685664/dockerized-angular-cli-application-hot-reload-fails
 
