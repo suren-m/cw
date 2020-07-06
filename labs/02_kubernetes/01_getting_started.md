@@ -68,24 +68,32 @@ Replace `<your-namespace>` with your `first-name` or `first-name with initial of
     cat cluster.txt
     ```
 
-3. Get a list of nodes in the cluster.
-
-    ```bash
-    kubectl get nodes 
-    ```
- 
-4. Get a list of all namespaces in the cluster. Here you will see other participants namespaces too. In real world, you may not have access to view other namespaces.
+3. Get a list of all namespaces in the cluster. Here you will see other participants namespaces too. In real world, you may not have access to view other namespaces.
 
     ```bash
     kubectl get namespaces
+
+    # or use the short-hand
+    kubectl get ns
     ```
 
+4. Get a list of nodes in the cluster.
+
+    ```bash
+    kubectl get nodes 
+
+    # see more info with -o wide
+    kubectl get nodes -o wide
+
+    ```
+ 
 5. Find out CPU and memory limits for the first node in the cluster
 
     ```bash
     # get list of nodes
     kubectl get nodes 
 
+    # the limits you see here were created by existing workloads on the cluster such as dashboard, metrics-server, etc
     kubectl describe node <node-name> 
     ```
 
@@ -96,8 +104,12 @@ Replace `<your-namespace>` with your `first-name` or `first-name with initial of
     kubectl get nodes -o jsonpath='{.items[0].metadata.name}' | kubectl describe node
     ```
 
-> See [Authentication Strategies in K8s](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#authentication-strategies) if you would like to know of how you are authenticated to use the cluster. 
+6. See cpu and memory usage of all nodes
 
+```bash
+# these metrics are provided by metrics-server. see: https://github.com/kubernetes-sigs/metrics-server
+kubectl top nodes
+```
 ---
 
 ## Exercise 3 - Use `Explain` for docs
