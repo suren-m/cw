@@ -1,6 +1,8 @@
 # Pods
 
-A Pod represents a set of running containers on your cluster - it's the smallest and simplest Kubernetes object.
+Pods are the smallest deployable units of computing that can be created and managed in Kubernetes. 
+
+A Pod is a group of one or more containers (such as Docker containers), with shared storage/network, and a specification for how to run the containers.
 
 ## Exercise 1 - Create and manage Pods with cli commands (Imperative approach)
 
@@ -187,6 +189,8 @@ status: {}
     ```
 
 3. From first pane / terminal, use `ctrl + c` to exit from port-forwarding. 
+
+> Note for advanced `vs code` users: If you like to use your browser for accessing the web page, you can use `forwarded ports` option in `remote explorer`, choose the port to forward and click into it. This will launch an `external endpoint` if you're running codespaces on browser. **If you're not sure about what this is, just carry on with terminal for now.**
 
 ---
 
