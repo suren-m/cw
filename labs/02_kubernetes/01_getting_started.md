@@ -86,31 +86,7 @@ Replace `<your-namespace>` with your `first-name` or `first-name with initial of
     kubectl get nodes -o wide
 
     ```
- 
-5. Find out CPU and memory limits for the first node in the cluster
-
-    ```bash
-    # get list of nodes
-    kubectl get nodes 
-
-    # the limits you see here were created by existing workloads on the cluster such as dashboard, metrics-server, etc
-    kubectl describe node <node-name> 
-    ```
-
-    **or**
-
-    ```bash
-    # once you become more familar with jsonpath, you could do the same like this
-    kubectl get nodes -o jsonpath='{.items[0].metadata.name}' | kubectl describe node
-    ```
-
-6. See cpu and memory usage of all nodes
-
-```bash
-# these metrics are provided by metrics-server. see: https://github.com/kubernetes-sigs/metrics-server
-kubectl top nodes
-```
----
+ ---
 
 ## Exercise 3 - Use `Explain` for docs
 
@@ -149,6 +125,44 @@ kubectl top nodes
     >   restartPolicy: Never
     > ```
 
+---
+
+## Exercise 4 - Retrieve CPU and Memory metrics from your nodes
+
+1. See cpu and memory usage of all nodes
+
+    ```bash    
+    kubectl top nodes    
+    ```
+
+    For more info, see:   
+
+    * [Metrics server in k8s](https://github.com/kubernetes-sigs/metrics-server)
+    
+    * [Cpu units in K8s](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/#cpu-units)
+
+    * [Memory units in K8s](https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/#memory-units)
+
+2. Find out `CPU` and `memory` limits on the first node in cluster
+
+    The resource limits you see here were created by existing workloads such as dashboard, metrics-server, etc
+
+    ```bash    
+    # get list of nodes
+    kubectl get nodes     
+    kubectl describe node <name-of-first-node> 
+    ```
+
+    **or**
+    ```bash
+    # once you become more familar with jsonpath, you could do the same like this
+    kubectl get nodes -o jsonpath='{.items[0].metadata.name}' | kubectl describe node
+    ```
+
+    **or if you prefer to use tools like `jq`**
+    ```bash
+    kubectl get nodes -o json | jq '.items[0].metadata.name' | kubectl describe node
+    ```
 ---
 
 ## Bonus

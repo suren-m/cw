@@ -228,9 +228,4 @@ Additionally, you can filter them to a specific object or have a watcher attache
 
 2. `Pods` can have multiple containers. How can you specify the container you wish to `exec`? 
     * **Hint:** See `kubectl exec -h` and look for `-c` flag.
-
-3. Take a look at `cpu units` and `memory units` in k8s.
-    > [Cpu units in K8s](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/#cpu-units)
-
-    > [Memory units in K8s](https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/#memory-units)
 ---
