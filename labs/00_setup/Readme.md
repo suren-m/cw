@@ -41,21 +41,33 @@ cd cw
 
 #### Configure kubectl to access the kubernetes cluster
 
-> Copy the provided config data. (See Chat for the link)
+> Copy and paste the provided config data into `~/.kube/config`. (See Chat for the link)
 
-```bash
-    mkdir ~/.kube && nano ~/.kube/config
+    ```bash
+    # create .kube directory in home dir(~) if it doesn't exist
+    mkdir ~/.kube
     
-    # Or if you're on vs code environment    
-    mkdir ~/.kube && code ~/.kube/config
+    # open config file in vs code 
+    code ~/.kube/config
     
-    # To retrieve config details, go to the link provided (see chat)
-    # Now paste the contents of config provided into the editor. (ctrl + shift + v)     
+    # Now paste the yaml config here and save the file using `ctrl + s` or save option from menu on top left.
     
-    # Save and exit (ctrl + x) - press y and then enter when prompted.
+    # close the file 
+    
+    # Reach out to instructor if you run into any issues.
+    ```
+> **Or** if you're on a terminal only environment
+    ```bash
+        # use nano or vim if you are on terminal only environment 
+        nano ~/.kube/config 
 
-    # Reach out to instructor if you run into any issues.    
-```
+        # To retrieve config details, go to the link provided (see chat)
+        # Now paste the contents of config provided into the editor. (ctrl + shift + v)     
+
+        # Save and exit (ctrl + x) - press y and then enter when prompted.
+
+        # Reach out to instructor if you run into any issues.    
+    ```
 
 #### Test connection to kubernetes cluster
 
