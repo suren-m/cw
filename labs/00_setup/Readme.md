@@ -53,21 +53,21 @@ cd cw
     
     # Reach out to instructor if you run into any issues.
     ```
-> **Or** if you're on a terminal only environment
-    ```bash
-        # create .kube directory in home dir(~) if it doesn't exist
-        mkdir ~/.kube
-        
-        # use nano or vim if you are on terminal only environment 
-        nano ~/.kube/config 
+    > **Or** if you're on a terminal only environment
+        ```bash
+            # create .kube directory in home dir(~) if it doesn't exist
+            mkdir ~/.kube
 
-        # To retrieve config details, go to the link provided (see chat)
-        # Now paste the contents of config provided into the editor. (ctrl + shift + v)     
+            # use nano or vim if you are on terminal only environment 
+            nano ~/.kube/config 
 
-        # Save and exit (ctrl + x) - press y and then enter when prompted.
+            # To retrieve config details, go to the link provided (see chat)
+            # Now paste the contents of config provided into the editor. (ctrl + shift + v)     
 
-        # Reach out to instructor if you run into any issues.    
-    ```
+            # Save and exit (ctrl + x) - press y and then enter when prompted.
+
+            # Reach out to instructor if you run into any issues.    
+        ```
 
 #### Test connection to kubernetes cluster
 
