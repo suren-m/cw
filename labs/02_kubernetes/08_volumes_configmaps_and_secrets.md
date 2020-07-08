@@ -29,7 +29,7 @@ kubectl get pv,pvc
 
 3. Create a Pod for testing. Save the below manifest as `volume-pod.yaml`
 
->Note that it may take a while for container to be ready because the cloud-backed volume has to be attached.
+>Note that it may take a while for container to be ready because the cloud-backed volume has to be attached. Notice the use of `limits` here as well on the container spec.
 
 ```yaml
 apiVersion: v1
