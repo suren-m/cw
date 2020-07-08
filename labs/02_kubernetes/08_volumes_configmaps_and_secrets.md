@@ -45,7 +45,7 @@ spec:
           claimName: my-1gb-claim
   containers:
   - name: volumepod
-    image: nginx
+    image: nginx:1.19.0
     resources:
       limits:
         memory: "128Mi"
