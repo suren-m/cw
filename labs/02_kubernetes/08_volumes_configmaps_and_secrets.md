@@ -62,7 +62,7 @@ spec:
     ```bash
     kubectl exec pod/volumepod -it -- sh
     cd /mnt/my-persistent-storage/
-    touch "hello world" > hello.txt
+    echo "hello world" > hello.txt
     exit
     ```
     
