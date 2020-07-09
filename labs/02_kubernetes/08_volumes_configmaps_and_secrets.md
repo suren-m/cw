@@ -115,7 +115,7 @@ spec:
     # `cd` into  or `cd ..` as needed. 
 
     # open `config-and-secrets.yaml` in `yaml_files` folder with vs-code or with nano   
-    nano config-and-secrets.yaml
+    code config-and-secrets.yaml
     
     # Update the <your-firstname> part with your name and save the file
 
