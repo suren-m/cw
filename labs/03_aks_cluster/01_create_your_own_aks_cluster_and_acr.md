@@ -31,9 +31,10 @@
   > This may take a short while to complete.
  
 4. Use the Azure CLI to get the credentials to connect kubectl to your AKS cluster:
-
+  
+   > **Notice the usage of `-a` flag. This will retrieve admin credentials whics is needed to launch dashboard from k8s 1.16 onwards
   ```bash
-  az aks get-credentials --resource-group <aks-resource-group> --name <aks-name>
+  az aks get-credentials -a --resource-group <aks-resource-group> --name <aks-name>
   ```
 
 5. Verify everything worked as expect by running a command against your Kubernetes cluster.
@@ -46,17 +47,16 @@
 
 ### Steps
 
-1. By default, the AKS cluster we created was deployed with Role Based Access Control (RBAC) enabled. This will cause errors when you first browse the dashboard, which is deployed with minimal read permissions. To get access to the dashboard, run the following command to create a `ClusterRoleBinding`:
-
-    ```bash
-    kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
-    ```
-
-2. Run the following command to access the dashboard:
+1. Run the following command to access the dashboard:
 
     ```bash
     az aks browse --resource-group <aks-resource-group> --name <aks-cluster-name>
     ``` 
+2. You will be prompted to use `kube config` file or `token`. For this, you can just use the config file. Just point to the location of config file in your system and select it. (default location on Windows is in `C:\users\<username>\.kube\config)   
+
+    > If you see errors on the notification icon on top-right, it means you have not retrieved admin credentials as mentioned in step 4 of exercise 1 above.
+    
+    > For more info on new updates to Dashboard, see - https://docs.microsoft.com/en-us/azure/aks/kubernetes-dashboard#sign-in-to-the-dashboard-kubernetes-116
     
 # Exercise 3 - Switch between clusters / context (from codespaces environment
 
