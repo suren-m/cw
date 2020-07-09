@@ -96,7 +96,10 @@ spec:
         kubectl create configmap <your-firstname>-myconfig --from-literal=<your-firstname>-1=lala --from-literal=<your-firstname>-2=lolo
     ```
 
->Bonus: Where is this config Map located? Hint: It's not in your namespace. (see configuration on vs extension)
+>Bonus: Where is this config Map located? Hint: It's not bound to a node. Also, how to look at someone else's config map provided you have access? 
+    ```bash
+      kubectl get cm --all-namespaces
+    ```
 
 ### IMPORTANT: In the lab environment, every participant has full access to the shared cluster, so please do not put anything sensitive in the secrets as others will be able to see it too. Just put some dummy text as in example below.
 
