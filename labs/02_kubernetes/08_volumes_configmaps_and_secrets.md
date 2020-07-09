@@ -42,7 +42,7 @@ spec:
   volumes:
     - name: my-volume               
       persistentVolumeClaim:
-          claimName: my-1gb-claim
+          claimName: <you-name>-claim
   containers:
   - name: volumepod
     image: nginx:1.19.0
