@@ -8,4 +8,9 @@
 
 3. Set your current working directory to `cw_labs\kubernetes`. We will be storing our `k8s` related labs inside this directory.
 
----
+  ```bash
+  ├── cw_labs
+  │   ├── docker
+  │   └── kubernetes
+  |         |__...your k8s labs manifest directories and files...
+  ```
