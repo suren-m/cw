@@ -107,7 +107,7 @@ spec:
       kubectl get cm --all-namespaces
     ```
 
-### IMPORTANT: In the lab environment, every participant has full access to the shared cluster, so please do not put anything sensitive in the secrets as others will be able to see it too. Just put some dummy text as in example below.
+> **IMPORTANT**: In the lab environment, every participant has full access to the shared cluster, so please do not put anything sensitive in the secrets as others will be able to see it too. Just put some dummy text as in example below.
 
 
 2. Create a secret called mysecret with the values <your-firstname>-password=mypass
