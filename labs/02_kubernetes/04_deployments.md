@@ -12,7 +12,7 @@ In this lab, we will create deployments with replica sets and apply everything e
         Docker Hub Image                   Web Page Output
 
     <your-username>:cw-app:1.0 ---> "Hello World - V1.0 (stable)"
-    <your-username>:cw-app:2.0 ---> "Hello World - V2.0/ (unstable)"
+    <your-username>:cw-app:2.0 ---> "Hello World - V2.0 (unstable)"
     <your-username>:cw-app:2.1 ---> "Hello World - V2.1 (patched)"
     ```
 ---
