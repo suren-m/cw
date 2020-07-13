@@ -1,93 +1,92 @@
 # Setting up your lab environment
 
-### 01 Clone the repo into your vsonline workspace (or your environment of choice)
+## 01 - Setup your lab environment on **codespaces**
 
-* Clone the repo using `https` as below
+Run the below commands in your vs code terminal. 
 
-```bash
-    git clone https://github.com/surenmcode/cw.git
-```
-
-**Navigate into the directory as below**
-```bash
-cd cw
-```
-
-> You are free to set up and organizse your lab workspace as you prefer. You can also just use the folders in this git repo for lab work if that suits you. For e.g: store your lab files inside `01_docker` folder when you are doing docker labs. 
-
-> **Important** If you are on vs online, it is highly recommended to keep your lab work backed up in a version control hub such as github. Vs online is still in public preview and if your environment gets accidentally corrupted, you will lose your lab files. As always, please **do not** check-in any sensitive information into version control.
-
-### 02 Install essential linux command line tools. 
-
-> If you are new to linux command line, just install the below ones that would be helpful later during the labs.
+> You can launch an integrated terminal from menu button (three lines) on top-left. (See [here](https://github.com/suren-m/remote-workshop-env/blob/master/codespaces/assets/vs_code_overview.png) if you're new to vs code)
 
 ```bash
-# Cd into 00_setup folder (prefix parent dir as needed)
-    cd labs/00_setup
+# get the setup script
+wget https://raw.githubusercontent.com/suren-m/cw/master/labs/00_setup/lab_env.sh -O lab_env.sh
+
+# give execution rights
+chmod +x lab_env.sh
+
+# run it
+./lab_env.sh     
 ```
 
-```bash
-# Install command line tools such httpie, jq, tmux. We will cover them later during demos.
-    chmod +x 01_lab_tools.sh
-    ./01_lab_tools.sh
-```
+---
 
-```bash
-# Install k9s (opensource cli tool for managing kubernetes. (alternative to web dashboard))
-    chmod +x 04_k9s.sh
-    ./04_k9s.sh
-```
+## 02 -  Configure kubectl to access the kubernetes cluster
 
+Access to kubernetes clusters are managed using a config file.
 
-#### Configure kubectl to access the kubernetes cluster
+#### For Codespaces users
 
-> Copy and paste the provided config data into `~/.kube/config`. (See Chat for the link)
+* Create the config file by using below command. This should open vs code editor
 
-    ```bash  
-    # open config file in vs code. vs code will also create the `.kube` directory upon save if it doesn't exist 
-    code ~/.kube/config
-    
-    # Now paste the yaml config here and save the file using `ctrl + s` or save option from menu on top left.
-    
-    # close the file 
-    
-    # Reach out to instructor if you run into any issues.
-    ```
-> **Or** if you're on a terminal only environment
     ```bash
-        
-        # create .kube directory in home dir(~) if it doesn't exist
-        mkdir ~/.kube
-
-        # use nano or vim if you are on terminal only environment 
-        nano ~/.kube/config 
-
-        # To retrieve config details, go to the link provided (see chat)
-        # Now paste the contents of config provided into the editor. (ctrl + shift + v)     
-
-        # Save and exit (ctrl + x) - press y and then enter when prompted.
-
-        # Reach out to instructor if you run into any issues.    
+    code ~/.kube/config
     ```
 
-#### Test connection to kubernetes cluster
+* Copy and paste the yaml contents from provided link (See chat for the link)
 
-```bash
+* Save the file (`Ctrl + S` on vs code or use the save option from menu (three lines) on top-left)
+
+* Close the file
+
+* Test the connection from terminal. Below should return a list of nodes.
+
+    ```bash
     kubectl get nodes
-    # Above should return all the nodes in the cluster
-```
+    ```
 
-#### Setup your default namespace. (as we're sharing a cluster)
+* It is highly recommended that you use vs code via `codespaces` for the labs. But if for some reason you are unable to use it, then use `nano` as an editor for pasting the config.
+
+    > **Below is only for those not using vs code and haven't completed above steps.**
+
+    ```bash
+    # use nano only if above vs code approach didn't work.
+    nano ~/.kube/config 
+
+    # paste the contents of yaml from provided link. 
+    # ctrl + shift + v (or use right click)
+
+    # save the file and exit nano
+    # save - ctrl + O 
+    # Confirm save - just hit Enter when prompted to write the file (at bottom of screen)
+    # exit - ctrl + x 
+
+    # Check connection. Below should return a list of nodes.
+    kubectl get nodes    
+    ```
+
+* If you're still having problems connecting to the cluster, feel free to reach out to the instructor.
+---
+
+## 03 - Setup your default namespace. (as we're sharing a cluster)
+
+* Create a namespace with unique name. (for example, using a combination of your first-name and first-letter of your surname)
+
+    > only use lower-case letters and dashes
 
 ```bash
-    kubectl create namespace <your-firstname> (or firstname with firstletter of your surname)
-    # If there are multiple participants with same first name, please suffix with a number or the first letter of your surname.
-
+    # for example, john-h or jane-s
+    kubectl create namespace <your-firstname-and-initial> 
+    
     # use your own namespace as a default 
-    kubectl config set-context --current --namespace=<your-firstname>
+    kubectl config set-context --current --namespace=<your-namespace-name>
+
+    # test it. below should return `No resources found in <your-namespace>`
+    kubectl get pods
 ```
 
-#### Install Kubernetes extension for VS Code
+---
+## 04 - Extensions for vs code
+
+Install Docker and Kubernetes extensions for VS Code
 
 > Note: If you're new to vs code, please reach out for a quick primer.
 
@@ -96,6 +95,11 @@ cd cw
     * Docker (extension by Microsoft)
     * Kubernetes (extension by Microsoft)       
 * Click Install and Reload when asked
+
+> **Important:** If you are on codespaces (vs online), it is highly recommended to keep your lab files backed up using something like github so you can take them with you. As always, please **do not** check-in any sensitive information into version control.
+---
+
+## Bonus
 
 #### Install any dev tools and extensions you need on vs code online
 
