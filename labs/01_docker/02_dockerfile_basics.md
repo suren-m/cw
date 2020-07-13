@@ -1,10 +1,31 @@
 # Docker File
 
+## Setup
+
+Navigate to `docker` Directory inside `cw_labs`
+
+```bash
+If you're already in `cw_labs` directory, just type in the terminal (or use vs code)
+cd ./docker
+```
+
+> **Bash Tip**: `cd` to change directory. For e.g, to go up one level, `cd ..` Similarly, `mkdir <dir-name>` to create a directory from current location. `pwd` will print current working directory.
+
+> **VS Code Tip:** To Set the terminal to point to location of a file or dir, Simply right click on the file or directory from `explorer` on vs code and choose `open in terminal`
+
 ## Create your first Dockerfile and execute a `CMD` (greeter:1.0)
 
 1. Create a folder as needed. For e.g: `mkdir my_first_dockerfile` and `cd` into that folder or open that in `vs online`
 
-2. Create a Dockerfile and just call it `Dockerfile` to keep up with the conventions.
+2. Create a Dockerfile and just call it `Dockerfile` to keep up with the conventions. Your setup should look like below.
+
+    ```bash
+    ├── cw_labs
+        ├── docker
+        │   └── my_first_dockerfile
+        │       └── Dockerfile
+        └── kubernetes
+    ```
 
 3. Type the below inside the `Dockerfile`. (Avoid copy pasting unless specified)
 
