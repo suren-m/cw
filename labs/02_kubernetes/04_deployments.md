@@ -56,7 +56,7 @@ mkdir cw-app && cd cw-app
     
 5. Verify the image is successfully pushed to your dockerhub repository. **Replace `<your-username>`** with your docker hub username.
 
-    > Navigate to https://hub.docker.com/r/<your-username>/cw-app/tags on your browser and make sure all three versions (tags) of your app exists.
+    > Navigate to `https://hub.docker.com/r/<your-username>/cw-app/tags` on your browser and make sure all three versions (tags) of your app exists.
        
     If you get a `404` above, it means you haven't correctly pushed your app to your docker hub account. Spend a couple of minutes and see if you can fix it or else just use the images in https://hub.docker.com/r/surenmcode/cw-app/tags instead
 ---
