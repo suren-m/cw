@@ -61,11 +61,13 @@ mkdir cw-app && cd cw-app
     If you get a `404` above, it means you haven't correctly pushed your app to your docker hub account. Spend a couple of minutes and see if you can fix it or else just use the images in https://hub.docker.com/r/surenmcode/cw-app/tags instead
 ---
 
-## Exercise 2 - Create a Deployment manifest file for `cw-app:1.0`
+## Exercise 1 - Create a Deployment manifest file for `cw-app:1.0`
 
 1. Create a manifest file using `--dry-run` and `-o yaml`
 
     ```bash
+    # Make sure you're in `cw-app` directory
+    
     # Make sure to replace <your-username> with your docker hub username
     kubectl create deploy cw-app --image=<your-username>/cw-app:1.0 -o yaml --dry-run > cw-app.yaml    
     ```
@@ -107,7 +109,7 @@ status: {}
     kubectl apply -f cw-app.yaml
     ```
 
-    At this stage, if you're having issues with making your app image or manifest file, just deploy the one as below or reach out to the instructor.
+    At this stage, if you're having issues with making your app image or manifest file, just deploy the one below or reach out to the instructor.
 
     ```
     # Only if you can't get the above steps to work
@@ -130,7 +132,7 @@ http localhost:9003 # or the port that was used
 ```
 ---
 
-## Exercise 3 -Expose the `cw-app` deployment as a Service
+## Exercise 2 -Expose the `cw-app` deployment as a Service
 
 1. Generate a manifest for a `cluster-ip` service that exposes the `cw-app` deployment.
 
@@ -181,7 +183,7 @@ k get all -o wide -l app=cw-app
 ```
 ---
 
-## Exercise - 4 Deploy a newer version of the app
+## Exercise - 3 Deploy a newer version of the app
 
 1. In order to observe how the update gets applied, open a second pane / terminal and set a watcher on replica sets. 
 
@@ -226,7 +228,7 @@ Exit the loop with `ctrl + c`
 
 ---
 
-## Exercise - 5 Rollback to Previous Version
+## Exercise - 4 Rollback to Previous Version
 
 1. View the rollout history for 'mydeploy' and roll back to the previous revision.
 
@@ -241,7 +243,7 @@ Exit the loop with `ctrl + c`
     kubectl rollout undo deploy cw-app    
 ```
 
-## Exercise - 6 Access the service from within the cluster.
+## Exercise - 5 Access the service from within the cluster.
 
 1. Much like in previous lab, run a busybox container and hit the `cw-app-svc` service by its name. 
 
@@ -267,4 +269,6 @@ exit
 * Try to do a simple `blue-green` or `canary` deployment by taking advantage of `labels` and `selectors` on the `service`
 
     * Remember that a `service` can point to two deployments as long as they have the same label.
+    
+    
 
