@@ -4,7 +4,7 @@
 
 Just type `docker` in the terminal to see if docker is running.
 
-** If you're using Azure Cloud Shell, you wouldn't be able to do Docker labs ** (kubernetes labs should work fine)
+**If you're using Azure Cloud Shell, you wouldn't be able to do Docker labs** (kubernetes labs should work fine)
 
 If you're interested in installing a community version on your own machine, see:
 
