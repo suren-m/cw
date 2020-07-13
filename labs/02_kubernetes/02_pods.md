@@ -46,6 +46,15 @@ There are a few ways to create manifest files.
 * Let an IDE such as `vs code kuberentes extension` generate the scaffold for us.
 * Take advantage of `--dry-run` flag and `-o yaml` in `kubectl` to generate the initial yaml. (most common technique)
 
+> Setup - Create a directory called `pods` and `cd` into it. 
+
+    ```bash
+    mkdir pods && cd pods
+
+    # if you do a `pwd`, it should look something like below. (the parent directory will be different if you're doing this on azure cloud shell)
+    /home/codespace/workspace/cw_labs/kubernetes/pods
+    ```
+
 1. Generate a `yaml` file for a pod called `web2` from terminal.
 
     > **Important:** Notice how we've used `--dry-run` flag in combination with `-o yaml` and then saving the output to a `yaml` file.
