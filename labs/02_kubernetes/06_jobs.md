@@ -1,12 +1,18 @@
 # Jobs
 
-## Job / Batch Job
+## Setup
 
-### Setup: Open a separate terminal or a pane and run `kubectl get pod -w` so you can observe the pods coming up when you create a job.
+* Create a directory called `jobs` within `cw_labs\kubernetes` directory and `cd` into it.
+
+---
+
+## Exercise - 1 Batch Job
 
 1. Create a batch job from below yaml with both `parallelism and completions` set to 1. Name the yaml file `job.yaml` or something similar.
 
-### When copying yaml across, make sure the `indentation` is intact. Or else, you will see unexpected errors when doing the apply.
+> Open a separate terminal or a pane and run `kubectl get pod -w` so you can observe the pods coming up when you create a job.
+
+When copying the manifest yaml across, make sure the `indentation` is intact. Or else, you will see unexpected errors when doing the apply.
 
 ```yaml
 apiVersion: batch/v1 # Notice the api here that is different from one for deployment.
@@ -50,9 +56,9 @@ spec:
 
 After applying (kubectl apply -f job-filename.yaml), observe the `watcher` pane and see how the pods come up and run to completion. (Time column will give you an idea as well)
 
+---
 
-## CronJob
-### Steps
+## Exercise - 2 Cron Jobs
 
 1. Create CronJob called sleepycron that runs pod busy box with ```sleep 5``` command every minute
 
@@ -86,12 +92,7 @@ spec:
 2. List all the CronJob, Jobs and Pods
 
     ```bash
-       kubectl get cj,job,pod
-       # observe every minute job and pods will be created
+      kubectl get cj,job,pod       
     ```
-
-3. Clean up your resources
-
-    ```bash
-        kubectl delete all --all
-    ```
+    Observe that at every minute, job and pods will be created
+---
