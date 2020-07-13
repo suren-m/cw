@@ -7,8 +7,7 @@ mkdir kubernetes
 sudo apt update -y
 
 # install essential tools
-sudo apt install -y tmux httpie curl wget \ 
-nano jq htop tree zip unzip file 
+sudo apt install -y tmux httpie curl wget nano jq htop tree zip unzip file 
 
 # K9s
 mkdir k9s && cd k9s
