@@ -1,10 +1,12 @@
 # Installation
 
-> **Note:** If you are on vs online, docker is already made available in your environment.
+> **Note: If you are on vs online, docker is already made available in your environment.**
 
 Just type `docker` in the terminal to see if docker is running.
 
-For installing a community version on your own machine, see:
+** If you're using Azure Cloud Shell, you wouldn't be able to do Docker labs ** (kubernetes labs should work fine)
+
+If you're interested in installing a community version on your own machine, see:
 
 * [Install Docker Desktop on Windows](
 https://docs.docker.com/docker-for-windows/install/)
