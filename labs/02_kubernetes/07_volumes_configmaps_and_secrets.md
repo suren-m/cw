@@ -110,43 +110,84 @@ spec:
         kubectl create secret generic <your-firstname>-mysecret --from-literal=<your-firstname>-password=mypass
     ```
 
-3. Follow below steps to create a new nginx pod that loads the value from configmap ```<your-firstname>-myconfig``` ->  ```<your-firstname>-1``` in an env variable called 'option'. Also load secret '<your-firstname>-mysecret' as a volume inside an nginx pod on path ```/etc/secrets```.
+3. Follow below steps to create a new `test` pod that loads the values as below
 
-    ```bash
-    # review the manifest and look how the configMap and secret is referenced    
-    # make sure your terminal's directory is set to yaml_files folder located in 02_kubernetes folder of the repo. 
-    # `cd` into  or `cd ..` as needed. 
+  * Load from configmap ```<your-firstname>-myconfig``` ->  ```<your-firstname>-1``` in an environment variable called 'option'.    
+  * Load secret '<your-firstname>-mysecret' as a volume inside an nginx pod on path ```/etc/secrets```.
 
-    # open `config-and-secrets.yaml` in `yaml_files` folder with vs-code or with nano   
+4. Create / open a manifest file called `config-and-secrets.yaml`
+
+    ```bash    
     code config-and-secrets.yaml
+    ```
+
+5. Pasting in the below manifest and save the file.
+
+> **Make sure to update `<your-firstname>` accordingly**
+
+> Spend a few minutes to fully understand the below manifest before proceeding further.
     
-    # Update the <your-firstname> part with your name and save the file
+```bash
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod
+spec:
+  volumes: # specify the volumes
+  - name: myvolume # this name will be used for reference inside the container
+    secret: 
+      secretName: <your-firstname>-mysecret # name of the secret - this must already exist on pod creation
 
-    # Create Pod from the script file
-    # If you get file not found, make sure your terminal is set to right directory.    
-    kubectl apply -f config-and-secrets.yaml
+  containers:
+  - image: nginx:1.19.0
+    imagePullPolicy: IfNotPresent
+    name: nginx
 
-    # Or you can pass full path. 
-    # For example, if your terminal is at `cw` folder, then 
-    # `kubectl apply -f ./labs/02_kubernetes/yaml_files/config-and-secrets.yaml`
-    ```
+    volumeMounts: # your volume mounts are listed here
+    - name: myvolume # the name that you specified in pod.spec.volumes.name
+      mountPath: /etc/secrets # the path inside your container   
 
-4. Check environment variable ```option``` and ```/etc/secrets``` has expected values
+    env:
+    - name: option # name of the env variable
+      valueFrom:
+        configMapKeyRef:
+          name: <your-firstname>-myconfig # name of config map
+          key: <your-firstname>-1 # name of the entity in config map
 
-    ```bash
-    kubectl exec -it nginx -- env | grep option
-    kubectl exec -it nginx -- ls /etc/secrets
-    ```
-    or 
+    resources:
+      limits: # resource limits for this container
+       memory: "64Mi"
+       cpu: "100m"
+```
 
-    ```bash
-    kubectl exec -it nginx -- sh
-    # And from within the container's shell
-    env 
-    # Look for the `option` env variable in the list
-    cd /etc/secrets && ls
-    cat <your-name>-password
-    exit
+7. When ready, do a `kubectl` apply. If you get file not found, make sure your terminal is set to the right directory.    
+
+```bash    
+kubectl apply -f config-and-secrets.yaml    
+```
+
+8. Check environment variable ```option``` and ```/etc/secrets``` has expected values
+    
+  ```bash
+  kubectl exec -it test-pod -- sh
+
+  # And from within the container's shell
+  # Look for the `option` env variable in the list
+  env | grep 'option'
+  
+  # Check out the volume that's mounted for our secret
+  cd /etc/secrets && ls
+  cat <your-name>-password
+
+  # exit
+  exit
+  ```
+  **or**
+
+  ```bash
+  kubectl exec -it test-pod -- env | grep option
+  kubectl exec -it test-pod -- ls /etc/secrets
+  ```
 
 ---
 
