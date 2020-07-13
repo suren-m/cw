@@ -50,6 +50,9 @@ Access to kubernetes clusters are managed using a config file.
     > **Below is only for those not using vs code and haven't completed above steps.**
 
     ```bash
+    # create `.kube` directory if it doesn't exist
+    mkdir ~/.kube
+    
     # use nano only if above vs code approach didn't work.
     nano ~/.kube/config 
 
