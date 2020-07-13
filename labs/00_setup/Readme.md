@@ -1,8 +1,8 @@
 # Setting up your lab environment
 
-## 01 - Setup your lab environment on **codespaces**
+## 01 - Setup your lab environment on **vs code / codespaces**
 
-Run the below commands in your vs code terminal. 
+Run the below commands in your vs code terminal. If you are not on codespaces or codespaces, skip to `02 - kubectl setup` below
 
 > You can launch an integrated terminal from menu button (three lines) on top-left. (See [here](https://github.com/suren-m/remote-workshop-env/blob/master/codespaces/assets/vs_code_overview.png) if you're new to vs code)
 
