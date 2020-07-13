@@ -202,7 +202,7 @@ There are two ways to do this:
 
     # Notice how the desired, current and ready states change on replica set watcher.
     ```
-* Or using the manifest file 
+* **Or** using the manifest file 
 
     * Update the `image` field of `cw-app.yaml` to point to `2.0`
     * `kubectl apply -f cw-app.yaml`
