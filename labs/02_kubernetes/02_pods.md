@@ -37,23 +37,27 @@ A Pod is a group of one or more containers (such as Docker containers), with sha
 * The manifest files are then `version controlled` and managed very much like application source code. 
     * For this reason, they **must not** contain any sensitive data
 
+
+## Setup for Exercise 2
+
+Create a directory called `pods` and `cd` into it. 
+
+```bash
+mkdir pods && cd pods   
+```
+
+> If you do a `pwd`, it should return something like `/home/codespace/workspace/cw_labs/kubernetes/pods`. 
+
+* The parent directory will be different if you're doing this on azure cloud shell
+
 ---
 
 ## Exercise 2 - Creating Pods using a `Manifest` file (declarative approach)
 
-There are a few ways to create manifest files.
+There are a few ways to create manifest files:
 * Hand-code them from scratch
 * Let an IDE such as `vs code kuberentes extension` generate the scaffold for us.
 * Take advantage of `--dry-run` flag and `-o yaml` in `kubectl` to generate the initial yaml. (most common technique)
-
-> Setup - Create a directory called `pods` and `cd` into it. 
-
-    ```bash
-    mkdir pods && cd pods
-
-    # if you do a `pwd`, it should look something like below. (the parent directory will be different if you're doing this on azure cloud shell)
-    /home/codespace/workspace/cw_labs/kubernetes/pods
-    ```
 
 1. Generate a `yaml` file for a pod called `web2` from terminal.
 
@@ -88,17 +92,27 @@ spec:
 status: {}
 ```
 
-    * Explore the contents of `web2-pod.yaml`. Have a look at properties such as:
-        * api-version
-        * kind
-        * labels
-        * spec
-        * restart-policy               
+* Explore the contents of `web2-pod.yaml`. Have a look at properties such as:
+    * api-version
+    * kind
+    * labels
+    * spec
+    * restart-policy               
 
-    * **Bonus**: Like to see the pod as it gets created / updated? Just setup a `watcher`
-        * Open a second terminal / pane and then run `kubectl get pods -w`. 
-        * You can now see the stages your new pod goes through in this pane / terminal. 
-        * You can always do a `ctrl + c` to exit the `watcher` 
+* **Bonus**: Like to see the pod as it gets created / updated? Just setup a `watcher`
+    * Open a second terminal / pane and then run `kubectl get pods -w`. 
+    * You can now see the stages your new pod goes through in this pane / terminal. 
+    * You can always do a `ctrl + c` to exit the `watcher` 
+
+2. Your setup should look something like below.
+
+```bash    
+    ├── cw_labs
+    │   ├── docker
+    │   └── kubernetes
+    │       └── pods
+    │           └── web2-pod.yaml    
+```
 
 2. Create a pod from the manifest file using `kubectl apply`.    
     
@@ -108,7 +122,6 @@ status: {}
       kubectl apply -f web2-pod.yaml -n <your-namespace>
 
       # Or Skip the -n flag if you have correctly set your default namespace
-
       kubectl apply -f web2-pod.yaml
       ```
 
