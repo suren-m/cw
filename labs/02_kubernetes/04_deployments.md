@@ -2,34 +2,63 @@
 
 In this lab, we will create deployments with replica sets and apply everything else we've learnt so far along with it.
 
-## Exercise 1 - Setup (Docker images for deployment)
+> **Important : This is one of the most important labs in our workshop. Please make sure to take your time to understand the content and complete it. The exercises here will also incorporate various other things we have learnt thus far. Feel free to re-visit them and practice again till you're fully comfortable with the concepts covered here**
 
-For this lab, we need `three versions` of a docker image called `cw-app` that is already pushed to docker hub.
+* For this lab, we will be using a simple web app called `cw-app`. 
 
-The application itself could be something as simple as a web page that says `Hello World` followed by `version number`. Something like below,
+* First, we will create `three versions` of cw-app docker images and push it to Docker Hub. It would do something like below:
 
-```
-    Docker Hub Image                   Web Page Output
+    ```bash
+        Docker Hub Image                   Web Page Output
 
-<your-username>:cw-app:1.0 ---> "Hello World - V1.0 (stable)"
-<your-username>:cw-app:2.0 ---> "Hello World - V2.0/ (unstable)"
-<your-username>:cw-app:2.1 ---> "Hello World - V2.1 (patched)"
-```
+    <your-username>:cw-app:1.0 ---> "Hello World - V1.0 (stable)"
+    <your-username>:cw-app:2.0 ---> "Hello World - V2.0/ (unstable)"
+    <your-username>:cw-app:2.1 ---> "Hello World - V2.1 (patched)"
+    ```
+---
 
-To set this up, just clone the repo and run `setup.sh`. (it's a little hello-world python app)
+## Setup
 
-> Make sure you're already logged into DockerHub via `docker login`
+1. For Setup, first start with creating a directory called `cw-app` inside `kubernetes directory. 
 
 ```bash
-git clone https://github.com/suren-m/cw-app.git
-cd cw-app
-chmod +x setup.sh && ./setup.sh
-
-# Just enter your dockerhub username when prompted and hit Enter.
+mkdir cw-app && cd cw-app
 ```
 
-Alternatively, if you wish to build and push your own version of `cw-app` (for e.g: in Go or dotnet), feel free to do so.
+2. Your setup should look like below.
 
+    ```bash
+    ├── cw_labs
+    │   ├── docker
+    │   └── kubernetes
+    │       ├── cw-app
+    |           └── ...<your cw-app manifests will go here>...
+    │       └── pods
+    │           └── web2-pod.yaml
+
+    ```
+
+3. Make sure you're already logged into DockerHub by doing a **docker login** on the terminal (see docker registry lab if in doubt)
+
+4. Download and run the below setup script. This will build the `app image` and push it to your docker hub repository.
+
+    > **Important:** When prompoted, provide your **dockerhub username** (not your namespace name)
+    ```bash
+    # download
+    wget https://raw.githubusercontent.com/suren-m/cw-app/master/setup.sh -O setup.sh
+    
+    # set execution permissions    
+    chmod +x setup.sh 
+    
+    # execute
+    ./setup.sh
+    ```
+    
+5. Verify the image is successfully pushed to your dockerhub repository. **Replace `<your-username>`** with your docker hub username.
+
+    > Navigate to https://hub.docker.com/r/<your-username>/cw-app/tags on your browser and make sure all three versions (tags) of your app exists.
+       
+    If you get a `404` above, it means you haven't correctly pushed your app to your docker hub account. Spend a couple of minutes and see if you can fix it or else just use the images in https://hub.docker.com/r/surenmcode/cw-app/tags instead
 ---
 
 ## Exercise 2 - Create a Deployment manifest file for `cw-app:1.0`
