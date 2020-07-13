@@ -1,5 +1,11 @@
 # Volumes, Config Maps and Secrets
 
+## Setup
+
+* Create a directory called `state_persistence` within `cw_labs\kubernetes` directory and `cd` into it.
+
+---
+
 ## Exercise - 1 Persistent Volume Claim
 
 1. Create a persistent volume claim for 1GB of storage. Save the below manifest as `pvc.yaml`
