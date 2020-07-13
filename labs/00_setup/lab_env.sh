@@ -18,5 +18,6 @@ sudo mv k9s /usr/local/bin/
 cd ..
 rm -rf ./k9s
 
+cd ./cw_labs
 printf "...All Set...\n"
 printf "...You can now start doing your labs from current directory - $(pwd)...\n"
