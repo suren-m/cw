@@ -4,7 +4,7 @@
 
 Run the below commands in your vs code terminal. 
 
-> If you are using azure cloud shell, skip to `02 - kubectl setup` further below
+> If you are using azure cloud shell, skip to `02 - configure kubectl` further below
 
 > You can launch an integrated terminal from menu button (three lines) on top-left. (See [here](https://github.com/suren-m/remote-workshop-env/blob/master/codespaces/assets/vs_code_overview.png) if you're new to vs code)
 
