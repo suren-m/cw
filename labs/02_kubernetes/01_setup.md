@@ -4,7 +4,7 @@
 
 1. Make sure that you are well aware of the directory you will be using for your labs.
 
-2. If you're on codespaces, note that `~/workspace` is the default directory that will open everytime you launch vs code.
+2. If you're on codespaces, note that `~/workspace` is the default directory that will open everytime you launch your codespace environment (vs code online).
 
 3. Set your current working directory to `cw_labs\kubernetes`. We will be storing our `k8s` related labs inside this directory.
 
@@ -12,5 +12,5 @@
   ├── cw_labs
   │   ├── docker
   │   └── kubernetes
-  |         |__...your k8s labs manifest directories and files...
+  |         |__...your k8s labs manifest directories and files will go here...
   ```
