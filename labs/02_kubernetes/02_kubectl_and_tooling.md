@@ -1,7 +1,8 @@
+# Lab - Getting Started with Kubernetes
 
-## Exercise 2 - Interacting with Kubernetes using `kubectl`
+## Exercise 1 - Interacting with Kubernetes using `kubectl`
 
-```kubectl```, said *Kube-Control*, is the  command line interface for running commands against a Kubernetes clusters. In this execise, you will explore some useful features of ```kubectl``` that you may find useful.
+```kubectl```, pronounced *Kube-Control*, is the  command line interface for running commands against a Kubernetes clusters. In this execise, you will explore some useful features of ```kubectl``` that you may find useful.
 
 1. Get Cluster information.
 
@@ -18,14 +19,33 @@
     cat cluster.txt
     ```
 
-3. Get a list of all namespaces in the cluster. Here you will see other participants namespaces too. In real world, you may not have access to view other namespaces.
+3. Get a list of all namespaces in the cluster. Here you will see other participants namespaces too. In real world, you may or may not have access to view other namespaces.
 
     ```bash
     kubectl get namespaces
 
     # or use the short-hand
     kubectl get ns
+
+    # filter your namespace by using `grep`
+    kubectl get ns | grep '<your-namespace-name>' 
     ```
+
+4. Check your `default` namespace for your current context.
+
+    ```bash
+    kubectl config get-contexts     
+    ```
+
+    You should see an output such as below with your `your namespace name` appearing under NAMESPACE column. 
+
+    ```bash
+    # example output for above command
+    CURRENT   NAME   CLUSTER   AUTHINFO               NAMESPACE
+    *         cw     cw        clusterUser_cw-rg_cw   <your-namespace-name>
+    ```
+
+    > Important: If the NAMESPACE column is blank or doesn't contain your namespace name, it means you haven't configured your default namespace correctly. Reach out to the instructor for help.
 
 4. Get a list of nodes in the cluster.
 
@@ -38,7 +58,7 @@
     ```
  ---
 
-## Exercise 3 - Use `Explain` for docs
+## Exercise 2 - Use `Explain` for docs
 
 ```kubectl explain``` will explain the given resource. For example, a top level API-object like Pod or a specific field like a Pod's container. 
 
@@ -77,7 +97,7 @@
 
 ---
 
-## Exercise 4 - Retrieve CPU and Memory metrics from your nodes
+## Exercise 3 - Retrieve CPU and Memory metrics from your nodes
 
 1. See cpu and memory usage of all nodes
 
@@ -85,7 +105,7 @@
     kubectl top nodes    
     ```
 
-    For more info, see:   
+    If you're interested to know more about metrics in k8s, take a look at:   
 
     * [Metrics server in k8s](https://github.com/kubernetes-sigs/metrics-server)
     
@@ -100,6 +120,7 @@
     ```bash    
     # get list of nodes
     kubectl get nodes     
+    # describe a particular node
     kubectl describe node <name-of-first-node> 
     ```
 
