@@ -22,7 +22,9 @@ cd ./docker
     ```bash
         # from my_first_dockerfile directory
         touch Dockerfile
-    ``    
+    ```    
+    
+    Your setup should look like this.
     
     ```bash
     ├── cw_labs
