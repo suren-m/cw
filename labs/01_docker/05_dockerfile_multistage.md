@@ -39,7 +39,7 @@
 
     ```
 
-2. Replace the `Main` method in `Program.cs` of `strings-app`, so it looks like below
+2. Open `Program.cs` inside `strings-app` directory on vs code editor and Replace the `Main` methos, so it looks like below
 
 ```csharp
         static void Main(string[] args)
