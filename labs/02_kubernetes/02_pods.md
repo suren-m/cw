@@ -73,7 +73,7 @@ There are a few ways to create manifest files:
 
     * View the file using VS Code (or any editor of choice) or just type `cat web2-pod.yaml` from terminal
 
-    * `web2-pod.yaml` should look like below
+    * `web2-pod.yaml` should look like below (make sure the indentations are right as this is crucial for yaml parsing)
 
 ```yaml
 kind: Pod
