@@ -115,7 +115,9 @@
     # Make sure now both web1 and web2 don't have `app` label
     kubectl get po --show-labels    
     ```
-> Note: For `web2`, ideally we should be treating the `manifest file` as single source of truth and version control it. But for lab purposes, command-line is quick and easier.
+> Note: For `web2`, ideally we should be treating the `manifest file` as single source of truth and version control it. But for purpose of this particular exercise, command-line is quick and easier. 
+
+> We will be moving more and more towards declarative approach (`manifest file as source of truth`) from next lab onwards.
 
 ---
 
