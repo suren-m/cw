@@ -17,8 +17,13 @@ cd ./docker
 
 1. Create a folder as needed. For e.g: `mkdir my_first_dockerfile` and `cd` into that folder or open that in `vs online`
 
-2. Create a Dockerfile and just call it `Dockerfile` to keep up with the conventions. Your setup should look like below.
+2. Create a Dockerfile inside `my_first_dockerfile` directory and just call it `Dockerfile` to keep up with the conventions. You can do `touch Dockerfile` from the terminal or just right-click on the folder you want to create the file under and select `New File`
 
+    ```bash
+        # from my_first_dockerfile directory
+        touch Dockerfile
+    ``    
+    
     ```bash
     ├── cw_labs
         ├── docker
