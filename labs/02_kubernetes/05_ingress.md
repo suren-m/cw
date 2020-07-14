@@ -9,9 +9,10 @@ For this lab, continue using the same `cw-app` directory.
 
 ## Exercise -1 Create an ingress resource and attach your `cw-app` service as a backend to it. 
 
-Save the below manifest for ingress as `cw-app-ingress.yaml`
+Save the below manifest for ingress as `cw-app-ingress.yaml` (feel free to paste it into vs code editor and save it but make sure the indentation is intact)
 
->**Make sure to replace `{your-namespace-cw-app}` in the last line with your name. so, we can match path such as `/john-cw-app`**
+> Make sure to replace **`<your-namespace>`** in the last line with your name or your namespace's name. so, we can match paths such as `/john-cw-app` or `/jane-h-cw-app` 
+
 ```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -28,7 +29,7 @@ spec:
       - backend:
           serviceName: cw-app-svc # name of your cw-app service
           servicePort: 80
-        path: /{your-namespace-cw-app}(/|$)(.*) # for example, path: /john-cw-app(/|$)(.*)        
+        path: /<your-namespace>-cw-app(/|$)(.*) # for example, path: /john-cw-app(/|$)(.*)        
 ```
 Take a moment to understand the usage of `annotations` here. It gets used by the client, in this case the `nginx` ingress controller.  
 
@@ -39,12 +40,20 @@ kubectl apply -f cw-app-ingress.yaml -n <your-namespace>
 ```
 #### Access your service via Ingress
 
-Take note of the public-ip from below query and then append your path from above ingress resource for e.g: `50.x.x.x/jane-cw-app` will redirect you to your `cw-app-svc` service
+1. Take note of the **`External-IP`** from below query 
 
 ```bash
-# The ingress controller of the cluster in located in `ingress-demo` namespace
+# The ingress controller of the cluster is located in `ingress-demo` namespace
 kubectl get svc nginx-ingress-controller -n ingress-demo 
 ```
+
+2. Now on the browser, paste that external-ip and append your path from above ingress resource to it. (for e.g: `50.x.x.x/jane-h-cw-app`)
+
+3. You should now see the output of your `cw-app-svc` on your browser!
+
+4. If you're having any issues, just reach out to the instructor.
+
+---
 
 ## Bonus
 
