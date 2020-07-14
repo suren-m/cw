@@ -14,18 +14,18 @@ A Pod is a group of one or more containers (such as Docker containers), with sha
    
 2. Get the status, IP of the pod 'web1' using `wide` output. 
 
-    ```
+    ```bash
     kubectl get pod web1 -o wide 
     ```
 
     Now use describe to get detailed description of the pod , including related resources such as events  or controllers
-    ```
+    ```bash
     kubectl describe pod web1  
     ```
 
 3. List all the pods in current namespace 
     
-    ```
+    ```bash
     kubectl get pod 
     ```
 ---
@@ -40,15 +40,15 @@ A Pod is a group of one or more containers (such as Docker containers), with sha
 
 ## Setup for Exercise 2
 
-Create a directory called `pods` and `cd` into it. 
+Create a directory called `pods` within `kubernetes` directory and `cd` into it. (feel free to use vs code if you don't want to use terminal)
 
 ```bash
 mkdir pods && cd pods   
 ```
 
-> If you do a `pwd`, it should return something like `/home/codespace/workspace/cw_labs/kubernetes/pods`. 
+If you do a `pwd` on the terminal, it should return something like `/home/codespace/workspace/cw_labs/kubernetes/pods`. 
 
-* The parent directory will be different if you're doing this on azure cloud shell
+Example Output: ![codespaces_pods_directory_example](../../assets/codespace_pods_directory_example.png)
 
 ---
 
@@ -116,12 +116,14 @@ status: {}
 
 2. Create a pod from the manifest file using `kubectl apply`.    
     
-    * Create the pod from your main terminal / pane.
+    * Create the pod from your main terminal / pane. (make sure current working directory is pointing to `pods` directory)
 
       ```bash
-      kubectl apply -f web2-pod.yaml -n <your-namespace>
-
-      # Or Skip the -n flag if you have correctly set your default namespace
+      kubectl apply -f web2-pod.yaml -n <your-namespace>      
+      ```
+      **or**
+      ```bash
+      # or Skip the -n flag if you have correctly set your default namespace
       kubectl apply -f web2-pod.yaml
       ```
 
@@ -138,10 +140,10 @@ status: {}
 
 ## Exercise 3 - Fixing a faulty image
 
-1. Open `web2-pod.yaml` file in `vs code`
+1. Open `web2-pod.yaml` file in `vs code` editor (will usually open on the top half of the screen)
 
     ```bash
-    # with the present working directory pointing to file location
+    # with the present working directory pointing to `pods` directory (where below file is present)
     code web2-pod.yaml
     ```
 
@@ -162,11 +164,11 @@ status: {}
     ```
 
     * It should state something like `Failed to Pull Image` or `ImagePullBackOff`
-    * This is because there is no such image. (due to our typo)
+    * This is because there is no such image (due to our typo) and kubernetes cannot launch the container for that pod.
 
 5. Fix the `manifest` with correct value to image. 
 
-    * Open `web2-pod.yaml` and change the image to correct value `nginx:1.19.0` (typo fix)
+    * On `web2-pod.yaml`, now change the image to correct value `nginx:1.19.0` (typo fix)
 
 6. Delete the existing faulty pod and do an apply
 
@@ -191,28 +193,27 @@ status: {}
 
 1. Hit the default nginx page of `web1` or `web2` pod by doing a `Port-forward` to localhost. 
 
-    > This is a relly useuful feature to quickly test out web apps or apis on `K8s` and is very similar to `-p` flag in `Docker`.
+    > This is a really useuful feature to quickly test out web apps or apis on `K8s` and is very similar to `-p` flag in `Docker`.
 
     ```bash
-        # make sure you use a port number that is not in use. (e.g: 9000)
+        # make sure you use a port number that is not currently in use. (e.g: 9000)
         kubectl port-forward web1 9000:80         
     ```
 
 2. Now, open your second `pane` or terminal and type the following. (do a `ctrl+c` if you have watcher running on it)
 
     ```bash
-    http http://localhost:9000
+    http localhost:9000
 
     # or use curl if you don't have httpie installed.
     curl http://localhost:9000
 
-    # observe the html output. 
-    # If you are running `kubectl` from local machine, you'd be able to run it on a browser.
-    ```
+    # observe the html output.     
+    ```  
 
-3. From first pane / terminal, use `ctrl + c` to exit from port-forwarding. 
+3. From first pane / terminal, do a `ctrl + c` to exit from port-forwarding.
 
-> Note for advanced `vs code` users: If you like to use your browser for accessing the web page, you can use `forwarded ports` option in `remote explorer`, choose the port to forward and click into it. This will launch an `external endpoint` if you're running codespaces on browser. **If you're not sure about what this is, just carry on with terminal for now.**
+> **Note for advanced `vs code` users**: If you like to use your browser for accessing the web page, you can use `forwarded ports` option in `remote explorer`, choose the port to forward and click into it. This will launch an `external endpoint` if you're running codespaces on browser. **If you're not sure about what this is, just carry on with terminal for now. `curl` and `httpie` are more than sufficient for testing html outputs in this lab.**
 
 ---
 
