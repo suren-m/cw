@@ -1,12 +1,10 @@
-# Lab 1 - Getting Started with Kubernetes
+# Setup for Kubernetes Labs
 
-## Directory Setup
-
-1. Make sure that you are well aware of the directory you will be using for your labs.
+1. Similar to Docker, make sure you are well aware of the directory you will be using for your kubernetes labs.
 
 2. If you're on codespaces, note that `~/workspace` is the default directory that will open everytime you launch your codespace environment (vs code online).
 
-3. Set your current working directory on terminal to `cw_labs\kubernetes`. We will be executing commands from here as well as store the files and folders for our `k8s`(kubernetes) related labs inside this directory.
+3. Set your current working directory on terminal to `cw_labs\kubernetes`. We will store the files and folders for our `k8s`(kubernetes) related labs inside this directory. (and will also start with executing `kubectl` commands from here for extra convenience)
 
 4. You can set the current working directory on terminal by either `command line` or `vs code`. Below are examples of both.
 
