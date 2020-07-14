@@ -37,6 +37,8 @@ kubectl get pv,pvc
 
 >Note that it may take a while for container to be ready because the cloud-backed volume has to be attached. Notice the use of `limits` here as well on the container spec.
 
+> Make sure to replace **`<your-name>`** in `claimName` field accordingly
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -83,7 +85,7 @@ spec:
     ```bash
     kubectl apply -f volume-pod.yaml
     ```
-8. Exec into the pod and observe that the file is still there because it is backed by `Azure Disk` as the persistent volume
+8. Exec into the pod and observe that the file is still there because it is backed by `Azure Disk` as the persistent volume.
 
     ```bash
     kubectl exec pod/volumepod -it -- sh
@@ -96,10 +98,10 @@ spec:
 
 ## Exercise - 2 Config Maps and Secrets
 
-1. Create a configmap named myconfig with values `<your-firstname>-1=lala,<your-firstname>-2=lolo`
+1. Create a configmap named myconfig with values `<your-firstname>-1=lala,<your-firstname>-2=lolo`. Replace `<your-firstname> accordingly`.
 
     ```bash
-        kubectl create configmap <your-firstname>-myconfig --from-literal=<your-firstname>-1=lala --from-literal=<your-firstname>-2=lolo
+    kubectl create configmap <your-firstname>-myconfig --from-literal=<your-firstname>-1=lala --from-literal=<your-firstname>-2=lolo
     ```
 
 >Bonus: Where is this config Map located? Hint: It's not bound to a node. Also, how to look at someone else's config map provided you have access? 
@@ -110,10 +112,10 @@ spec:
 > **IMPORTANT**: In the lab environment, every participant has full access to the shared cluster, so please do not put anything sensitive in the secrets as others will be able to see it too. Just put some dummy text as in example below.
 
 
-2. Create a secret called mysecret with the values <your-firstname>-password=mypass
+2. Create a secret called mysecret with the values `<your-firstname>-password=mypass`
 
     ```bash
-        kubectl create secret generic <your-firstname>-mysecret --from-literal=<your-firstname>-password=mypass
+    kubectl create secret generic <your-firstname>-mysecret --from-literal=<your-firstname>-password=mypass
     ```
 
 3. Follow below steps to create a new `test` pod that loads the values as below
@@ -121,17 +123,17 @@ spec:
   * Load from configmap ```<your-firstname>-myconfig``` ->  ```<your-firstname>-1``` in an environment variable called 'option'.    
   * Load secret '<your-firstname>-mysecret' as a volume inside an nginx pod on path ```/etc/secrets```.
 
-4. Create / open a manifest file called `config-and-secrets.yaml`
+4. Create a new manifest file so we can test our `configmap` and our `secret`. Let's call the manifest `config-and-secrets.yaml` (Do a `New File` or open it on the editor from terminal as below)
 
     ```bash    
     code config-and-secrets.yaml
     ```
 
-5. Pasting in the below manifest and save the file.
+5. Pasting in the below yaml manifest and save the file.
 
 > **Make sure to update `<your-firstname>` accordingly**
 
-> Spend a few minutes to fully understand the below manifest before proceeding further.
+> Spend a few minutes to fully understand the below manifest before proceeding further. As always, pay extra attention to indentation when pasting in.
     
 ```bash
 apiVersion: v1
