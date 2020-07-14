@@ -39,7 +39,7 @@
 
     ```
 
-2. Modify the `Main` method in `Program.cs` of `strings-app` as below
+2. Replace the `Main` method in `Program.cs` of `strings-app`, so it looks like below
 
 ```csharp
         static void Main(string[] args)
