@@ -71,9 +71,9 @@ There are a few ways to create manifest files:
         kubectl run web2 --image=nginx --restart=Never --dry-run=client -o yaml > web2-pod.yaml
     ```
 
-    * View the file using VS Code (or any editor of choice) or just type `cat web2-pod.yaml` from terminal
+    * View the file using VS Code (by using `code web2-pod.yaml` on the terminal or clicking on it from the explorer) or just type `cat web2-pod.yaml` to view it from terminal
 
-    * `web2-pod.yaml` should look like below (make sure the indentations are right as this is crucial for yaml parsing)
+    * `web2-pod.yaml` should look like below (pay extra attention to indentations as they are crucial for yaml parsing)
 
 ```yaml
 kind: Pod
