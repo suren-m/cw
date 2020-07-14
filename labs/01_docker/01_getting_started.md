@@ -111,6 +111,19 @@ Now, run another instance of nginx container. Just use a different port.
     docker ps # notice the new container from same image. Much like new objects from a class.
 ```
 
+#### View the contents of the webpage from Terminal
+
+You can view the webpage from terminal using http client tools such as `curl` or `httpie` 
+
+```bash
+curl localhost:9000
+
+# or via httpie (for coloured output and more helpful info)
+http localhost:9001
+```
+    > Note: If you're an advanced vs code user, you can also look at `forward ports` option in `Remote Explorer` to view the contents on a browser. For the labs, `curl` or `httpie` would be more than sufficient.
+
+
 #### Stop the nginx containers.
 
 > Important: **Do not** stop the vs online container. Then you may lose your new envrionment.
