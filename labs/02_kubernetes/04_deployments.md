@@ -19,7 +19,7 @@ In this lab, we will create deployments with replica sets and apply everything e
 
 ## Setup
 
-1. For Setup, first start with creating a directory called `cw-app` inside `kubernetes directory. 
+1. For Setup, first start with creating a directory called `cw-app` inside `kubernetes` directory. 
 
 ```bash
 mkdir cw-app && cd cw-app
@@ -58,7 +58,7 @@ mkdir cw-app && cd cw-app
 
     > Navigate to `https://hub.docker.com/r/<your-username>/cw-app/tags` on your browser and make sure all three versions (tags) of your app exists.
        
-    If you get a `404` above, it means you haven't correctly pushed your app to your docker hub account. Spend a couple of minutes and see if you can fix it or else just use the images in https://hub.docker.com/r/surenmcode/cw-app/tags instead
+    If you get a `404` above, it means you haven't correctly pushed your app to your docker hub account. Spend a couple of minutes and see if you can fix it or else you can just use the images in https://hub.docker.com/r/surenmcode/cw-app/tags instead
 ---
 
 ## Exercise 1 - Create a Deployment manifest file for `cw-app:1.0`
@@ -68,7 +68,7 @@ mkdir cw-app && cd cw-app
     ```bash
     # Make sure you're in `cw-app` directory
     
-    # Make sure to replace <your-username> with your docker hub username
+    # Make sure to replace <your-username> with your docker hub username (or surenmcode if you're having problems with docker hub)
     kubectl create deploy cw-app --image=<your-username>/cw-app:1.0 -o yaml --dry-run > cw-app.yaml    
     ```
 
@@ -76,6 +76,7 @@ mkdir cw-app && cd cw-app
 
     > Take a few minutes to understand the deployment manifest. Notice the creation of default label called `app`
 
+  Your `cw-app.yaml` should look like below.
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -109,9 +110,9 @@ status: {}
     kubectl apply -f cw-app.yaml
     ```
 
-    At this stage, if you're having issues with making your app image or manifest file, just deploy the one below or reach out to the instructor.
+    At this stage, if you're still having issues with your app image or manifest file, just deploy the one below or reach out to the instructor.
 
-    ```
+    ```bash
     # Only if you can't get the above steps to work
     kubectl apply -f https://raw.githubusercontent.com/suren-m/cw-app/master/cw-app.yaml
     ```
@@ -125,22 +126,24 @@ status: {}
 5. Access your app by `Port-Forwarding` to your deployment
 
 ```bash
-# Notice the backend port points to 8080 of the pod
+# Notice how in this case, backend port points to 8080 of app container inside the pod
 kubectl port-forward deployment.apps/cw-app 9003:8080
 
-http localhost:9003 # or the port that was used
+http localhost:9003 # or the port that you forwarded to
 ```
 ---
 
 ## Exercise 2 -Expose the `cw-app` deployment as a Service
 
-1. Generate a manifest for a `cluster-ip` service that exposes the `cw-app` deployment.
+1. Generate a manifest for a `cluster-ip` service that exposes the `cw-app` deployment. 
+
+> Spend a minute to understand what we're doing here.
 
 ```bash
 kubectl expose deploy cw-app --name cw-app-svc --port=80 --target-port=8080 --type=ClusterIP --dry-run -o yaml > cw-app-svc.yaml
 ```
 
-2. Take a look the `cw-app-svc.yaml` It should look like below:
+2. Take a look at `cw-app-svc.yaml` and make sure you know what it's doing. It should look like below:
 
 ```yaml
 apiVersion: v1
@@ -155,8 +158,8 @@ spec:
   - port: 80
     protocol: TCP
     targetPort: 8080
-  selector:
-    app: cw-app
+  selector: # this is how service knows where to send the traffic to. (using selector on labels)
+    app: cw-app 
   type: ClusterIP
 status:
   loadBalancer: {}
@@ -171,12 +174,13 @@ status:
 4. Port-forward to the Service to make sure it's working as intended.
 
 ```bash
+# We're forwarding from port 80 because the service itself runs on port 80. It's the backend app container that runs on 8080.
 kubectl port-forward service/cw-app-svc 9004:80
 
-http localhost:9004 # or the port that was used
+http localhost:9004 # or the port that was forwarded to
 ```
 
-5. Take a look at all the objects that are related to our `cw-app`.
+5. Take a look at all the objects that are related to our `cw-app`. (labels greatly help us here too!)
 
 ```bash
 k get all -o wide -l app=cw-app
@@ -193,7 +197,7 @@ k get all -o wide -l app=cw-app
 
 2. Update the image used by 'cw-app' to use version `2.0`
 
-There are two ways to do this:
+There are two ways to do this: (choose one you feel comfortable for now)
 
 * Command-line approach
     ```bash
@@ -205,7 +209,7 @@ There are two ways to do this:
 * **Or** using the manifest file 
 
     * Update the `image` field of `cw-app.yaml` to point to `2.0`
-    * `kubectl apply -f cw-app.yaml`
+    * And then do a `kubectl apply -f cw-app.yaml`
 
 3. Take a look at the replica sets. Notice the new one that's created and the number of pods in Ready state. Also notice `the images` column for version of image that was used.
 
@@ -218,7 +222,7 @@ There are two ways to do this:
 ```bash
 kubectl port-forward service/cw-app-svc 9005:80
 
-# Run a loop to hit it every second
+# Run a loop to hit it every second. Feel free to copy and paste this into the terminal
 while (http localhost:9005) do { sleep 1; } done
 ```
 
@@ -245,20 +249,23 @@ Exit the loop with `ctrl + c`
 
 ## Exercise - 5 Access the service from within the cluster.
 
-1. Much like in previous lab, run a busybox container and hit the `cw-app-svc` service by its name. 
+1. The service is only visible within the cluster. To hit it by its `dns name`, just create a busybox container and hit the `cw-app-svc` service by its name as below. 
 
 ```bash
-# delete any busybox pods that already exists
+# delete any busybox pods if you have anything that's already running.
 kubectl delete po busybox
 
-# run a busybox and launch its shell 
+# run a busybox pod and launch its shell 
 kubectl run busybox --rm --image=busybox -it --restart=Never -- sh    
 
-# Call cw-app-svc. Below would print out the output `Hello from CW app - V1.0 (stable)`
+# Call cw-app-svc using `wget`. Below would print out the output `Hello from CW app - V1.0 (stable)`
+wget -q -O - cw-app-svc
 
-wget -q -O - web1-svc
-#or 
-wget -q -O - web1-svc.<your-namespace>
+# or 
+
+wget -q -O - cw-app-svc.<your-namespace>
+# Above is the recommended approach to call a service running on someone else's namespace as well.
+# You can provide protocol and port-number as well if needed. (such as, http://cw-app-svc.john:80/)
 
 exit
 ```
