@@ -4,24 +4,34 @@
 
 > see [cloud-shell-setup](https://github.com/suren-m/remote-workshop-env/blob/master/cloud_shell/cloud_shell_setup.md)
 
+## Setup - Login to your Azure CLI (only if you're not already logged in)
+
+  * If you're using azure cloud shell you're most likely already logged in, so feel free to move to next step.  
+  * An easy way to check is to do a `az account show` or `az group list`. If you get successful response with some data, it means you're already logged in.  
+
+  ```bash  
+  # Login
+  az login
+  
+  # you will be prompted to open a link on the browser and sign-in with a code. Just follow the instructions on the terminal or reach out to instructor for help.
+  
+  # check if you're sucessfully logged in
+  az account list
+  
+  # do this only if you have multiple subscriptions. If you're on free subscription account, you likely have just one subscription, so feel free to skip
+  az account set --subscription 'my-subscription-name'
+  ```
+---
 
 ## Exercise 1 - Create your AKS Cluster and connect to it
 
-1. Log into your azure account and make sure to set your correct subscription (if not done already)
-
-  ```bash
-  az login
-  az account list
-  az account set --subscription 'my-subscription-name'
-  ```
-
-2. Create a resource group, replace "\<aks-resource-group>" with the name of the Resource Group you want to create:
+1. Create a resource group, replace "\<aks-resource-group>" with the name of the Resource Group you want to create:
 
   ```bash
   az group create --name=<aks-resource-group> --location=northeurope
   ```
 
-3. Run the following command to deploy Kubernetes cluster with AKS. Replace "\<aks-resource-group>" and "\<aks-name>" with the name of the Resource Group you created and the AKS cluster name you want to create:
+2. Run the following command to deploy Kubernetes cluster with AKS. Replace "\<aks-resource-group>" and "\<aks-name>" with the name of the Resource Group you created and the AKS cluster name you want to create:
 
 > Note: we are keeping the node count to 1 for now
   ```bash
@@ -30,14 +40,14 @@
   
   > This may take a short while to complete.
  
-4. Use the Azure CLI to get the credentials to connect kubectl to your AKS cluster:
+3. Use the Azure CLI to get the credentials to connect kubectl to your AKS cluster:
   
    > **Notice the usage of `-a` flag. This will retrieve admin credentials whics is needed to launch dashboard from k8s 1.16 onwards
   ```bash
   az aks get-credentials -a --resource-group <aks-resource-group> --name <aks-name>
   ```
 
-5. Verify everything worked as expect by running a command against your Kubernetes cluster.
+4. Verify everything worked as expect by running a command against your Kubernetes cluster.
 
   ```bash
   kubectl get all
@@ -80,29 +90,36 @@ Now, you can actually switch between the shared cluster and your own cluster fro
  az aks get-credentials --resource-group <aks-resource-group> --name <aks-name>
 ```
 
-
 #### Get Contexts
 
 ```
 kubectl config get-contexts
 ```
 
-#### Use Context (for your own cluster)
+#### Change your current context to your own cluster
 
 ```
 kubectl config use-context <name-of-the-context-to-use>
 ```
 
 ```
-# below just return info about your own cluster
+# below just returns info about your own cluster
 kubectl cluster-info
 ```
 
-Now you can use your own cluster for rest of the labs if you prefer and switch between shared and your own cluster seamlessly. 
+> Just note that, for accesssing your own cluster's dashboard you'd have to be in `cloud shell` or in local environment with `azure cli` and `kubectl` installed. You will not be able to launch dashboard directly from codespaces on browser. Don't forget about having to use admin credentials.
 
-Just note that, for accesssing your own cluster's dashboard you'd have to be in `cloud shell` or in local environment with `azure cli` and `kubectl` installed
+#### Make sure to switch your context back to shared cluster for doing the remaining labs. (it's easier to troubleshoot problems on shared cluster)
 
-For more info, see: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+```
+# change your current context to shared cluster
+kubectl config use-context <name-of-shared-cluster-context>
+
+# make sure your default namespace is correct on shared cluster (current context)
+kubectl get contexts
+```
+
+> You can use your own cluster once you've completed the essential labs for the workshop.
 
 ----   
     
@@ -130,7 +147,7 @@ In this exercise, you will create an Azure Container Registry instance using the
     az aks update -n <aks-name> -g <aks-resource-group> --attach-acr <acr-name>
     ``` 
 
-> Now you can do your labs or practice k8s on your own cluster with your own private registry. 
+> Now you can do your labs or practice k8s on your own cluster with your own private registry even after the completion of workshop. 
 
 For instructions on connecting to ACR (instead of docker hub), see below
 
