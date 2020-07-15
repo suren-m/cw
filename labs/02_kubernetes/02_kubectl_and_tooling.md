@@ -160,6 +160,7 @@
         alias k=kubectl
 
         # Save and exit the editor
+        # ctrl + s or file menu -> save
         ```  
 
     * Restart the shell or run a `source` from the terminal.
