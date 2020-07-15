@@ -22,7 +22,11 @@ In this lab, we will create deployments with replica sets and apply everything e
 1. For Setup, first start with creating a directory called `cw-app` inside `kubernetes` directory. 
 
 ```bash
-mkdir cw-app && cd cw-app
+    # clone the app repo
+    git clone https://github.com/suren-m/cw-app.git
+    
+    # cd into that directory
+    cd cw-app
 ```
 
 2. Your setup should look like below.
@@ -43,7 +47,7 @@ mkdir cw-app && cd cw-app
 4. Download and run the below setup script. This will build the `app image` and push it to your docker hub repository.
 
     > **Important:** When prompoted, provide your **dockerhub username** (not your namespace name)
-    ```bash
+    ```bash        
     # download
     wget https://raw.githubusercontent.com/suren-m/cw-app/master/setup.sh -O setup.sh
     
