@@ -111,13 +111,6 @@ status: {}
     kubectl apply -f cw-app.yaml
     ```
 
-    At this stage, if you're still having issues with your app image or manifest file, just deploy the one below or reach out to the instructor.
-
-    ```bash
-    # Only if you can't get the above steps to work
-    kubectl apply -f https://raw.githubusercontent.com/suren-m/cw-app/master/cw-app.yaml
-    ```
-
 4. View the Deployment and Replica Sets of cw-app. Notice the use of commas to query more objects and usage of labels
 
     ```bash
