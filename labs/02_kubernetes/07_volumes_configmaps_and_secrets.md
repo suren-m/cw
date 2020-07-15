@@ -68,9 +68,19 @@ spec:
 5. `Exec` into the container and create a file inside the mounted storage.
 
     ```bash
+    # exec into the container
     kubectl exec pod/volumepod -it -- sh
+    
+    # cd into mounted storage
     cd /mnt/my-persistent-storage/
+    
+    # create a file with some text
     echo "hello world" > hello.txt
+    
+    # verify below prints file contents as expected
+    cat hello.txt
+    
+    # exit the container shell
     exit
     ```
     
