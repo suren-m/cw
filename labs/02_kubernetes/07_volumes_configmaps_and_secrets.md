@@ -63,7 +63,9 @@ spec:
         name: my-volume
 ```
 
-4. Create the Pod with `kubectl apply -f volume-pod.yaml`
+4. Create the Pod with `kubectl apply -f volume-pod.yaml` 
+
+  > It may take a minute for the container to be running as kubernetes needs to attach our persistent volume.
 
 5. `Exec` into the container and create a file inside the mounted storage.
 
