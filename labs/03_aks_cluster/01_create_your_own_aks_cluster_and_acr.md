@@ -25,7 +25,7 @@
 
 ## Exercise 1 - Create your AKS Cluster and connect to it
 
-1. Create a resource group, replace "\<aks-resource-group>" with the name of the Resource Group you want to create:
+1. Create a resource group, replace "\<aks-resource-group>" with the name of the Resource Group you want to create. (for e.g: `my-aks-rg`)
 
   ```bash
   az group create --name=<aks-resource-group> --location=northeurope
