@@ -44,7 +44,7 @@ In this lab, we will create deployments with replica sets and apply everything e
 
 3. Make sure you're already logged into DockerHub by doing a **docker login** on the terminal (see docker registry lab if in doubt)
 
-4. Download and run the below setup script. This will build the `app image` and push it to your docker hub repository.
+4. Run the below setup script. This will build the `app image` and push it to your docker hub repository.
 
     > **Important:** When prompoted, provide your **dockerhub username** (not your namespace name)
     ```bash            
