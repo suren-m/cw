@@ -47,10 +47,7 @@ In this lab, we will create deployments with replica sets and apply everything e
 4. Download and run the below setup script. This will build the `app image` and push it to your docker hub repository.
 
     > **Important:** When prompoted, provide your **dockerhub username** (not your namespace name)
-    ```bash        
-    # download
-    wget https://raw.githubusercontent.com/suren-m/cw-app/master/setup.sh -O setup.sh
-    
+    ```bash            
     # set execution permissions    
     chmod +x setup.sh 
     
