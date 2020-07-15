@@ -56,7 +56,7 @@ spec:
    restartPolicy: OnFailure
 ```
 
-After applying (kubectl apply -f job-filename.yaml), observe the `watcher` pane and see how the pods come up and run to completion. (Time column will give you an idea as well)
+After doing a `kubectl apply`, now take a look at the `watcher` pane and see how the pods come up and run to completion. (Time column will give you an idea as well)
 
 ---
 
