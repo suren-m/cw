@@ -52,7 +52,11 @@
     ```bash
     az aks browse --resource-group <aks-resource-group> --name <aks-cluster-name>
     ``` 
-2. You will be prompted to use `kube config` file or `token`. For this, you can just use the config file. Just point to the location of config file in your system and select it. (default location on Windows is in `C:\users\<username>\.kube\config)   
+2. You will be prompted to use `kube config` file or `token`. For this, you can just use the config file. Just point to the location of config file in your system and select it. 
+
+  > If you're in Linux / cloud shell, do a `cat ~/.kube/config` and then copy the `token` value from the result.
+
+  > If you've setup `azure cli` and `kubectl` on windows, default location on Windows is in `C:\users\<username>\.kube\config)   
 
     > If you see errors on the notification icon on top-right, it means you have not retrieved admin credentials as mentioned in step 4 of exercise 1 above.
     
