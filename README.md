@@ -28,9 +28,3 @@ Make sure you have setup your Azure Subscription and Cloud Shell by following th
 > Keep this link open in a separate tab or window: https://github.com/suren-m/cw/tree/master/labs
 
 ----
-
-#### Cloud shell setup (useful after setting up your own cluster on aks)
-
-> [Azure_CloudShell_Setup](https://github.com/suren-m/remote-workshop-env/blob/master/cloud_shell/cloud_shell_setup.md)
-
-----
