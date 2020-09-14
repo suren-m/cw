@@ -12,8 +12,13 @@ Make sure you have setup your Azure Subscription and Cloud Shell by following th
 
 > See: [codespaces_setup](https://github.com/suren-m/remote-workshop-env/blob/master/codespaces/codespaces_setup.md)
 
+#### > If Codespace doesn't work on your browser, then setup Cloud shell (also useful after setting up your own cluster on aks)
 
-#### 3. Lab Environment Tooling Setup
+> [Azure_CloudShell_Setup](https://github.com/suren-m/remote-workshop-env/blob/master/cloud_shell/cloud_shell_setup.md)
+
+----
+
+#### 3. [Only works for Codespaces] Lab Environment Tooling Setup
 
 > See: [lab_tools_setup](./labs/00_setup/Readme.md)
 
