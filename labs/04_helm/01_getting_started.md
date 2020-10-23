@@ -5,6 +5,13 @@ In this exercise, you will start to explore how Helm can be used to simplify com
 
 ### Steps
 
+If Helm cli is not installed, please install it using
+
+```
+sudo snap install helm --classic
+```
+
+
 1. Clear up all your resources in your existing namespace or create yourself a new namespace for helm lab.
 
     ```bash
