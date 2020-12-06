@@ -3,12 +3,16 @@
 ## Dev Envrionment Tools
 
 * VS Code 
-* Git
-* Azure CLI
 * Recommended for Windows:
     *  Windows Terminal
     *  WSL2 if permitted 
     *  Chocolatey if permitted (makes it easier to install CLI tools on Windows)
+* CLI Tools:
+   *  Git
+   *  Azure CLI
+   *  Kubectl
+   *  Helm
+   *  Curl or Httpie
 ---
 
 ## Docker
