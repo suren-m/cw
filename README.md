@@ -28,7 +28,9 @@
 
 ### 1. Connect to your Kubernetes Cluster.
 
-* For AKS, `az aks get-credentials -n <your-clustername> -g <resource-group-name>`
+* For AKS, first make sure you are logged into your azure account via Azure cli using `az login`
+
+   * And then, do `az aks get-credentials -n <your-clustername> -g <resource-group-name>` 
 
 * The above will update the `config` file in your `~/.kube` directory.
 
