@@ -1,4 +1,6 @@
-# Containerization Workshop 
+# Containerization Workshop
+
+# Environment Setup
 
 ## Dev Envrionment Tools
 
