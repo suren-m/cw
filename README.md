@@ -4,8 +4,8 @@
 
 * VS Code 
 * Recommended for Windows:
-    *  Windows Terminal
-    *  WSL2 if permitted 
+    *  Windows Terminal (https://github.com/microsoft/terminal#installing-and-running-windows-terminal)
+    *  Windows Subsystem for Linux (WSL2) if permitted (https://docs.microsoft.com/en-us/windows/wsl/about)
     *  Chocolatey if permitted (makes it easier to install CLI tools on Windows)
 * CLI Tools:
    *  Git
@@ -34,7 +34,7 @@
    
 * Check current context (the cluster you are connected to)
 
-   * `kubectl config get-contexts` (notice the `*` under the current column)
+   * `kubectl config get-contexts` (notice the `*` under `current` column)
 
 * Test connection to your cluster.
 
