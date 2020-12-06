@@ -24,15 +24,24 @@
 
 ## Kubernetes / AKS
 
-### 1. Install `Kubectl` if not already installed.
-
-* https://kubernetes.io/docs/tasks/tools/install-kubectl/
-
-### 2. Connect to your Kubernetes Cluster.
+### 1. Connect to your Kubernetes Cluster.
 
 * For AKS, `az aks get-credentials -n <your-clustername> -g <resource-group-name>`
 
-### 3. Setup your default namespace. (if you're sharing the cluster)
+* The above will update the `config` file in your `~/.kube` directory.
+
+   * It can be viewed by doing `kubectl config` or `cat ~/.kube/config`
+   
+* Check current context (the cluster you are connected to)
+
+   * `kubectl config get-contexts` (notice the `*` under the current column)
+
+* Test connection to your cluster.
+
+   * `kubectl cluster-info`
+   * `kubectl get nodes`
+
+### 2. Setup your default namespace. (if you're sharing the cluster)
 
 * Create a namespace with unique name. (for example, using a combination of your first-name and first-letter of your surname)
 
