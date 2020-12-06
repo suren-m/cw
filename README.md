@@ -1,14 +1,34 @@
-# Containerization with Docker and Kubernetes Workshop
+# Containerization Workshop 
 
-## 1. Environment Setup
+## Dev Envrionment Tools
 
-Connect to remote lab environment from VS Code by following the instructions in below link
+* VS Code 
+* Git
+* Azure CLI
+* Recommended for Windows:
+    *  Windows Terminal
+    *  WSL2 if permitted 
+    *  Chocolatey if permitted (makes it easier to install CLI tools on Windows)
+---
 
-[VS Code Setup for Remote Workshop](https://github.com/suren-m/remote-workshop-env/blob/master/vscode/LabEnvSetup.pdf)
+## Docker
 
-----
+### 1. Install Docker Desktop in your development environment
 
-## 2. Setup your default namespace. (as we're sharing a cluster)
+* https://www.docker.com/products/docker-desktop
+---
+
+## Kubernetes / AKS
+
+### 1. Install `Kubectl` if not already installed.
+
+* https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+### 2. Connect to your Kubernetes Cluster.
+
+* For AKS, `az aks get-credentials -n <your-clustername> -g <resource-group-name>`
+
+### 3. Setup your default namespace. (if you're sharing the cluster)
 
 * Create a namespace with unique name. (for example, using a combination of your first-name and first-letter of your surname)
 
@@ -27,7 +47,7 @@ Connect to remote lab environment from VS Code by following the instructions in 
 
 ----
 
-## 3. Keep the lab guide open in a separate tab and use the online (github) version as source of truth
+### 4. Keep the lab guide open in a separate tab and use the online (github) version as source of truth
 
 > Keep this link open in a separate tab or window: https://github.com/suren-m/cw/tree/master/labs
 
