@@ -18,6 +18,7 @@
    *  Git
    *  Azure CLI
    *  Kubectl
+   *  Kustomize
    *  Helm
    *  Curl or Httpie
 ---
