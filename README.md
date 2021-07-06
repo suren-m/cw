@@ -100,9 +100,8 @@ Recommended:
 * At least do until `04_docker_registry.md` lab before moving on to kubernetes.
 * In Kubernetes, do at least till `03_deployments.md` before moving on to creating your own cluster.
 
-```
-
 ---
+
 ### AKS (for those with MSDN subscription or azure dev/sandbox environment)
 
 * If you have MSDN subscription and like to create and connect to AKS, see `04_aks_cluster` in `labs` directory. 
