@@ -12,7 +12,8 @@
     *  Windows Subsystem for Linux (WSL2) if permitted 
          * https://docs.microsoft.com/en-us/windows/wsl/about
       
-    *  `winget` or `scoop` if permitted (makes it easier to install CLI tools on Windows)
+    *  Package Managers such as `winget` or `scoop` if permitted (makes it easier to install CLI tools on Windows)
+    
 * CLI Tools:
    *  Git
    *  Azure CLI
