@@ -92,7 +92,9 @@ If you're using WSL2, don't forget to enable it toset limits as shown below: (al
 
 ---
 
-### Take a look at `Labs` directory to get started with the labs for `01_Docker` and then move on to `02_kubernetes`.
+### Labs 
+
+#### Take a look at `Labs` directory to get started with the labs for `01_Docker` and then move on to `02_kubernetes`.
 
 Recommended:
 * At least do until `04_docker_registry.md` lab before moving on to kubernetes.
@@ -100,6 +102,7 @@ Recommended:
 
 ```
 
+---
 ### AKS (for those with MSDN subscription or azure dev/sandbox environment)
 
 * If you have MSDN subscription and like to create and connect to AKS, see `04_aks_cluster` in `labs` directory. 
