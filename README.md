@@ -1,8 +1,6 @@
 # Containerization with Kubernetes Workshop
 
-# Environment Setup
-
-## Dev Environment Tools
+## Dev Tools 
 
 * VS Code 
 * Recommended for Windows:
@@ -24,7 +22,7 @@
    *  Curl or Httpie
 ---
 
-## Docker
+## Docker Desktop
 
 ### 1. Install Docker Desktop in your development environment
 
@@ -39,7 +37,7 @@ If you're using WSL2, don't forget to enable it toset limits as shown below: (al
 
 ---
 
-## Kubernetes 
+## Local Kubernetes 
 
 ### 1. Getting Started with Docker Desktop Kubernetes
 
@@ -92,9 +90,9 @@ If you're using WSL2, don't forget to enable it toset limits as shown below: (al
 
 ---
 
-### 4. Labs 
+## Labs 
 
-#### Take a look at `Labs` directory to get started with the labs for `01_Docker` and then move on to `02_kubernetes`.
+### Take a look at `Labs` directory to get started with the labs for `01_Docker` and then move on to `02_kubernetes`.
 
 Recommended:
 * At least do until `04_docker_registry.md` lab before moving on to kubernetes.
