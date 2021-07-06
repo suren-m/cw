@@ -13,6 +13,7 @@
 2. Write Cluster information to a file name 'cluster.txt'.
 
     ```bash
+    # may need bash / git-bash if output stream '>' doesn't work 
     kubectl cluster-info > cluster.txt
 
     # view it using cat if you like
@@ -45,7 +46,7 @@
     *         cw     cw        clusterUser_cw-rg_cw   <your-namespace-name>
     ```
 
-    > Important: If the NAMESPACE column is blank or doesn't contain your namespace name, it means you haven't configured your default namespace correctly. Reach out to the instructor for help.
+    > Important: If the NAMESPACE column is blank or doesn't contain your namespace name, it means you haven't configured your default namespace correctly. See repo's readme document or reach out to the instructor for help.
 
 4. Get a list of nodes in the cluster.
 

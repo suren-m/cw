@@ -1,30 +1,17 @@
 # Docker File
 
-## Setup
-
-Navigate to `docker` Directory inside `cw_labs`
-
-```bash
-If you're already in `cw_labs` directory, just type in the terminal (or use vs code)
-cd ./docker
-```
-
-> **Bash Tip**: `cd` to change directory. For e.g, to go up one level, `cd ..` Similarly, `mkdir <dir-name>` to create a directory from current location. `pwd` will print current working directory.
-
-> **VS Code Tip:** To Set the terminal to point to location of a file or dir, Simply right click on the file or directory from `explorer` on vs code and choose `open in terminal`
-
 ## Create your first Dockerfile and execute a `CMD` (greeter:1.0)
 
-1. Create a folder as needed. For e.g: `mkdir my_first_dockerfile` and `cd` into that folder or open that in `vs online`
+1. From `docker` directory, create a sub-directory called `my_first_dockerfile` and create a `Dockerfile` inside it.
 
-2. Create a Dockerfile inside `my_first_dockerfile` directory and just call it `Dockerfile` to keep up with the conventions. You can do `touch Dockerfile` from the terminal or just right-click on the folder you want to create the file under and select `New File`
+> You can do `touch Dockerfile` from the terminal or just right-click on the folder you want to create the file under and select `New File`
 
     ```bash
         # from my_first_dockerfile directory
         touch Dockerfile
     ```    
     
-    Your setup should look like this.
+### Your setup should look like this.
     
     ```bash
     ├── cw_labs
@@ -141,8 +128,6 @@ cd ./docker
         docker run --name my-first-website -d -p 9000:80 hello-web:1.0
         # Notice the `--name` argument. We give our own container name this time.
     ```
-
-> **Important** : If you are on `vs online`, you will not be able to launch the website as there isn't any loopback (localhost) address. But this will work if you are running docker on your own machine or in a VM. We will see more of web apps once we start deploying to Kuberenetes.
 
 6. Ensure the container is running as expected with `docker ps`. Observe all the columns of your `my-first-website` container.
 

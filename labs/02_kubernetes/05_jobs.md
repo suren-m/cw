@@ -4,7 +4,7 @@
 
 * Create a directory called `jobs` within `cw_labs/kubernetes` directory. 
 
-* Set your terminal's current working directory to the newly created `jobs` directory, either via `vs code GUI` or doing a `cd` on bash. (similar to how we did this in previous labs. If in doubt, take a look at 00_setup.md)
+* Set your terminal's current working directory to the newly created `jobs` directory, either via `vs code GUI` or doing a `cd` on bash. (similar to how we did this in previous labs)
 
 ---
 

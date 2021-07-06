@@ -4,7 +4,7 @@
 
 ## Create a Docker hub account and connect to it.
 
-Go to https://hub.docker.com/ and signup using your temporary outlook / hotmail account. If you are using your personal email to sign up for docker hub, **make sure to log out completely at the end of this lab.**
+Go to https://hub.docker.com/ and signup using your temp / personal account. If you are using your personal email to sign up for docker hub, make sure you're using your own / personal dev machine. (you can also do a `docker logout` when you're done)
 
 1. Once you have created a docker hub account, login via terminal as below. 
 

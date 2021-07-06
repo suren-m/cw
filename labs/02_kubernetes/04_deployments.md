@@ -29,31 +29,47 @@ In this lab, we will create deployments with replica sets and apply everything e
     cd cw-app
 ```
 
-2. Your setup should look like below.
+2. Your setup should look something like below.
 
     ```bash
     ├── cw_labs
     │   ├── docker
     │   └── kubernetes
     │       ├── cw-app
-    |           └── ...<your cw-app manifests will go here>...
+    |       |    └...<your cw-app manifests will go here as well>...   
+    |       |    ├── README.md
+    |       |    ├── setup.sh
+    |       |    ├── v1.0
+    |       |    │   ├── app.py
+    |       |    │   └── Dockerfile
+    |       |    ├── v2.0
+    |       |    │   ├── app.py
+    |       |    │   └── Dockerfile
+    |       |    └── v2.1
+    |       |        ├── app.py
+    |       |        └── Dockerfile
     │       └── pods
     │           └── web2-pod.yaml
-
-    ```
+    
 
 3. Make sure you're already logged into DockerHub by doing a **docker login** on the terminal (see docker registry lab if in doubt)
 
-4. Run the below setup script. This will build the `app image` and push it to your docker hub repository.
 
-    > **Important:** When prompoted, provide your **dockerhub username** (not your namespace name)
-    ```bash            
-    # set execution permissions    
-    chmod +x setup.sh 
-    
-    # execute
-    ./setup.sh
-    ```
+4. Build and push different versions of app images to your registry.
+
+  ```
+  # From cw-app directory
+  # Replace $username with your Dockerhub username or set an env variable for it
+
+  docker build ./v1.0/ -t $username/cw-app:1.0
+  docker push $username/cw-app:1.0
+
+  docker build ./v2.0/ -t $username/cw-app:2.0
+  docker push $username/cw-app:2.0
+
+  docker build ./v2.1/ -t $username/cw-app:2.1
+  docker push $username/cw-app:2.1
+  ```
     
 5. Verify the image is successfully pushed to your dockerhub repository. **Replace `<your-username>`** with your docker hub username.
 
@@ -69,7 +85,9 @@ In this lab, we will create deployments with replica sets and apply everything e
     ```bash
     # Make sure you're in `cw-app` directory
     
-    # Make sure to replace <your-username> with your docker hub username (or surenmcode if you're having problems with docker hub)
+    # Make sure to replace <your-username> with your docker hub username 
+    # (or surenmcode if you're having problems with your docker hub username)
+
     kubectl create deploy cw-app --image=<your-username>/cw-app:1.0 -o yaml --dry-run > cw-app.yaml    
     ```
 
@@ -270,6 +288,3 @@ exit
 * Try to do a simple `blue-green` or `canary` deployment by taking advantage of `labels` and `selectors` on the `service`
 
     * Remember that a `service` can point to two deployments as long as they have the same label.
-    
-    
-

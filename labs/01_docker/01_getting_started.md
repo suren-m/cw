@@ -1,9 +1,5 @@
 # Getting Started with Docker
 
-**When accessing `docker cli`, there is no need to use `sudo` on codespaces / vs online anymore.**
-
-> This is because the `vsonline` user is already added to `Docker` group.
-
 ## Hello World Container
 
 From terminal, run
@@ -14,7 +10,7 @@ From terminal, run
 
 > **Note:** `docker run` = `docker create` + `docker start` (+ also `docker attach`)
 
-* Where did the image `hello-world` come from? Is it a docker official image?
+* Where did the image `hello-world` come from? Is it an official image?
 
 >  Hint: See https://hub.docker.com/_/hello-world 
 
@@ -83,9 +79,6 @@ The result shows images that are locally cached in your environment. So, the nex
 
 Run an nginx webserver as below.
 
->Note: If you're on `vs online`, you will not be able to view the web page using `port-forwarding`. This is because there isn't a loopback route to forward to within the vsonine environment which itself is already running inside a container. We will be able to work with web apps once we start deploying to kubernetes.
-
-
 ```bash
     docker run -d -p 9000:80 nginx 
     # -p stands for publish (publish a container's port to the host)
@@ -98,10 +91,7 @@ Run an nginx webserver as below.
 
 ```bash
 # See running containers
-    docker ps
-
-    # Observe the columns in result.
-    # If you are on vs online, you will notice vs-online backend itself is a container too!
+    docker ps    
 ```
 
 Now, run another instance of nginx container. Just use a different port.
@@ -113,7 +103,7 @@ Now, run another instance of nginx container. Just use a different port.
 
 #### View the contents of the webpage from Terminal
 
-You can view the webpage from terminal using http client tools such as `curl` or `httpie` 
+You can view the webpage from browser or terminal using http client tools such as `curl` or `httpie` 
 
 ```bash
 curl localhost:9000
@@ -121,12 +111,8 @@ curl localhost:9000
 # or via httpie (for coloured output and more helpful info)
 http localhost:9001
 ```
-    > Note: If you're an advanced vs code user, you can also look at `forward ports` option in `Remote Explorer` to view the contents on a browser. For the labs, `curl` or `httpie` would be more than sufficient.
-
-
+    
 #### Stop the nginx containers.
-
-> Important: **Do not** stop the vs online container. Then you may lose your new envrionment.
 
 ```bash           
     # run `docker ps` to list the running containers. 
@@ -154,19 +140,31 @@ Find the container, you want to start by looking up on `docker ps -a`. Just beca
     docker start <container_id or name>
 ```
 
-#### Clean up Dangling resources with `docker system prune`
+----
 
+## Cleanup
+
+### For removing a stopped container
+
+```bash
+docker rm <container_id/name>
+```
+### For removing images
+```bash 
+docker rmi image <image_id_1> <image_id_2>
+```
+
+#### Clean up Dangling resources with `docker system prune`
 ```bash
 docker system prune
 ```
 
-#### If you also want to clean up all unused `images`
-
-```bash 
-docker system prune --all
-# type `y` when prompted
+#### To clean up all resources including images,containers,volumes, etc.
 ```
->Note: You can also prune by `images` `containers` as opposed to whole system. Or if you want to remove images individually, you can use `docker rmi image <image_id_1> <image_id_2>`
+docker system prune --all
+
+# `y' when prompted
+```
 
 >Important: As with any other system, use clean up commands with caution. Do not force delete images that are still referenced by containers. 
 
@@ -175,9 +173,7 @@ Give these links a quick read:
 * https://docs.docker.com/config/pruning/
 * https://docs.docker.com/engine/reference/commandline/rmi/
 
-#### Check if everything is cleaned up
-
-You should only see `vsonline` image and `vsonline container`
+#### Check if your environment is cleaned up
 
 ```bash
 docker ps -a
