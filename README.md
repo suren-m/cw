@@ -1,4 +1,4 @@
-# Containerization with Kubernetess Workshop
+# Containerization with Kubernetes Workshop
 
 # Environment Setup
 
