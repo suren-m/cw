@@ -13,6 +13,8 @@
          * https://docs.microsoft.com/en-us/windows/wsl/about
       
     *  Package Managers such as `winget` or `scoop` if permitted (makes it easier to install CLI tools on Windows)
+
+    *  Preferred Shell of your choice: PowerShell Core (pwsh), GitBash, WSL2 Bash/ZSH, etc.
     
 * CLI Tools:
    *  Git
@@ -27,17 +29,24 @@
 ### 1. Install Docker Desktop in your development environment
 
 * https://www.docker.com/products/docker-desktop
+
+Make Sure Kubernetes is enabled, 
+
+![image](https://user-images.githubusercontent.com/3830633/124665324-80b0b800-dea4-11eb-858f-840b6372e1a8.png)
+
+If you're using WSL2, don't forget to enable it toset limits as shown below: (also you need to integrate docker with your wsl2 distro (see Resources option)
+* https://docs.microsoft.com/en-us/windows/wsl/wsl-config#configure-global-options-with-wslconfig
+
 ---
 
 ## Kubernetes 
 
 ### 1. Getting Started with Docker Desktop Kubernetes
 
-* Test connection to your cluster.
+* Test connection to your cluster from terminal
 
    * `kubectl cluster-info`
    * `kubectl get nodes`
-
 ---
 ### 2. Setup your default namespace.
 
