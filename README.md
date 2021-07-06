@@ -98,7 +98,7 @@ If you're using WSL2, don't forget to enable it toset limits as shown below: (al
 
 Recommended:
 * At least do until `04_docker_registry.md` lab before moving on to kubernetes.
-* In Kubernetes, do at least till `03_deployments.md` before moving on to creating your own cluster.
+* In Kubernetes, do at least till `04_deployments.md` before moving on to creating your own cluster.
 
 ---
 
