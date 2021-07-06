@@ -45,12 +45,15 @@ Feel free to replace "my-aks-cluster" with a name you prefer. Make sure to use t
 #### Retrieve credentials for your own cluster. This will merge its config to the `~/.kube/config` file
 
 ```
- az aks get-credentials -name my-aks-cluster -g my-aks-rg 
+ az aks get-credentials -n my-aks-cluster -g my-aks-rg 
 ```
 
 ```
-# below just returns info about your own cluster
+# below returns info about your current cluster
 kubectl cluster-info
+
+# retrieve nodes (you should see 3)
+kubectl get nodes
 ```
 
 # make sure your default namespace is correct on shared cluster (current context)
@@ -60,7 +63,7 @@ kubectl get contexts
 
 # Now you can do labs / hands-on work on your own aks cluster
 
-* Note that slightly more advanced scenarios such as VNET integration, AKS Policies, Azure AD for AKS, etc. would require additional configuration when creating the cluster.
+* Note that slightly more advanced scenarios such as Multiple NodePools, VNET integration, AKS Policies, Azure AD for AKS, etc. would require additional configuration when creating the cluster.
 
 * It's best to use `infrastructure-as-code` approach via Bicep / ARM Templates or Terraform when configuring advanced clusters.
 
