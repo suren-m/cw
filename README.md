@@ -92,7 +92,7 @@ If you're using WSL2, don't forget to enable it toset limits as shown below: (al
 
 ---
 
-### Labs 
+### 4. Labs 
 
 #### Take a look at `Labs` directory to get started with the labs for `01_Docker` and then move on to `02_kubernetes`.
 
