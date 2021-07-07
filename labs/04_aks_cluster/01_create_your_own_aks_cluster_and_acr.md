@@ -36,7 +36,7 @@ Feel free to replace "my-aks-cluster" with a name you prefer. Make sure to use t
 > Check pricing before choosing larger vms
 
   ```bash
-  az aks create -n my-aks-cluster -g my-aks-rg --node-count 3 --node-vm-size "Standard_B2s"
+  az aks create -n my-aks-cluster -g my-aks-rg --node-count 3 --node-vm-size "Standard_B2s" --generate-ssh-keys
   ```
   
   > This may take a short while to complete.
