@@ -46,7 +46,7 @@ Create a directory called `pods` within `kubernetes` directory and `cd` into it.
 mkdir pods && cd pods   
 ```
 
-If you do a `pwd` on the terminal, it should return something like `/home/codespace/workspace/cw_labs/kubernetes/pods`. 
+If you do a `pwd` on the terminal, it should return something like `../cw_labs/kubernetes/pods`. 
 
 Example Output: ![codespaces_pods_directory_example](../../assets/codespace_pods_directory_example.png)
 
@@ -212,8 +212,6 @@ status: {}
     ```  
 
 3. From first pane / terminal, do a `ctrl + c` to exit from port-forwarding.
-
-> **Note for advanced `vs code` users**: If you like to use your browser for accessing the web page, you can use `forwarded ports` option in `remote explorer`, choose the port to forward and click into it. This will launch an `external endpoint` if you're running codespaces on browser. **If you're not sure about what this is, just carry on with terminal for now. `curl` and `httpie` are more than sufficient for testing html outputs in this lab.**
 
 ---
 
