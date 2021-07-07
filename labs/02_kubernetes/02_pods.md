@@ -48,7 +48,10 @@ mkdir pods && cd pods
 
 If you do a `pwd` on the terminal, it should return something like `../cw_labs/kubernetes/pods`. 
 
-Example Output: ![codespaces_pods_directory_example](../../assets/codespace_pods_directory_example.png)
+Example Output: 
+
+![image](https://user-images.githubusercontent.com/3830633/124786801-ec942e80-df3f-11eb-878a-a8873e091438.png)
+
 
 ---
 
