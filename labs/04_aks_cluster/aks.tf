@@ -46,7 +46,7 @@ resource "azurerm_virtual_network" "vnet" {
   address_space       = ["10.5.0.0/16"]    
 }
 
-# subnet /22 (around 4000 ip addresses)
+# subnet /22 (1019 available addresses)
 resource "azurerm_subnet" "aks" {
   name                 = "demo-aks"
   resource_group_name  = azurerm_resource_group.rg.name
