@@ -1,9 +1,13 @@
 # AKS cluster creation
 
-# If using System-Assigned MI, ensure it has access to subnet
+
+#### Note: The `aks.tf` example here uses `user-assigned managed Identity` for control plane that is also configured to get `network contributor` access to subnet. ([BYO Control Plane feature])(https://azure.microsoft.com/en-us/updates/azure-kubernetes-service-aks-now-supports-bringyourown-control-plane-managed-identity/)
+
+### If you had created the cluster via portal and had used `system-assigned managed identity`, then you'd need to ensure that it has access to the subnet
+```
 # az aks show -n <clustername> -g <rgname> --query=identity (or identityProfile for kubeletIdentity)
 # az role assignment list --assignee <Id> --all -o table
-# az role assignment create --assignee $ASSIGNEE --role 'Network Contributor' --scope $VNETID
+# az role assignment create --assignee $ASSIGNEE --role 'Network Contributor' --scope $SUBNETID ($VNETID for wider scope)
 
 # Make sure the SP executing this template has access for role assignment (owner on that RG)
 resource "azurerm_role_assignment" "assignment" {
@@ -11,13 +15,12 @@ resource "azurerm_role_assignment" "assignment" {
   role_definition_name = "Network Contributor"  
  
   # Increase the scope to VNET or RG level Only if subnet-level is insufficient (likewise for NSG)
-  scope                = <subnet-id> 
+  scope                = azurerm_subnet.aks.id
 }
-
 
 # Check with az and jq
 # az aks show -n cndev -g azenv-uks --query=identity | jq '.principalId' | xargs az role assignment list --all -o table --assignee
-
+```
 
 
 ### Have a look at `aks.tf` to get a better understanding of additional configuration items for AKS.
