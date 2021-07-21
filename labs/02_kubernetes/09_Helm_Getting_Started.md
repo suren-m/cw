@@ -61,5 +61,7 @@ kubectl config set-context --current --namespace=helm-lab
 
 ---
 
-For more, take a look at https://helm.sh/docs/intro/quickstart/
-And examples such as https://docs.microsoft.com/en-us/azure/aks/ingress-internal-ip
+For more, take a look at below links:
+https://docs.microsoft.com/en-us/azure/aks/quickstart-helm
+https://helm.sh/docs/intro/quickstart/
+And also examples such as https://docs.microsoft.com/en-us/azure/aks/ingress-internal-ip
