@@ -1,5 +1,25 @@
 # AKS cluster creation
 
+# If using System-Assigned MI, ensure it has access to subnet
+# az aks show -n <clustername> -g <rgname> --query=identity (or identityProfile for kubeletIdentity)
+# az role assignment list --assignee <Id> --all -o table
+# az role assignment create --assignee $ASSIGNEE --role 'Network Contributor' --scope $VNETID
+
+# Make sure the SP executing this template has access for role assignment (owner on that RG)
+resource "azurerm_role_assignment" "assignment" {
+  principal_id         = azurerm_kubernetes_cluster.aks.identity[0].principal_id
+  role_definition_name = "Network Contributor"  
+ 
+  # Increase the scope to VNET or RG level Only if subnet-level is insufficient (likewise for NSG)
+  scope                = <subnet-id> 
+}
+
+
+# Check with az and jq
+# az aks show -n cndev -g azenv-uks --query=identity | jq '.principalId' | xargs az role assignment list --all -o table --assignee
+
+
+
 ### Have a look at `aks.tf` to get a better understanding of additional configuration items for AKS.
 
 
