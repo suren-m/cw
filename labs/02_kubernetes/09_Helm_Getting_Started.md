@@ -58,3 +58,6 @@ kubectl config set-context --current --namespace=helm-lab
     ```bash
     helm uninstall my-release -n helm-lab    
     ```
+
+# For more, take a look at https://helm.sh/docs/intro/quickstart/
+# And examples such as https://docs.microsoft.com/en-us/azure/aks/ingress-internal-ip
