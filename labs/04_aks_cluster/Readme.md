@@ -3,7 +3,7 @@
 
 #### Note: The `aks.tf` example here uses `user-assigned managed Identity` for control plane that is also configured to get `network contributor` access to subnet. ([BYO Control Plane feature](https://azure.microsoft.com/en-us/updates/azure-kubernetes-service-aks-now-supports-bringyourown-control-plane-managed-identity/))
 
-### If you had created the cluster via portal and had used `system-assigned managed identity`, then you'd need to ensure that it has access to the subnet
+#### If you had created the cluster via portal and had used `system-assigned managed identity`, then you'd need to ensure that it has access to the subnet in order to create `internal` services or `ingress controllers` on internal network
 ```
 # az aks show -n <clustername> -g <rgname> --query=identity (or identityProfile for kubeletIdentity)
 # az role assignment list --assignee <Id> --all -o table
