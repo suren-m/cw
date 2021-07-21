@@ -1,7 +1,7 @@
 # AKS cluster creation
 
 
-#### Note: The `aks.tf` example here uses `user-assigned managed Identity` for control plane that is also configured to get `network contributor` access to subnet. ([BYO Control Plane feature])(https://azure.microsoft.com/en-us/updates/azure-kubernetes-service-aks-now-supports-bringyourown-control-plane-managed-identity/)
+#### Note: The `aks.tf` example here uses `user-assigned managed Identity` for control plane that is also configured to get `network contributor` access to subnet. ([BYO Control Plane feature](https://azure.microsoft.com/en-us/updates/azure-kubernetes-service-aks-now-supports-bringyourown-control-plane-managed-identity/))
 
 ### If you had created the cluster via portal and had used `system-assigned managed identity`, then you'd need to ensure that it has access to the subnet
 ```
