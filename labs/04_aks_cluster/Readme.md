@@ -1,5 +1,9 @@
 # AKS cluster creation
 
+For a simple cluster creation on personal / MSDN subscription using CLI, see [01_create_your_own_aks_cluster_and_acr.md](https://github.com/suren-m/cw/blob/master/labs/04_aks_cluster/01_create_your_own_aks_cluster_and_acr.md)
+
+---
+### Below is for Terraform based approach.
 
 #### Note: The `aks.tf` example here uses `user-assigned managed Identity` for control plane that is also configured to get `network contributor` access to subnet. ([BYO Control Plane feature](https://azure.microsoft.com/en-us/updates/azure-kubernetes-service-aks-now-supports-bringyourown-control-plane-managed-identity/))
 
