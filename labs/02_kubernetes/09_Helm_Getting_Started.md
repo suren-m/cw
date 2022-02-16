@@ -53,11 +53,34 @@ kubectl config set-context --current --namespace=helm-lab
     kubectl get all -n helm-lab
     ```    
 
+7. Create another release but this time with a config override.
+
+   * Create a `values.overrides.yaml` file (outside the chart directory) and add a line for replicaCount as below
+     `replicaCount: 3`
+     
+   * Now create a release using same chart with the above file for override and with `--create-namespace` option to see a new namespace created dynamically as well.
+
+    ```
+    helm install my-release-2 -f values.overrides.yaml ./my-first-chart-0.1.0.tgz -n helm-lab-2 --create-namespace
+    ```
+   * Verify by doing a `kubectl get all -n helm-lab2` 
+   
+
+8. See all your releases
+
+   ```
+   helm ls -n helm-lab
+   helm ls -n helm-lab2
+   ```
+
 7. Clean-up your resources.
 
     ```bash
     helm uninstall my-release -n helm-lab    
+    helm uninstall my-release-2 -n helm-lab-2
+   
     ```
+   
 
 ---
 
